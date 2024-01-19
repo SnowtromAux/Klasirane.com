@@ -1,11 +1,12 @@
-#home-wrapper{
+#home-wrapper {
     padding: 0px 8px;
     background: #FAFAFA;
+    padding-bottom: 30px;
 }
 
 
 
-#home-next-comp{
+#home-next-comp {
     border-radius: 30px;
     background: #FFF;
     box-shadow: 4px 4px 16.2px 3px rgba(0, 0, 0, 0.15);
@@ -15,7 +16,7 @@
     padding: 10px 20px;
 }
 
-#home-next-comp >h1{
+#home-next-comp>h1 {
     color: #000;
     font-size: 40px;
     font-style: normal;
@@ -26,7 +27,7 @@
 
 
 
-#home-next-comp >div{
+#home-next-comp>div {
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -34,7 +35,7 @@
 }
 
 
-.home-next-comp-label{
+.home-next-comp-label {
     color: #000;
     text-align: center;
     border-radius: 400px;
@@ -48,18 +49,18 @@
 
 
 
-#home-main{
+#home-main {
     display: flex;
     margin-top: 20px;
 }
 
-#home-main-left{
+#home-main-left {
     width: 400px;
 }
 
 
 
-#home-main-right{
+#home-main-right {
     display: flex;
     flex-direction: column;
     margin-left: 15px;
@@ -67,14 +68,14 @@
     gap: 15px;
 }
 
-#last-added-problems-wrapper{
+#last-added-problems-wrapper {
     border-radius: 30px;
     background: #FFF;
     box-shadow: 4px 4px 16.2px 3px rgba(0, 0, 0, 0.15);
     padding: 10px 20px;
 }
 
-#last-added-problems-wrapper >label{
+#last-added-problems-wrapper>label {
     color: #000;
     font-size: 40px;
     font-style: normal;
@@ -82,13 +83,13 @@
     line-height: normal;
 }
 
-#last-added-problems-wrapper >div{
+#last-added-problems-wrapper>div {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-.problems{
+.problems {
     padding: 10px;
     margin-top: 10px;
     text-align: center;
@@ -102,7 +103,7 @@
 }
 
 
-#sign-up-wrapper{
+#sign-up-wrapper {
     display: flex;
     align-items: center;
     height: 363px;
@@ -112,24 +113,24 @@
     padding: 0px 50px;
 }
 
-#sicademy-logo{
+#sicademy-logo {
     width: 310px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#sicademy-logo >img{
+#sicademy-logo>img {
     width: 220px;
 }
 
-#sicademy-info{
+#sicademy-info {
     display: flex;
     flex-direction: column;
     margin-left: 10px;
 }
 
-#sicademy-info >label{
+#sicademy-info>label {
     color: #000;
     font-family: Comfortaa;
     font-size: 38px;
@@ -140,14 +141,14 @@
     margin-left: 20px;
 }
 
-#sicademy-info >a{
+#sicademy-info>a {
     text-decoration: none;
     width: 252px;
     height: 60px;
     border-radius: 68px;
 }
 
-#sicademy-link{
+#sicademy-link {
     margin-top: 10px;
     width: 252px;
     height: 60px;
@@ -169,6 +170,6 @@
     box-sizing: border-box;
 }
 
-#sicademy-link:hover{
+#sicademy-link:hover {
     border: 1px solid black;
 }
