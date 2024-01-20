@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "../styles/Competitions.css";
 
 function App() {
-    const filters = ['Клас', 'Година', 'Статут', 'Видове задачи'];
+    // const filters = ['Клас', 'Година', 'Статут', 'Видове задачи'];
     const filtered_competitions = ['КМС', 'ВМС', 'НОМ'];
 
     const [clickedLabels, setClickedLabels] = useState({});
+
+    const [filters, setFilters] = useState([]);
 
     const handleClick = (filter) => {
         setClickedLabels(prevState => ({
@@ -13,6 +15,25 @@ function App() {
             [filter]: !prevState[filter]
         }));
     };
+
+    useEffect(() => {
+        fetch('http://localhost:3001/filters.txt')
+            .then(response => {
+                console.log(response);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(text => {
+                const filtersFromFile = text.split('\n').filter(Boolean);
+                setFilters(filtersFromFile);
+                console.log(filtersFromFile);
+            })
+            .catch(error => {
+                console.error('There was an error fetching the filters:', error);
+            });
+    }, []);
 
     return (
         <div className="competitions">
