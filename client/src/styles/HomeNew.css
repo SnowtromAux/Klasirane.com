@@ -1,5 +1,5 @@
 .homenew-wrapper {
-    padding: 100px;
+    padding: 100px 50px;
     display: flex;
     flex-direction: column;
     border-radius: 50px;
@@ -16,22 +16,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 120px;
 }
 
 .homenew-top>div>img {
-    width: 272px;
+    width: 120px;
 }
 
 .homenew-top>label {
     display: flex;
     justify-content: center;
-    align-items: center;
     color: #000;
     font-family: Comfortaa;
     font-size: 40px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    margin-left: 25px;
 }
 
 .homenew-middle {
@@ -71,4 +72,27 @@
     font-style: normal;
     font-weight: 700;
     line-height: 32px;
+}
+
+@media (max-width: 1161px) {
+    .homenew-wrapper {
+        padding: 100px 20px;
+    }
+
+    .homenew-top {
+        justify-content: center;
+    }
+
+    .homenew-top>div {
+        height: 90px;
+    }
+
+    .homenew-top>div>img {
+        width: 90px;
+    }
+
+    .homenew-top>label {
+        font-size: 33px;
+    }
+
 }
