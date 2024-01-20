@@ -6,11 +6,22 @@ import remove from "../assets/remove.png";
 
 function App() {
     const [isArrowRotated, setIsArrowRotated] = useState(false);
+    const [filters, setFilters] = useState([]);
     const [selectedFilters, setSelectedFilters] = useState({});
-    const filters = ['Клас', 'Година', 'Статут', 'Видове задачи'];
     const filtered_competitions = ['КМС', 'ВМС', 'НОМ'];
 
     useEffect(() => {
+        fetch('http://localhost:3001/filters.txt')
+            .then(response => response.text())
+            .then(text => {
+                const filtersFromFile = text.split('\n').filter(Boolean); // filter(Boolean) will remove any empty strings
+                setFilters(filtersFromFile); // Store the filters in state
+            })
+            .catch(error => {
+                console.error('There was an error fetching the filters:', error);
+            });
+
+
         if (isArrowRotated) {
             document.body.style.overflow = 'hidden';
         } else {
