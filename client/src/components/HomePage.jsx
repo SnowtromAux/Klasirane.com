@@ -16,13 +16,34 @@ export default class HomeComponent extends Component {
         super(props);
 
         this.state = {
-            next_comp: ['Австралийско Кенгуру - Australian Mathematics Competition - AMC', 'Академик Кирил Попов, Шумен'],
-            last_problems: ['JBMO - МБОМ - Младежка Балканска Олимпиада по Математика']
+            next_comp: [],
+            last_problems: [],
+            isWideScreen: window.innerWidth >= 1161
         };
     }
 
     componentDidMount() {
         window.addEventListener('resize', this.handleResize);
+
+        fetch('http://localhost:3001/next-comp.txt')
+            .then(response => response.text())
+            .then(text => {
+                const nextCompFromFile = text.split('\n').filter(Boolean);
+                this.setState({ next_comp: nextCompFromFile });
+            })
+            .catch(error => {
+                console.error('There was an error fetching the next competitions:', error);
+            });
+
+        fetch('http://localhost:3001/last-problems.txt')
+            .then(response => response.text())
+            .then(text => {
+                const lastProblemsFromFile = text.split('\n').filter(Boolean);
+                this.setState({ last_problems: lastProblemsFromFile });
+            })
+            .catch(error => {
+                console.error('Error fetching last problems:', error);
+            });
     }
 
     componentWillUnmount() {
