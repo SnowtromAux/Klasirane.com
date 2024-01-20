@@ -1,11 +1,20 @@
-.logo-wrapper{
+.logo-wrapper {
     height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.logo-wrapper >img{
+.logo-wrapper>img {
     width: 464px;
-    /* flex-shrink: 0; */
+}
+
+@media (max-width: 520px) {
+    .logo-wrapper {
+        height: 160px;
+    }
+
+    .logo-wrapper>img {
+        width: 372px;
+    }
 }
