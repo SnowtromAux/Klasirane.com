@@ -14,8 +14,8 @@ function App() {
         fetch('http://localhost:3001/filters.txt')
             .then(response => response.text())
             .then(text => {
-                const filtersFromFile = text.split('\n').filter(Boolean); // filter(Boolean) will remove any empty strings
-                setFilters(filtersFromFile); // Store the filters in state
+                const filtersFromFile = text.split('\n').filter(Boolean);
+                setFilters(filtersFromFile);
             })
             .catch(error => {
                 console.error('There was an error fetching the filters:', error);
