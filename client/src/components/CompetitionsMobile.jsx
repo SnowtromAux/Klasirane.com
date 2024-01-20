@@ -5,7 +5,8 @@ import exit from "../assets/exit.png";
 import remove from "../assets/remove.png";
 
 function App() {
-    const [isArrowRotated, setIsArrowRotated] = useState(false)
+    const [isArrowRotated, setIsArrowRotated] = useState(false);
+    const [selectedFilters, setSelectedFilters] = useState({});
     const filters = ['Клас', 'Година', 'Статут', 'Видове задачи'];
     const filtered_competitions = ['КМС', 'ВМС', 'НОМ'];
 
@@ -29,6 +30,21 @@ function App() {
         setIsArrowRotated(false);
     };
 
+    const handleFilterClick = (filter) => {
+        setSelectedFilters(prevFilters => ({
+            ...prevFilters,
+            [filter]: !prevFilters[filter]
+        }));
+    };
+
+    const handleRemoveFilters = () => {
+        const resetFilters = filters.reduce((acc, filter) => {
+            acc[filter] = false;
+            return acc;
+        }, {});
+        setSelectedFilters(resetFilters);
+    };
+
     return (
         <div className="competitions-mobile">
             <label>Всички Състезания</label>
@@ -36,7 +52,7 @@ function App() {
                 <label className="filter-text-mobile">Филтри</label>
                 <div className="filters-wrapper-mobile">
                     {filters.map((filter, index) => (
-                        <label key={index} className={`filter-mobile`}>{filter}</label>
+                        <label key={index} className={`filter-mobile`} onClick={() => handleFilterClick(filter)} style={{ background: selectedFilters[filter] ? '#0066CC' : '#A9A9A9' }}>{filter}</label>
                     ))}
                 </div>
             </div>
@@ -48,14 +64,14 @@ function App() {
                 <div className="filter-results-mobile">
                     <div className='filter-result-mobile-top'>
                         <div className='filter-result-mobile-top-text'>Филтри</div>
-                        {filters.map((filter, index) => (
+                        {filters.filter(filter => selectedFilters[filter]).map((filter, index) => (
                             <label key={index} className={`filter-result-mobile-top-search`}>{filter}</label>
                         ))}
                     </div>
                     <div className='filter-result-mobile-exit' onClick={handleCloseClick}>
                         <img src={exit} alt="Exit"></img>
                     </div>
-                    <div className='filter-result-mobile-remove'>
+                    <div className='filter-result-mobile-remove' onClick={handleRemoveFilters}>
                         <img src={remove} alt="Remove"></img>
                         <label>Премахни филтри</label>
                     </div>

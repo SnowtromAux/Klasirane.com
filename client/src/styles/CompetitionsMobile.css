@@ -25,7 +25,6 @@
 .filter-box-mobile {
     margin-top: 10px;
     width: 95%;
-    height: 175px;
     border-radius: 25px;
     background: #CFCFCF;
     display: flex;
@@ -39,7 +38,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    padding-top: 30px;
+    padding-top: 10px;
     padding-left: 20px;
 }
 
@@ -197,4 +196,20 @@
     line-height: normal;
     margin-bottom: 8px;
     cursor: pointer;
+}
+
+@media (max-width: 520px) {
+    .filter-result-button {
+        margin: 15px 0px;
+        width: 359.2px;
+        height: 60px;
+    }
+
+    .filter-result-button>label {
+        font-size: 25.2px;
+    }
+
+    .filter-result-button>img {
+        font-size: 25.2px;
+    }
 }
