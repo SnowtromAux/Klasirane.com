@@ -172,6 +172,21 @@
 
 @media (max-width: 1161px) {
 
+    #home-main {
+        flex-direction: column;
+        gap: 20px
+    }
+
+    #home-main-left {
+        width: 100%;
+    }
+
+    #home-main-right {
+        margin-left: 0px;
+    }
+}
+
+@media (max-width: 761px) {
     #sign-up-wrapper {
         height: 283px;
         padding: 0px 20px;
@@ -195,6 +210,34 @@
         width: 196.5px;
         height: 46.8px;
         font-size: 23.4px;
+        line-height: 46.8px;
+    }
+}
+
+@media (max-width: 520px) {
+    #sign-up-wrapper {
+        height: 283px;
+        padding: 0px 20px;
+    }
+
+    #sicademy-logo {
+        width: 232.2px;
+    }
+
+    #sicademy-logo>img {
+        width: 165px;
+    }
+
+    #sicademy-info>label {
+        font-size: 25px;
+        line-height: 38px;
+    }
+
+    #sicademy-link {
+        margin-top: 10px;
+        width: 196.5px;
+        height: 46.8px;
+        font-size: 20px;
         line-height: 46.8px;
     }
 }

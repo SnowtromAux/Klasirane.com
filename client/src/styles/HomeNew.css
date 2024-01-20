@@ -74,7 +74,7 @@
     line-height: 32px;
 }
 
-@media (max-width: 1161px) {
+@media (max-width: 746px) {
     .homenew-wrapper {
         padding: 100px 20px;
     }
