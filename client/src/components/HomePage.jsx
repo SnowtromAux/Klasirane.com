@@ -4,6 +4,7 @@ import '../styles/HomePage.css';
 
 import Logo from './Logo';
 import Competitions from './Competitions';
+import CompetitionsMobile from './CompetitionsMobile';
 import Ad from './Ad';
 import HomeNew from './HomeNew';
 
@@ -19,6 +20,19 @@ export default class HomeComponent extends Component {
             last_problems: ['JBMO - МБОМ - Младежка Балканска Олимпиада по Математика']
         };
     }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.handleResize);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleResize);
+    }
+
+    handleResize = () => {
+        this.setState({ isWideScreen: window.innerWidth >= 1161 });
+    };
+
     render() {
         return (
             <div id="home-wrapper">
@@ -36,9 +50,15 @@ export default class HomeComponent extends Component {
 
                 <div id="home-main">
 
-                    <div id="home-main-left">
-                        <Competitions />
-                    </div>
+                    {this.state.isWideScreen ? (
+                        <div id="home-main-left">
+                            <Competitions />
+                        </div>
+                    ) : (
+                        <div id="home-main-left">
+                            <CompetitionsMobile />
+                        </div>
+                    )}
 
                     <div id="home-main-right">
                         <div id="last-added-problems-wrapper">
