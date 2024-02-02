@@ -25,7 +25,7 @@ export default class HomeComponent extends Component {
     componentDidMount() {
         window.addEventListener('resize', this.handleResize);
 
-        fetch('http://localhost:3001/next-comp.txt')
+        fetch('http://localhost:3001/home/next-comp.txt')
             .then(response => response.text())
             .then(text => {
                 const nextCompFromFile = text.split('\n').filter(Boolean);
@@ -35,7 +35,7 @@ export default class HomeComponent extends Component {
                 console.error('There was an error fetching the next competitions:', error);
             });
 
-        fetch('http://localhost:3001/last-problems.txt')
+        fetch('http://localhost:3001/home/last-problems.txt')
             .then(response => response.text())
             .then(text => {
                 const lastProblemsFromFile = text.split('\n').filter(Boolean);

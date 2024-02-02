@@ -12,11 +12,7 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={<HomeComponent />} />
-        {/* <Route exact path="/flashcards/create" element={<CreateComponent />} /> */}
-
-        {/* <Route exact path="/yachts/:id" element={<YachtComponent />} />
-          <Route exact path="/services" element={<AgencyComponent />} />
-          <Route exact path="/contacts" element={<ContactsComponent />} /> */}
+        {/* <Route exact path="/competition/:id" element = {<CompetitionComponent />}></Route> */}
       </Routes>
       <Footer />
     </Router>

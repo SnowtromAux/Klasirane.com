@@ -11,7 +11,7 @@ function App() {
     const filtered_competitions = ['КМС', 'ВМС', 'НОМ'];
 
     useEffect(() => {
-        fetch('http://localhost:3001/filters.txt')
+        fetch('http://localhost:3001/home/filters.txt')
             .then(response => response.text())
             .then(text => {
                 const filtersFromFile = text.split('\n').filter(Boolean);
