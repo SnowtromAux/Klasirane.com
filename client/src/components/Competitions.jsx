@@ -2,22 +2,13 @@ import React, { useState, useEffect } from 'react';
 import "../styles/Competitions.css";
 
 function App() {
-    // const filters = ['Клас', 'Година', 'Статут', 'Видове задачи'];
-    const filtered_competitions = ['КМС', 'ВМС', 'НОМ'];
-
-    const [clickedLabels, setClickedLabels] = useState({});
-
     const [filters, setFilters] = useState([]);
 
     const [competitions , setCompetitions] = useState([]);
 
 
-    const handleClick = (filter) => {
-        setClickedLabels(prevState => ({
-            ...prevState,
-            [filter]: !prevState[filter]
-        }));
-    };
+    const [selFilters , setSelFilters] = useState({});
+    const [showComps , setShowComps] = useState([]);
 
     useEffect(() => {
         fetch('http://localhost:3001/home/filters.txt')
@@ -28,8 +19,30 @@ function App() {
                 return response.text();
             })
             .then(text => {
-                const filtersFromFile = text.split('\n').filter(Boolean);
-                setFilters(filtersFromFile);
+                const rows = text.split('\n').filter(Boolean);
+                const data = [];
+                const sel_filters = {};
+                for(const row of rows){
+                    const obj = {};
+                    const row_data = row.split(" | ");
+                    const filter_name = row_data[0];
+                    const filter_options = row_data[1].split(" , ");
+                    const multiple = (row_data[2] == 'Multiple' || row_data[2] == "Multiple\r");
+
+
+                    sel_filters[filter_name] = [];
+                    obj.name = filter_name;
+                    obj.options = filter_options;
+                    obj.multiple = multiple;
+
+                    data.push(obj);
+                }
+
+                // sel_filters["Клас"] = [1];
+                // sel_filters["Година"] = [2013 , 2014 , 2015 , 2016 , 2017 , 2018];
+
+                setFilters(data);
+                setSelFilters(sel_filters);
             })
             .catch(error => {
                 console.error('There was an error fetching the filters:', error);
@@ -58,9 +71,9 @@ function App() {
                     }
 
                     obj.push(filters);
-                    // console.log(filters);
                 }
                 setCompetitions(obj);
+                setShowComps(obj);
 
                 console.log(obj)
             })
@@ -69,6 +82,17 @@ function App() {
             });
     }, []);
 
+    const handleCheckboxChange = (filter_name , index , isMultiple) => {
+        const id = `${filter_name}_radio_${index}`;
+        const checkboxes = document.getElementsByClassName(`filter-group-${filter_name}`);
+        const clicked_checkbox = document.getElementById(id);
+
+        if(!isMultiple)
+            for(const checkbox of checkboxes)
+                if(checkbox.id != id)
+                    checkbox.checked = false;
+    }
+
     return (
         <div className="competitions">
             <label>Всички Състезания</label>
@@ -76,12 +100,33 @@ function App() {
                 <label className="filter-text">Филтри</label>
                 <div className="filters-wrapper">
                     {filters.map((filter, index) => (
-                        <label key={index} className={`filter`} onClick={() => handleClick(filter)} style={{ background: clickedLabels[filter] ? '#0066CC' : '#A9A9A9' }}>{filter}</label>
+                        // <select key = {index} name={filter.name} multiple={filter.multiple ? true : false}>
+                        //     {filter.options.map((option , index) => (
+                        //         <option key = {index} value={option}>{option}</option>
+                        //     ))}
+                        // </select>
+                        <div className='filter' key = {index}>
+                            <label className='filter-name'>{filter.name}</label>
+                            {selFilters[filter.name].map((sel_data , index) => (
+                                <label className = 'selected-filters' key = {index}>{sel_data}</label>
+                            ))}
+
+                            <div className='filter-dropdown'>
+                                {filter.options.map((option , index) => (
+                                    <div key = {index} className='filter-dropdown-row'>
+                                        <input className = {`filter-group-${filter.name}`} type="checkbox" id = {`${filter.name}_radio_${index}`} onChange={() => handleCheckboxChange(filter.name , index , filter.multiple)}></input>
+                                        <label htmlFor={`${filter.name}_radio_${index}`}>{option}</label>
+                                        {/* <label>{option}</label> */}
+                                    </div>
+                                ))}
+                            </div>
+                            {/* <label >2023</label> */}
+                        </div>
                     ))}
                 </div>
             </div>
             <div className="filter-results">
-                {competitions.map((competition, index) => (
+                {showComps.map((competition, index) => (
                     <label key={competition.key}>{competition.name}</label>
                 ))}
             </div>
