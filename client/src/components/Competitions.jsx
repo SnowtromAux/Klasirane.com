@@ -8,6 +8,7 @@ function Competitions() {
   const [competitions, setCompetitions] = useState([]);
   const [selFilters, setSelFilters] = useState({});
   const [showComps, setShowComps] = useState([]);
+  const [filterState , setFilterState] = useState({});
 
   useEffect(() => {
     fetch('http://localhost:3001/home/filters.txt')
@@ -21,14 +22,17 @@ function Competitions() {
         const rows = text.split('\n').filter(Boolean);
         const data = [];
         const sel_filters = {};
+        const filter_state = {};
+
         for (const row of rows) {
           const obj = {};
           const row_data = row.split(' | ');
           const filter_name = row_data[0];
           const filter_options = row_data[1].split(' , ');
           const multiple =
-            row_data[2] === 'Multiple' || row_data[2] === 'Multiple\r';
+            row_data[2] == 'Multiple' || row_data[2] == 'Multiple\r';
 
+          filter_state[filter_name] = false;
           sel_filters[filter_name] = [];
           obj.name = filter_name;
           obj.options = filter_options;
@@ -37,6 +41,7 @@ function Competitions() {
           data.push(obj);
         }
 
+        setFilterState(filter_state);
         setFilters(data);
         setSelFilters(sel_filters);
       })
@@ -102,6 +107,13 @@ function Competitions() {
     navigate(`/competitions/${path}`);
   }
 
+  const triggerFilter = (filter_name) => {
+    setFilterState((prevFilterState) => {
+      const updatedFilterState = { ...prevFilterState };
+      updatedFilterState[filter_name] = !updatedFilterState[filter_name];
+      return updatedFilterState;
+    });
+  };
   useEffect(() => {
     const filteredComps = competitions.filter((comp) =>
       Object.entries(selFilters).every(([filter, values]) =>
@@ -110,7 +122,7 @@ function Competitions() {
     );
 
     setShowComps(filteredComps);
-  }, [selFilters]);
+  }, [selFilters , competitions]);
 
   return (
     <div className="competitions">
@@ -119,14 +131,14 @@ function Competitions() {
         <label className="filter-text">Филтри</label>
         <div className="filters-wrapper">
           {filters.map((filter, index) => (
-            <div className="filter" key={index}>
+            <div className="filter" key={index} onClick={() => {triggerFilter(filter.name)}} style = {{borderBottomRightRadius: filterState[filter.name] ? "0px" : "20px" , borderBottomLeftRadius: filterState[filter.name] ? "0px" : "20px" , zIndex: 500 - index}}>
               <label className="filter-name">{filter.name}</label>
               {selFilters[filter.name].map((sel_data, index) => (
                 <label className="selected-filters" key={index}>
                   {sel_data}
                 </label>
               ))}
-              <div className="filter-dropdown">
+              <div className="filter-dropdown" style = {{visibility: filterState[filter.name] ? "visible" : "hidden"}}>
                 {filter.options.map((option, index) => (
                   <div key={index} className="filter-dropdown-row">
                     <input

@@ -57,6 +57,7 @@
 }
 
 .filter{
+    position: relative;
     padding: 7.5px 15px;
     margin: 0px 5px 5px 0px;
     gap: 7.5px;
@@ -64,6 +65,8 @@
     flex-wrap: wrap;
     align-items: center;
     border-radius: 20px;
+    /* border-top-left-radius: 20px;
+    border-top-right-radius: 20px; */
     background: #A9A9A9;
     color: #FFF;
     font-size: 19px;
@@ -114,12 +117,22 @@
 
 
 .filter-dropdown{
-
+    margin-right: 5px;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #A9A9A9;
+    transform: translateY(100%);
+    gap: 10px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;    
 }
 
 .filter-dropdown-row{
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 
@@ -132,6 +145,7 @@ input[type="checkbox"] + label {
     padding-left: 20px;
     cursor: pointer;
     display: inline-block;
+    border: none;
 }
 
 input[type="checkbox"] + label:before {
@@ -148,4 +162,5 @@ input[type="checkbox"] + label:before {
   
 input[type="checkbox"]:checked + label:before {
     background-color: #369;
+    border: 2px solid #369;
 }
