@@ -103,17 +103,6 @@ function App() {
       )
     );
 
-    // const filteredComps = competitions.filter((comp) =>
-    //   Object.entries(selFilters).every(([filter, values]) =>
-    //     values.length === 0 ? true : comp.filters[filter].includes(...values)
-    //   )
-    // );
-
-//     (subarray, array) =>
-//   subarray.every((element) => array.includes(element));
-
-    console.log(filteredComps)
-
     setShowComps(filteredComps);
   }, [selFilters]);
 
