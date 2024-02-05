@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Competitions.css';
 
-function App() {
+function Competitions() {
+    const navigate = useNavigate();
   const [filters, setFilters] = useState([]);
   const [competitions, setCompetitions] = useState([]);
   const [selFilters, setSelFilters] = useState({});
@@ -96,6 +98,10 @@ function App() {
     }));
   };
 
+  const changeDirectory = (path) => {
+    navigate(`/competitions/${path}`);
+  }
+
   useEffect(() => {
     const filteredComps = competitions.filter((comp) =>
       Object.entries(selFilters).every(([filter, values]) =>
@@ -143,11 +149,11 @@ function App() {
       </div>
       <div className="filter-results">
         {showComps.map((competition, index) => (
-          <label key={competition.key}>{competition.name}</label>
+          <label key={competition.key} onClick={() => changeDirectory(competition.key)}>{competition.name}</label>
         ))}
       </div>
     </div>
   );
 }
 
-export default App;
+export default Competitions;
