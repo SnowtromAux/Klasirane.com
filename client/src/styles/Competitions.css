@@ -38,6 +38,10 @@
     top: -25px;
 }
 
+.filter-box-top{
+    display: flex
+}
+
 .filter-text{
     color: #FFF;
     text-align: left;
@@ -47,6 +51,26 @@
     line-height: normal;
     padding-top: 30px;
     padding-left: 20px;
+}
+
+.filter-result-desk-remove {
+    margin: 35px 0px 0px 15px;
+    display: flex;
+    gap: 5px;
+}
+
+.filter-result-desk-remove>img {
+    width: 21px;
+    height: 21px;
+}
+
+.filter-result-desk-remove>label {
+    color: #D44;
+    font-family: Comfortaa;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 
 .filters-wrapper{
