@@ -198,6 +198,14 @@
     cursor: pointer;
 }
 
+.filter-result-mobile-category{
+    display: flex;
+    font-size: 18px; /* Adjust the font size as needed */
+    font-weight: bold; /* Add font-weight if desired */
+    margin-top: 10px; /* Adjust margin-top as needed for spacing */
+    color: #333;
+}
+
 @media (max-width: 520px) {
     .filter-result-button {
         margin: 15px 0px;
