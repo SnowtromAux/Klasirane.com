@@ -1,27 +1,47 @@
-// server.js
-const cors = require("cors");
-const express = require("express");
+const express = require('express');
+const cors = require('cors');
+const ftp = require('basic-ftp');
+const { Writable } = require('stream');
+
 const app = express();
-const path = require("path");
+const port = 3001;
 
-const allowedOrigins = ["http://localhost:3000"]; // Replace with the port your React app is served on
+app.use(cors());
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
+app.get('/home/:id', async (req, res) => {
+    const client = new ftp.Client();
+    client.ftp.verbose = true;
+
+    try {
+        await client.access({
+            host: '10.108.6.36',
+            user: 'stenli',
+            password: '1234',
+            secure: true,
+            secureOptions: { rejectUnauthorized: false },
+        });
+
+        const remoteFilePath = `/home/${req.params.id}`;
+        let text_to_send = '';
+        const writableStream = new Writable({
+            write(chunk, encoding, callback) {
+              text_to_send += chunk.toString();
+              callback();
+            }
+          });
+
+        await client.downloadTo(writableStream , remoteFilePath)
+        .then(()=>{
+            res.status(200).send(text_to_send);
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    } finally {
+        await client.close();
     }
-  },
-};
+});
 
-app.use(cors(corsOptions));
-
-// Serve static files from the public directory
-app.use(express.static(path.join(__dirname, "public")));
-
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });

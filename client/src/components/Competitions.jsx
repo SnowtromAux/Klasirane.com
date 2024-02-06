@@ -19,6 +19,8 @@ function Competitions() {
         return response.text();
       })
       .then((text) => {
+        console.log("Filters")
+        console.log("Text: " , text)
         const rows = text.split('\n').filter(Boolean);
         const data = [];
         const sel_filters = {};
