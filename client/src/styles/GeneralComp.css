@@ -1,0 +1,41 @@
+#gencomp-wrapper {
+    padding: 0px 8px;
+    background: #FAFAFA;
+    padding-bottom: 30px;
+}
+
+#gencomp-main {
+    display: flex;
+    margin-top: 20px;
+}
+
+#gencomp-main-left {
+    width: 400px;
+}
+
+#gencomp-table {
+    width: 100%;
+}
+
+#gencomp-main-right {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    gap: 15px;
+}  
+
+@media (max-width: 1161px) {
+
+    #gencomp-main {
+        flex-direction: column;
+        gap: 20px
+    }
+
+    #gencomp-main-left {
+        width: 100%;
+    }
+
+    #gencomp-main-right {
+        margin-left: 0px;
+    }
+}
