@@ -8,8 +8,7 @@ import CompetitionsMobile from './CompetitionsMobile';
 import Ad from './Ad';
 import HomeNew from './HomeNew';
 
-
-import logo from '../assets/sicademy-logo.png'
+import Sicademy from './Sicademy';
 
 export default class HomeComponent extends Component {
     constructor(props) {
@@ -90,17 +89,7 @@ export default class HomeComponent extends Component {
                                 ))}
                             </div>
                         </div>
-                        <div id="sign-up-wrapper">
-                            <div id="sicademy-logo">
-                                <img src={logo} alt="Sicademy Logo"></img>
-                            </div>
-                            <div id="sicademy-info">
-                                <label>СИкадеми - иновативна подготовка по математика и информатика</label>
-                                <a href="https://www.sicademy.bg" target="_blank" rel="noopener noreferrer">
-                                    <button id="sicademy-link">Запиши се</button>
-                                </a>
-                            </div>
-                        </div>
+                        <Sicademy />
                         <Ad />
                         <HomeNew />
                     </div>

@@ -14,7 +14,7 @@ app.get('/home/:id', async (req, res) => {
 
     try {
         await client.access({
-            host: '10.108.6.36',
+            host: '10.108.5.140',
             user: 'stenli',
             password: '1234',
             secure: true,
