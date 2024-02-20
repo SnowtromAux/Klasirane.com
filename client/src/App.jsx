@@ -1,6 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomeComponent from "./components/HomePage";
+import GeneralComp from "./components/GeneralComp"
 import Footer from "./components/Footer"
 // import CreateComponent from "./components/CreatePage";
 
@@ -12,6 +13,8 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={<HomeComponent />} />
+        <Route path="/competitions/:competitionId" element={<GeneralComp />} />
+
         {/* <Route exact path="/competition/:id" element = {<CompetitionComponent />}></Route> */}
       </Routes>
       <Footer />
