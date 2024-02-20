@@ -16,22 +16,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 120px;
 }
 
 .new-top >div >img{
-    width: 272px;
+    width: 120px;
 }
 
 .new-top >label{
     display: flex;
     justify-content: center;
-    align-items: center;
     color: #000;
     font-family: Comfortaa;
     font-size: 40px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    margin-left: 25px;
 }
 
 .new-middle{

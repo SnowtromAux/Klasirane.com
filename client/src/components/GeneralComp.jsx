@@ -5,7 +5,7 @@ import '../styles/GeneralComp.css';
 import Logo from './Logo';
 import Competitions from './Competitions';
 import CompetitionsMobile from './CompetitionsMobile';
-import HomeNew from './HomeNew';
+import New from './New';
 import CompTable from './CompTable';
 
 
@@ -34,6 +34,7 @@ export default class GeneralComp extends Component {
 
     render() {
         const { isWideScreen } = this.state;
+        const seasons = ["Зима", "Лято", "Есен"];
         return (
             <div id="gencomp-wrapper">
                 <header>
@@ -54,8 +55,11 @@ export default class GeneralComp extends Component {
 
                     <div id="gencomp-main-right">
                         {/* <Ad /> */}
-                        <HomeNew />
+                        <New />
                     </div>
+                </div>
+                <div id="gencomp-radio">
+                        
                 </div>
                 <CompTable />
             </div>

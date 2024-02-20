@@ -22,7 +22,15 @@
     flex-direction: column;
     margin-left: 15px;
     gap: 15px;
-}  
+} 
+
+#gencomp-radio-field{
+    display: flex;
+    height: 50px;
+    gap: 20px;
+}
+
+
 
 @media (max-width: 1161px) {
 
