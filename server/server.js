@@ -12,9 +12,11 @@ app.get('/home/:id', async (req, res) => {
     const client = new ftp.Client();
     client.ftp.verbose = true;
 
+    console.log("here")
+
     try {
         await client.access({
-            host: '10.108.5.140',
+            host: '192.168.1.104',
             user: 'stenli',
             password: '1234',
             secure: true,
@@ -28,7 +30,7 @@ app.get('/home/:id', async (req, res) => {
               text_to_send += chunk.toString();
               callback();
             }
-          });
+        });
 
         await client.downloadTo(writableStream , remoteFilePath)
         .then(()=>{

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/Competitions.css';
 
 function Competitions() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [filters, setFilters] = useState([]);
   const [competitions, setCompetitions] = useState([]);
   const [selFilters, setSelFilters] = useState({});
