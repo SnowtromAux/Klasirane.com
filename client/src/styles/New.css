@@ -19,7 +19,7 @@
 }
 
 .new-top >div >img{
-    width: 272px;
+    height: min-content;
 }
 
 .new-top >label{
@@ -32,6 +32,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    margin-left: 25px;
 }
 
 .new-middle{

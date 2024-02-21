@@ -5,10 +5,11 @@ import '../styles/HomePage.css';
 import Logo from './Logo';
 import Competitions from './Competitions';
 import CompetitionsMobile from './CompetitionsMobile';
-import Ad from './Ad';
-import HomeNew from './HomeNew';
 
+import Ad from './Ad';
+import Klasirane from './Klasirane';
 import Sicademy from './Sicademy';
+import New from './New';
 
 export default class HomeComponent extends Component {
     constructor(props) {
@@ -17,6 +18,7 @@ export default class HomeComponent extends Component {
         this.state = {
             next_comp: [],
             last_problems: [],
+            main_data: [],
             isWideScreen: window.innerWidth >= 1161
         };
     }
@@ -43,6 +45,31 @@ export default class HomeComponent extends Component {
             .catch(error => {
                 console.error('Error fetching last problems:', error);
             });
+
+            
+        fetch('http://localhost:3001/home/dir/get-names')
+            .then(response => response.text())
+            .then(names => {
+                this.setData(JSON.parse(names));
+            })
+            .catch(error => {
+                console.error('Error fetching last problems:', error);
+            });
+
+        
+    }
+
+    setData(folder_names){
+        for(const name of folder_names){
+            const obj = {};
+
+            obj.id = name.split("-")[0].toLowerCase();
+            obj.type = name.split("-")[1].toLowerCase();
+            obj.url = name;
+
+
+            this.state.main_data[obj.id - 1] = obj;
+        }
     }
 
     componentWillUnmount() {
@@ -89,11 +116,27 @@ export default class HomeComponent extends Component {
                                 ))}
                             </div>
                         </div>
-                        <Sicademy />
-                        <Ad />
-                        <HomeNew />
-                    </div>
+                        {/* <div> */}
+                            {this.state.main_data.map((data , index) => {
+                                switch(data.type){
+                                    case "sicademy":
+                                        return <Sicademy key = {index} path = {data.url}/>
+                                    
+                                    case "ad":
+                                        return <Ad key = {index} path = {data.url}/>
 
+                                    case "klasirane":
+                                        return <Klasirane key = {index} path = {data.url}/>
+                                    
+                                    case "new":
+                                        return <New key = {index} path = {data.url}/>
+                                    
+                                    default:
+                                        return;
+                                }
+                            })}
+                        {/* </div>                   */}
+                    </div>
                 </div>
             </div>
         );

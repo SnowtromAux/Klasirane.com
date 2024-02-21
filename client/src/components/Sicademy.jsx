@@ -1,66 +1,66 @@
-import React, { Component } from 'react';
-
+import React from 'react';
+import { useEffect , useState } from 'react';
 import '../styles/Sicademy.css';
 
+const Sicademy = (props) => {
 
-import logo from '../assets/sicademy-logo.png'
+    const { path } = props;
 
-export default class HomeComponent extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            next_comp: [],
-            last_problems: [],
-            isWideScreen: window.innerWidth >= 1161
+    const [buttonTxt , setButtonTxt] = useState("");
+    const [description , setDescription] = useState("");
+    const [img  ,setImg] = useState("");
+ 
+    
+    useEffect(() => {
+        const fetchButtonData = async () => {
+          try {
+            const response = await fetch(`http://localhost:3001/home/sicademy/button/${path}/`);
+            const btn_txt = await response.text();
+            setButtonTxt(btn_txt);
+          } catch (error) {
+            console.error('Error fetching button text:', error);
+          }
         };
-    }
+    
+        const fetchDescriptionData = async () => {
+          try {
+            const response = await fetch(`http://localhost:3001/home/sicademy/description/${path}/`);
+            const desc = await response.text();
+            setDescription(desc);
+          } catch (error) {
+            console.error('Error fetching description:', error);
+          }
+        };
+    
+        const fetchLogoData = async () => {
+          try {
+            const response = await fetch(`http://localhost:3001/home/sicademy/logo/${path}/`);
+            const blob = await response.blob();
+            setImg(URL.createObjectURL(blob));
+          } catch (error) {
+            console.error('Error fetching logo:', error);
+          }
+        };
+    
+        fetchButtonData();
+        fetchDescriptionData();
+        fetchLogoData();
+      }, [path]);
 
-    componentDidMount() {
-        window.addEventListener('resize', this.handleResize);
 
-        fetch('http://localhost:3001/home/next-comp.txt')
-            .then(response => response.text())
-            .then(text => {
-                const nextCompFromFile = text.split('\n').filter(Boolean);
-                this.setState({ next_comp: nextCompFromFile });
-            })
-            .catch(error => {
-                console.error('There was an error fetching the next competitions:', error);
-            });
+    return (
+        <div id="sign-up-wrapper">
+        <div id="sicademy-logo">
+            <img src={img} alt="Sicademy Logo" />
+        </div>
+        <div id="sicademy-info">
+            <label dangerouslySetInnerHTML={{ __html: description }}></label>
+            <a href="https://www.sicademy.bg" target="_blank" rel="noopener noreferrer">
+            <button id="sicademy-link" dangerouslySetInnerHTML={{ __html: buttonTxt }}></button>
+            </a>
+        </div>
+        </div>
+    );
+};
 
-        fetch('http://localhost:3001/home/last-problems.txt')
-            .then(response => response.text())
-            .then(text => {
-                const lastProblemsFromFile = text.split('\n').filter(Boolean);
-                this.setState({ last_problems: lastProblemsFromFile });
-            })
-            .catch(error => {
-                console.error('Error fetching last problems:', error);
-            });
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.handleResize);
-    }
-
-    handleResize = () => {
-        this.setState({ isWideScreen: window.innerWidth >= 1161 });
-    };
-
-    render() {
-        return (
-            <div id="sign-up-wrapper">
-                <div id="sicademy-logo">
-                    <img src={logo} alt="Sicademy Logo"></img>
-                </div>
-                <div id="sicademy-info">
-                    <label>СИкадеми - иновативна подготовка по математика и информатика</label>
-                    <a href="https://www.sicademy.bg" target="_blank" rel="noopener noreferrer">
-                        <button id="sicademy-link">Запиши се</button>
-                    </a>
-                </div>
-            </div>
-        );
-    }
-}
+export default Sicademy;

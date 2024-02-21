@@ -16,11 +16,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 120px;
 }
 
 .homenew-top>div>img {
-    width: 120px;
+    width: min-content;
 }
 
 .homenew-top>label {
