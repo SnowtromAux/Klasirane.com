@@ -5,9 +5,10 @@ function CompTable({years, classes}) {
 
   const totalColumns = years.length+1; 
   const totalRows = classes.length+1; 
-  console.log(classes);
+
   const rowYears = years; 
   const columnNumbers = classes; 
+  const pdfFile = "https://pdf.ac/180QWw";
 
 
 
@@ -42,7 +43,7 @@ function CompTable({years, classes}) {
 
           return (
             <div key={cell.id} className={cellClass}>
-              {cellClass === 'cell' ? <Cell content={cellContent} /> : <label>{cellContent}</label>}
+              {cellClass === 'cell' ? <Cell pdfFile={pdfFile} /> : <label>{cellContent}</label>}
             </div>
           );
         })}
