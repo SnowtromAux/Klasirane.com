@@ -1,27 +1,14 @@
-// server.js
-const cors = require("cors");
-const express = require("express");
+const express = require('express');
+const cors = require('cors');
+
 const app = express();
-const path = require("path");
+const port = 3001;
 
-const allowedOrigins = ["http://localhost:3000"]; // Replace with the port your React app is served on
+app.use(cors());
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-};
+const home_router = require('./routers/HomeRouter.js');
+app.use("/home" , home_router);
 
-app.use(cors(corsOptions));
-
-// Serve static files from the public directory
-app.use(express.static(path.join(__dirname, "public")));
-
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });

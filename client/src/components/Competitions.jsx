@@ -4,7 +4,7 @@ import '../styles/Competitions.css';
 import remove from "../assets/remove.png";
 
 function Competitions() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [filters, setFilters] = useState([]);
   const [competitions, setCompetitions] = useState([]);
   const [selFilters, setSelFilters] = useState({});

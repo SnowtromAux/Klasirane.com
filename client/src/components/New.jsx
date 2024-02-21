@@ -1,8 +1,50 @@
 import "../styles/New.css";
-import img from '../assets/test-image-1.png';
-// import mail from '../assets/mail.png';
+import React, { useState, useEffect } from 'react';
 
-function App() {
+const New = (props) => {
+
+  const { path } = props;
+
+  const [title , setTitle] = useState("");
+  const [description , setDescription] = useState("");
+  const [img  , setImg] = useState("");
+  
+  useEffect(() => {
+      const fetchTitleData = async () => {
+        try {
+          const response = await fetch(`http://localhost:3001/home/new/title/${path}/`);
+          const new_title = await response.text();
+          setTitle(new_title);
+        } catch (error) {
+          console.error('Error fetching title:', error);
+        }
+      };
+  
+      const fetchDescriptionData = async () => {
+        try {
+          const response = await fetch(`http://localhost:3001/home/new/description/${path}/`);
+          const desc = await response.text();
+          setDescription(desc);
+        } catch (error) {
+          console.error('Error fetching description:', error);
+        }
+      };
+
+      const fetchImgData = async () => {
+        try {
+          const response = await fetch(`http://localhost:3001/home/new/logo/${path}/`);
+          const blob = await response.blob();
+          setImg(URL.createObjectURL(blob));
+        } catch (error) {
+          console.error('Error fetching description:', error);
+        }
+      }
+  
+      fetchTitleData();
+      fetchDescriptionData();
+      fetchImgData();
+    }, [path]);
+
   return (
     <div className="new-wrapper">
       <div className="new-top">
@@ -10,14 +52,14 @@ function App() {
           <img src={img} alt="competition icon"></img>
         </div>
 
-        <label>Klasirane - библиотека със задачи от национални и международни математически състезания</label>
+        <label dangerouslySetInnerHTML={{ __html: title }}></label>
       </div>
       <div className="new-middle">
-        <label>Има лъч светлина в училищата и образованието ни. Имаме предвид все по-голямата популярност, която придобива Математиката. Все повече деца имат желание да премерят сили със съучениците си и да участват в математически състезания и турнири. <br /><br />Този сайт е създаден за да помага на всички малки математици. В него ще намерите много Задачи, Решения и Отговори от различни математически състезания. Като започнем от покриващите учебния материал Коледно Математическо Състезание или Великденско Математическо Състезание, минем през любимите на математиците англоезично Австралийско Кенгуру или турнирът Черноризец Храбър и стигнем до Международната Олимпиада по Математика, която обхваща материал, който не се изучава и в Университета. <br /><br />Klasirane предлага много задачи и решения от повече от 30 национални и международни състезания и турнири по математика. Навигацията на сайта предоставя възможност за избор на математически задачи от дадено състезание или избор на задачи за съответен клас, като във втория случай ще получите сортирани резултати от всички състезания, които се провеждат за интересуващия ви клас. <br /><br />Както сами разбирате, електронната библиотека със задачи по математика Klasirane е в процес на непрекъснато изграждане и обновяване. Събирането на богата база от задачи от математически състезания е сериозен ангажимент, но ние имаме вярата и амбицията да създадем обширен архив със задачи и решения от реномирани състезания и турнири, който да помага на децата математици. За това разбира се можете да помогнете и вие - </label>
+        <label dangerouslySetInnerHTML={{ __html: description }}></label>
       </div>
     </div>
 
   );
 }
 
-export default App;
+export default New;

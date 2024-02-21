@@ -20,8 +20,7 @@
 }
 
 .new-top >div >img{
-    width: 120px;
-}
+    height: min-content;
 
 .new-top >label{
     display: flex;
