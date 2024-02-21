@@ -40,7 +40,7 @@ export default class GeneralComp extends Component {
 
     fetchSeasons = () => {
         // Replace 'http://localhost:3001' with your actual server address
-        fetch('http://localhost:3001/competitions/SOM/seasons')
+        fetch('http://localhost:3001/competitions/MBG/seasons')
             .then(response => response.json())
             .then(data => {
                 this.setState({ seasons: data });
@@ -52,28 +52,36 @@ export default class GeneralComp extends Component {
     handleSeasonChange = (event) => {
         const selectedSeason = event.target.value;
         this.setState({ selectedSeason: selectedSeason });
-        this.fetchYearsForSeason(selectedSeason); // Fetch years for the selected season
-        this.fetchClassesForYear(selectedSeason, "2015");
-    };
     
+        this.fetchYearsForSeason(selectedSeason).then((years) => {
+            
+            if (years.length > 0) {
+                const firstYear = years[0]; 
+                this.fetchClassesForYear(selectedSeason, firstYear);
+            }
+        }).catch(error => {
+            console.error('Error in sequence:', error);
+        });
+    };
 
     fetchYearsForSeason = (season) => {
-        // Assuming the name of your competition is static as "SOM". If it's dynamic, adjust accordingly.
-        const competitionName = "SOM";
-    
-        fetch(`http://localhost:3001/competitions/${competitionName}/${season}/years`)
-            .then((response) => response.json())
-            .then((data) => {
-                this.setState({ years: data });
-            })
-            .catch((error) => {
-                console.error('Error fetching years:', error);
-                this.setState({ years: [] }); // Reset to empty if there's an error
-            });
+        const competitionName = "MBG";
+        return new Promise((resolve, reject) => {
+            fetch(`http://localhost:3001/competitions/${competitionName}/${season}/years`)
+                .then((response) => response.json())
+                .then((data) => {
+                    this.setState({ years: data }, () => resolve(data)); 
+                })
+                .catch((error) => {
+                    console.error('Error fetching years:', error);
+                    this.setState({ years: [] }, reject); 
+                });
+        });
     };
+    
 
     fetchClassesForYear = (season, year) => {
-        const competitionName = "SOM"; // Adjust if your competition name is dynamic
+        const competitionName = "MBG"; // Adjust if your competition name is dynamic
     
         fetch(`http://localhost:3001/competitions/${competitionName}/${season}/${year}/classes`)
             .then(response => response.json())
