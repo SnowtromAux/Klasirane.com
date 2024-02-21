@@ -1,0 +1,39 @@
+.cell-wrapper {
+    height: 150px;
+    width: 175px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 30px;
+    background: #D9D9D9;
+    gap: 13px;
+}
+
+.problem {
+    color: #369;
+    font-family: Comfortaa;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.solution {
+    color: #369;
+    font-family: Comfortaa;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.video {
+    color: #369;
+    font-family: Comfortaa;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
