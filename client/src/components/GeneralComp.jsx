@@ -80,19 +80,23 @@ export default class GeneralComp extends Component {
     };
     
 
-    fetchClassesForYear = (season, year) => {
+    fetchClassesForYear = async (season, year) => {
         const competitionName = "MBG"; // Adjust if your competition name is dynamic
-    
-        fetch(`http://localhost:3001/competitions/${competitionName}/${season}/${year}/classes`)
-            .then(response => response.json())
-            .then(data => {
-                this.setState({ classes: data });
-            })
-            .catch(error => {
-                console.error('Error fetching classes:', error);
-                this.setState({ classes: [] }); // Reset to empty if there's an error
-            });
+        try {
+            this.setState({ isLoadingClasses: true }); // Assuming you add this to your state
+            const response = await fetch(`http://localhost:3001/competitions/${competitionName}/${season}/${year}/classes`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`); // Throw an error for non-2xx responses
+            }
+            const data = await response.json();
+            this.setState({ classes: data, isLoadingClasses: false });
+        } catch (error) {
+            console.error('Error fetching classes:', error);
+            this.setState({ classes: [], isLoadingClasses: false }); // Reset to empty if there's an error
+            // Optionally, implement user feedback here (e.g., a toast notification)
+        }
     };
+    
     
 
     render() {
@@ -136,7 +140,7 @@ export default class GeneralComp extends Component {
                         </div>
                     ))}
                 </div>
-                <CompTable years={years} classes={classes}/>
+                <CompTable years={years} classes={classes} selectedSeason={selectedSeason}/>
             </div>
         );
     }

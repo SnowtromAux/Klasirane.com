@@ -1,14 +1,13 @@
 import "../styles/CompTable.css";
 import Cell from "./Cell"
 
-function CompTable({years, classes}) {
+function CompTable({years, classes, selectedSeason}) {
 
   const totalColumns = years.length+1; 
   const totalRows = classes.length+1; 
 
   const rowYears = years; 
   const columnNumbers = classes; 
-  const pdfFile = "https://pdf.ac/180QWw";
 
 
 
@@ -43,7 +42,7 @@ function CompTable({years, classes}) {
 
           return (
             <div key={cell.id} className={cellClass}>
-              {cellClass === 'cell' ? <Cell pdfFile={pdfFile} /> : <label>{cellContent}</label>}
+              {cellClass === 'cell' ? <Cell competitionName={"MBG"} seasonName={selectedSeason} year={years[0]} className={classes[0]} /> : <label>{cellContent}</label>}
             </div>
           );
         })}

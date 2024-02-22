@@ -123,6 +123,36 @@ app.get('/competitions/:competitionName/:seasonName/:year/classes', async (req, 
   }
 });
 
+app.get('/competitions/:competitionName/:seasonName/:year/:className/:pdfType', async (req, res) => {
+    const { competitionName, seasonName, year, className, pdfType } = req.params;
+    const pdfFileName = pdfType === 'problems' ? 'problems.pdf' : 'solutions.pdf'; // Example logic to determine file name
+    const pdfFilePath = `/competitions/${competitionName}/${seasonName}/${year}/${className}/${pdfFileName}`;
+
+    const client = new ftp.Client();
+    client.ftp.verbose = true;
+
+    try {
+        await client.access({
+            host: '127.0.0.1',
+            user: 'lubod',
+            password: '1234',
+            secure: true,
+            secureOptions: { rejectUnauthorized: false },
+        });
+
+        // Set appropriate headers for PDF download
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `attachment; filename=${pdfFileName}`);
+
+        // Stream the PDF file directly to the client
+        await client.downloadTo(res, pdfFilePath);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    } finally {
+        await client.close();
+    }
+});
 
 
 app.listen(port, () => {
