@@ -110,10 +110,16 @@ function Competitions() {
   const triggerFilter = (filter_name) => {
     setFilterState((prevFilterState) => {
       const updatedFilterState = { ...prevFilterState };
-      updatedFilterState[filter_name] = !updatedFilterState[filter_name];
+
+      // Close all filters except the clicked one
+      Object.keys(updatedFilterState).forEach((filter) => {
+        updatedFilterState[filter] = filter === filter_name ? !updatedFilterState[filter] : false;
+      });
+
       return updatedFilterState;
     });
   };
+  
   useEffect(() => {
     const filteredComps = competitions.filter((comp) =>
       Object.entries(selFilters).every(([filter, values]) =>

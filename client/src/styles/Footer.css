@@ -12,6 +12,10 @@
     flex-direction: row;
 }
 
+.footer-top >a{
+    text-decoration: none;
+}
+
 .footer-facebook {
     display: flex;
     align-items: center;
@@ -23,6 +27,7 @@
 }
 
 .footer-facebook-img {
+    cursor: pointer;
     margin-left: 15px;
     width: 59.363px;
     height: 58.477px;
@@ -30,7 +35,7 @@
     background: #0865FE;
 }
 
-.footer-facebook-img>img {
+.footer-facebook-img >img {
     width: 24.809px;
     height: 50.503px;
     position: relative;
@@ -38,7 +43,17 @@
     left: 20px;
 }
 
-.footer-facebook>label {
+.footer-facebook:hover , .footer-facebook >label:hover{
+    opacity: 1;
+}
+
+.footer-facebook , .footer-facebook >label{
+    opacity: 0.9;
+    transition: 0.1s ease-in-out;
+}
+
+.footer-facebook >label {
+    cursor: pointer;
     margin-left: 15px;
     color: #0865FE;
     font-family: Comfortaa;

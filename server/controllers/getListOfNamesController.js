@@ -7,7 +7,7 @@ const getNames = async (res , path) => {
 
     try {
         await client.access({
-            host: '192.168.1.104',
+            host: '192.168.0.127',
             user: 'stenli',
             password: '1234',
             secure: true,
