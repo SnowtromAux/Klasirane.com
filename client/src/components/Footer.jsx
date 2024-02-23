@@ -6,12 +6,16 @@ function App() {
   return (
     <div className="footer-wrapper">
       <div className="footer-top">
-        <div className="footer-facebook">
-          <div className="footer-facebook-img" onClick={() => window.location.href = 'https://www.facebook.com/klasirane/'}>
-            <img src={img} alt="competition icon"></img>
+        <a href = 'https://www.facebook.com/klasirane/' target = "_blank" rel="noreferrer">
+
+          <div className="footer-facebook">
+            <div className="footer-facebook-img">
+              <img src={img} alt="competition icon"></img>
+            </div>
+            <label>Последвайте ни!</label>
           </div>
-          <label>Последвайте ни!</label>
-        </div>
+
+        </a>
       </div>
       <div className="footer-middle">
         <div>Контакт</div>

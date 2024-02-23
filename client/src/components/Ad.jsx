@@ -1,5 +1,5 @@
 import "../styles/Ad.css";
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 const Ad = (props) => {
   const { path } = props;

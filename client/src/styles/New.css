@@ -21,6 +21,7 @@
 
 .new-top >div >img{
     height: min-content;
+}
 
 .new-top >label{
     display: flex;

@@ -8,6 +8,7 @@ const New = (props) => {
   const [title , setTitle] = useState("");
   const [description , setDescription] = useState("");
   const [img  , setImg] = useState("");
+  const [alt  , setAlt] = useState("");
   
   useEffect(() => {
       const fetchTitleData = async () => {
@@ -39,17 +40,28 @@ const New = (props) => {
           console.error('Error fetching description:', error);
         }
       }
+
+      const fetchAltData = async () => {
+        try {
+          const response = await fetch(`http://localhost:3001/home/new/alt/${path}/`);
+          const alternative = await response.text();
+          setAlt(alternative)
+        } catch (error) {
+          console.error('Error fetching alt:', error);
+        }
+      }
   
       fetchTitleData();
       fetchDescriptionData();
       fetchImgData();
+      fetchAltData();
     }, [path]);
 
   return (
     <div className="new-wrapper">
       <div className="new-top">
         <div>
-          <img src={img} alt="competition icon"></img>
+          <img src={img} alt={alt}></img>
         </div>
 
         <label dangerouslySetInnerHTML={{ __html: title }}></label>

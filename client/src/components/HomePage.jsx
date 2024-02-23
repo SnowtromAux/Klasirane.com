@@ -10,6 +10,7 @@ import Ad from './Ad';
 import Klasirane from './Klasirane';
 import Sicademy from './Sicademy';
 import New from './New';
+import Banner from './Banner';
 
 export default class HomeComponent extends Component {
     constructor(props) {
@@ -18,6 +19,7 @@ export default class HomeComponent extends Component {
         this.state = {
             next_comp: [],
             last_problems: [],
+            links: [],
             main_data: [],
             isWideScreen: window.innerWidth >= 1161
         };
@@ -68,7 +70,9 @@ export default class HomeComponent extends Component {
             obj.url = name;
 
 
-            this.state.main_data[obj.id - 1] = obj;
+            const copy_main_data = this.state.main_data;
+            copy_main_data[obj.id - 1] = obj;
+            this.setState({main_data: copy_main_data});
         }
     }
 
@@ -89,7 +93,7 @@ export default class HomeComponent extends Component {
                         <h1>Предстоящи състезания</h1>
                         <div>
                             {this.state.next_comp.map((comp, index) => (
-                                <label key={index} className='home-next-comp-label'>{comp}</label>
+                                <label key={index} className='home-next-comp-label' onClick={() => {window.location.href = `/${comp.split(" | ")[1]}`}}>{comp.split(" | ")[0]}</label>
                             ))}
                         </div>
                     </div>
@@ -112,7 +116,7 @@ export default class HomeComponent extends Component {
                             <label>Последно добавени задачи</label>
                             <div>
                                 {this.state.last_problems.map((problem, index) => (
-                                    <label key={index} className='problems'>{problem}</label>
+                                    <label key={index} className='problems' onClick={() => {window.location.href = `/${problem.split(" | ")[1]}`}}>{problem.split( " | ")[0]}</label>
                                 ))}
                             </div>
                         </div>
@@ -131,8 +135,11 @@ export default class HomeComponent extends Component {
                                     case "new":
                                         return <New key = {index} path = {data.url}/>
                                     
+                                    case "banner":
+                                        return <Banner key = {index} path = {data.url}/>
+
                                     default:
-                                        return;
+                                        return <div></div>;
                                 }
                             })}
                         {/* </div>                   */}

@@ -1,4 +1,5 @@
 const ftp = require('basic-ftp');
+const fs = require('fs').promises;
 
 const getImage = async (res , localPath , remotePath) => {
     const client = new ftp.Client();
@@ -6,7 +7,7 @@ const getImage = async (res , localPath , remotePath) => {
 
     try {
         await client.access({
-            host: '192.168.1.104',
+            host: '192.168.0.127',
             user: 'stenli',
             password: '1234',
             secure: true,
@@ -15,7 +16,18 @@ const getImage = async (res , localPath , remotePath) => {
         
         await client.downloadTo(localPath , remotePath);
 
-        res.sendFile(localPath);
+        await new Promise((resolve, reject) => {
+            res.sendFile(localPath, (err) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve();
+                }
+            });
+        });
+      
+        await fs.unlink(localPath);
+
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');

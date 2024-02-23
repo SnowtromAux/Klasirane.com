@@ -50,15 +50,15 @@ const Sicademy = (props) => {
 
     return (
         <div id="sign-up-wrapper">
-        <div id="sicademy-logo">
-            <img src={img} alt="Sicademy Logo" />
-        </div>
-        <div id="sicademy-info">
-            <label dangerouslySetInnerHTML={{ __html: description }}></label>
-            <a href="https://www.sicademy.bg" target="_blank" rel="noopener noreferrer">
-            <button id="sicademy-link" dangerouslySetInnerHTML={{ __html: buttonTxt }}></button>
-            </a>
-        </div>
+          <div id="sicademy-logo">
+              <img src={img} alt="Sicademy Logo" />
+          </div>
+          <div id="sicademy-info">
+              <label dangerouslySetInnerHTML={{ __html: description }}></label>
+              <a href="https://www.sicademy.bg" target="_blank" rel="noopener noreferrer">
+              <button id="sicademy-link" dangerouslySetInnerHTML={{ __html: buttonTxt }}></button>
+              </a>
+          </div>
         </div>
     );
 };

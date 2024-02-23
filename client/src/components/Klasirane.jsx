@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import "../styles/HomeNew.css";
+import "../styles/Klasirane.css";
 import mail from '../assets/mail.png';
 
 const Klasirane = (props) => {
-  const [isNarrowScreen, setIsNarrowScreen] = useState(window.innerWidth < 700);
+  const isNarrowScreen = window.innerWidth < 700;
 
   const { path } = props;
 
@@ -75,7 +75,9 @@ const Klasirane = (props) => {
       {!isNarrowScreen ? (
         <div className="homenew-bottom">
           <div className="homenew-mail">
-            <img src={mail} alt="mail icon"></img>
+            <a href = "mailto:snowtromgs@gmail.com">
+              <img src={mail} alt="mail icon"></img>
+            </a>
           </div>
           <div className="homenew-mail-text" dangerouslySetInnerHTML={{ __html: mailText }}></div>
         </div>

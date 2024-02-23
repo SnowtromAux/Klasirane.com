@@ -31,7 +31,7 @@ function Competitions() {
           const filter_name = row_data[0];
           const filter_options = row_data[1].split(' , ');
           const multiple =
-            row_data[2] == 'Multiple' || row_data[2] == 'Multiple\r';
+            row_data[2] === 'Multiple' || row_data[2] === 'Multiple\r';
 
           filter_state[filter_name] = false;
           sel_filters[filter_name] = [];
@@ -125,10 +125,16 @@ function Competitions() {
   const triggerFilter = (filter_name) => {
     setFilterState((prevFilterState) => {
       const updatedFilterState = { ...prevFilterState };
-      updatedFilterState[filter_name] = !updatedFilterState[filter_name];
+
+      // Close all filters except the clicked one
+      Object.keys(updatedFilterState).forEach((filter) => {
+        updatedFilterState[filter] = filter === filter_name ? !updatedFilterState[filter] : false;
+      });
+
       return updatedFilterState;
     });
   };
+  
   useEffect(() => {
     const filteredComps = competitions.filter((comp) =>
       Object.entries(selFilters).every(([filter, values]) =>
