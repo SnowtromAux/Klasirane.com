@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="footer-wrapper">
       <div className="footer-top">
-        <a href = 'https://www.facebook.com/klasirane/' target = "_blank">
+        <a href = 'https://www.facebook.com/klasirane/' target = "_blank" rel="noreferrer">
 
           <div className="footer-facebook">
             <div className="footer-facebook-img">

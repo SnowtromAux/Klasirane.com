@@ -71,6 +71,10 @@ router.get('/new/logo/:id', async (req, res) => {
     getImage(res ,`${rootDirectory}/images/${req.params.id}-logo.png` , `/home/main-data/${req.params.id}/logo.png`);
 });
 
+router.get('/new/alt/:id', async (req, res) => {
+    getTextData(res , `/home/main-data/${req.params.id}/alt.txt`);
+});
+
 
 //Banner Data
 router.get('/banner/text/:id', async (req, res) => {

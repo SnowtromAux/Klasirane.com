@@ -30,7 +30,7 @@ function Competitions() {
           const filter_name = row_data[0];
           const filter_options = row_data[1].split(' , ');
           const multiple =
-            row_data[2] == 'Multiple' || row_data[2] == 'Multiple\r';
+            row_data[2] === 'Multiple' || row_data[2] === 'Multiple\r';
 
           filter_state[filter_name] = false;
           sel_filters[filter_name] = [];

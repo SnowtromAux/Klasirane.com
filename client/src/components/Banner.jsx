@@ -46,7 +46,7 @@ const Banner = (props) => {
 
   return (
     <div className="banner-wrapper">
-        <a href = {link} target = "_blank">
+        <a href = {link} target = "_blank" rel="noreferrer">
             <img src = {img} alt = {alt}></img>
         </a>
     </div>

@@ -3,7 +3,7 @@ import "../styles/Klasirane.css";
 import mail from '../assets/mail.png';
 
 const Klasirane = (props) => {
-  const [isNarrowScreen, setIsNarrowScreen] = useState(window.innerWidth < 700);
+  const isNarrowScreen = window.innerWidth < 700;
 
   const { path } = props;
 
