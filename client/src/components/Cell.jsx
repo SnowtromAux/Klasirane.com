@@ -7,15 +7,11 @@ function Cell({ competitionName, seasonName, year, className }) {
     // Trigger the download
     window.open(url, '_blank');
   };
-  console.log(competitionName);
-  console.log(seasonName);
-  console.log(year);
-  console.log(className);
 
   return (
     <div className="cell-wrapper">
-        <div className="problem" onClick={() => handleDownload('problems')}>Задачи</div>
-        <div className="solution" onClick={() => handleDownload('solutions')}>Отговори</div>
+        <div className="problem" onClick={() => handleDownload('probs')}>Задачи{seasonName}</div>
+        <div className="solution" onClick={() => handleDownload('sol')}>Отговори</div>
         <div className="video">Видеореш.</div>
     </div>
   );

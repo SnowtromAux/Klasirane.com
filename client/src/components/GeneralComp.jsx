@@ -40,7 +40,7 @@ export default class GeneralComp extends Component {
 
     fetchSeasons = () => {
         // Replace 'http://localhost:3001' with your actual server address
-        fetch('http://localhost:3001/competitions/MBG/seasons')
+        fetch('http://localhost:3001/competitions/OMT/seasons')
             .then(response => response.json())
             .then(data => {
                 this.setState({ seasons: data });
@@ -65,7 +65,7 @@ export default class GeneralComp extends Component {
     };
 
     fetchYearsForSeason = (season) => {
-        const competitionName = "MBG";
+        const competitionName = "OMT";
         return new Promise((resolve, reject) => {
             fetch(`http://localhost:3001/competitions/${competitionName}/${season}/years`)
                 .then((response) => response.json())
@@ -81,7 +81,7 @@ export default class GeneralComp extends Component {
     
 
     fetchClassesForYear = async (season, year) => {
-        const competitionName = "MBG"; // Adjust if your competition name is dynamic
+        const competitionName = "OMT"; 
         try {
             this.setState({ isLoadingClasses: true }); // Assuming you add this to your state
             const response = await fetch(`http://localhost:3001/competitions/${competitionName}/${season}/${year}/classes`);
@@ -93,7 +93,7 @@ export default class GeneralComp extends Component {
         } catch (error) {
             console.error('Error fetching classes:', error);
             this.setState({ classes: [], isLoadingClasses: false }); // Reset to empty if there's an error
-            // Optionally, implement user feedback here (e.g., a toast notification)
+            
         }
     };
     

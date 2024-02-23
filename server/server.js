@@ -85,9 +85,6 @@ app.get('/competitions/:competitionName/:seasonName/years', async (req, res) => 
       const list = await client.list(seasonFolderPath);
       const years = list.map(folder => folder.name);
 
-      console.log("HAHAHAHAAH");
-      console.log(years);
-
       res.status(200).json(years);
   } catch (error) {
       console.error(error);
@@ -125,7 +122,7 @@ app.get('/competitions/:competitionName/:seasonName/:year/classes', async (req, 
 
 app.get('/competitions/:competitionName/:seasonName/:year/:className/:pdfType', async (req, res) => {
     const { competitionName, seasonName, year, className, pdfType } = req.params;
-    const pdfFileName = pdfType === 'problems' ? 'problems.pdf' : 'solutions.pdf'; // Example logic to determine file name
+    const pdfFileName = pdfType === 'probs' ? 'probs.pdf' : 'sol.pdf'; 
     const pdfFilePath = `/competitions/${competitionName}/${seasonName}/${year}/${className}/${pdfFileName}`;
 
     const client = new ftp.Client();
@@ -140,12 +137,41 @@ app.get('/competitions/:competitionName/:seasonName/:year/:className/:pdfType', 
             secureOptions: { rejectUnauthorized: false },
         });
 
-        // Set appropriate headers for PDF download
         res.setHeader('Content-Type', 'application/pdf');
         res.setHeader('Content-Disposition', `attachment; filename=${pdfFileName}`);
 
-        // Stream the PDF file directly to the client
+        
         await client.downloadTo(res, pdfFilePath);
+    } catch (error) {
+        console.error(error);
+        res.send(false);
+        res.status(500).send('Internal Server Error');
+    } finally {
+        await client.close();
+    }
+});
+
+app.get('/competitions/:competitionName/:seasonName/:year/:className/check-pdf/:pdfName', async (req, res) => {
+    const { competitionName, seasonName, year, className, pdfName } = req.params;
+    const client = new ftp.Client();
+    client.ftp.verbose = true;
+
+    try {
+        await client.access({
+            host: '127.0.0.1',
+            user: 'lubod',
+            password: '1234',
+            secure: true,
+            secureOptions: { rejectUnauthorized: false },
+        });
+
+        const pdfFilePath = `/competitions/${competitionName}/${seasonName}/${year}/${className}/${pdfName}.pdf`;
+        
+        // Attempt to list the directory to check if the PDF exists
+        const list = await client.list(`/competitions/${competitionName}/${seasonName}/${year}/${className}/`);
+        const pdfExists = list.some(file => file.name === `${pdfName}.pdf`);
+
+        res.json({ exists: pdfExists });
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
@@ -153,7 +179,6 @@ app.get('/competitions/:competitionName/:seasonName/:year/:className/:pdfType', 
         await client.close();
     }
 });
-
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

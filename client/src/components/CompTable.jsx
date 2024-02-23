@@ -42,7 +42,7 @@ function CompTable({years, classes, selectedSeason}) {
 
           return (
             <div key={cell.id} className={cellClass}>
-              {cellClass === 'cell' ? <Cell competitionName={"MBG"} seasonName={selectedSeason} year={years[0]} className={classes[0]} /> : <label>{cellContent}</label>}
+              {cellClass === 'cell' ? <Cell competitionName={"OMT"} seasonName={selectedSeason} year={years[cell.column-1]} className={classes[cell.row-1]} /> : <label>{cellContent}</label>}
             </div>
           );
         })}
