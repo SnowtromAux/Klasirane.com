@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Competitions.css';
+import remove from "../assets/remove.png";
 
 function Competitions() {
   const navigate = useNavigate();
@@ -103,6 +104,20 @@ function Competitions() {
     }));
   };
 
+  const handleRemoveFilters = () => {    
+    const radioButtons = document.querySelectorAll('input[type="checkbox"]');
+    radioButtons.forEach((radioButton) => {
+        radioButton.checked = false;
+    });
+    
+    for (const filterName of Object.keys(selFilters)) {
+        setSelFilters((prevFilters) => ({
+            ...prevFilters,
+            [filterName]: [],
+        }));
+    }
+};
+
   const changeDirectory = (path) => {
     navigate(`/competitions/${path}`);
   }
@@ -134,7 +149,13 @@ function Competitions() {
     <div className="competitions">
       <label>Всички Състезания</label>
       <div className="filter-box">
-        <label className="filter-text">Филтри</label>
+        <div className='filter-box-top'>
+          <label className="filter-text">Филтри</label>
+          <div className='filter-result-desk-remove' onClick={handleRemoveFilters}>
+              <img src={remove} alt="Remove"></img>
+              <label>Премахни филтри</label>
+          </div>
+        </div>
         <div className="filters-wrapper">
           {filters.map((filter, index) => (
             <div className="filter" key={index} onClick={() => {triggerFilter(filter.name)}} style = {{borderBottomRightRadius: filterState[filter.name] ? "0px" : "20px" , borderBottomLeftRadius: filterState[filter.name] ? "0px" : "20px" , zIndex: 500 - index}}>

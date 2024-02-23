@@ -2,6 +2,7 @@ import "./App.css";
 import { Helmet } from 'react-helmet';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomeComponent from "./components/HomePage";
+import GeneralComp from "./components/GeneralComp"
 import Footer from "./components/Footer"
 // import CreateComponent from "./components/CreatePage";
 
@@ -26,7 +27,7 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<HomeComponent />} />
-          {/* <Route exact path="/competition/:id" element = {<CompetitionComponent />}></Route> */}
+          <Route exact path="/competition/:id" element = {<CompetitionComponent />}></Route>
         </Routes>
         <Footer />
       </Router>
