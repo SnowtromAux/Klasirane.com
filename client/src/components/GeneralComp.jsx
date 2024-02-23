@@ -8,9 +8,6 @@ import CompetitionsMobile from './CompetitionsMobile';
 import New from './New';
 import CompTable from './CompTable';
 
-
-import logo from '../assets/sicademy-logo.png'
-
 export default class GeneralComp extends Component {
     constructor(props) {
         super(props);

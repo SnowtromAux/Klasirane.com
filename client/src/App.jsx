@@ -2,7 +2,7 @@ import "./App.css";
 import { Helmet } from 'react-helmet';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomeComponent from "./components/HomePage";
-import GeneralComp from "./components/GeneralComp"
+import CompetitionComponent from "./components/GeneralComp";
 import Footer from "./components/Footer"
 // import CreateComponent from "./components/CreatePage";
 
