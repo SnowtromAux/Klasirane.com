@@ -37,9 +37,10 @@ router.get('/text/:competitionName/:seasonName/:year/:className', async (req, re
     getTextData(res , `/competitions/${req.params.competitionName}/${req.params.seasonName}/${req.params.year}/${req.params.className}/video.txt`);
 });
 
-router.get('/checkVideo/:competitionName/:seasonName/:year/:className', async (req, res) => {
+router.get('/getvid/:competitionName/:seasonName/:year/:className/go', async (req, res) => {
     console.log("HSHSHSHSHSHSH");
     console.log(req.params);
+
     checkTxt(req, res);
 });
 
