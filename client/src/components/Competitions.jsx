@@ -56,6 +56,7 @@ function Competitions() {
         let text_data = text.split(
           '--------------------------------------------------------'
         );
+
         let obj = [];
         for (const text of text_data) {
           const comp_data = text.split('\r\n');
@@ -64,6 +65,7 @@ function Competitions() {
           const competition_data = comp_data[0].split(': ')[1].split(' | ');
           const competition_name = competition_data[0];
           const competition_key = competition_data[1];
+
           const filters = {};
           filters.key = competition_key;
           filters.name = competition_name;

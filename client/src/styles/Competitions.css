@@ -57,21 +57,29 @@
     margin: 35px 0px 0px 20px;
     display: flex;
     gap: 5px;
+    align-items: center;
 }
 
 .filter-result-desk-remove>img {
+    cursor: pointer;
     width: 21px;
     height: 21px;
 }
 
 .filter-result-desk-remove>label {
+    cursor: pointer;
     color: #D44;
     font-family: Comfortaa;
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    width: min-content;
 }
+
+.filter-result-desk-remove>label:hover{
+    color: darkred;
+} 
 
 .filters-wrapper{
     padding: 10px;
