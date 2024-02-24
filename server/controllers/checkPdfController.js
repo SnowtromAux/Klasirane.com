@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 // Adjusted function name for clarity
-const checkPdfAvailability = async (req, res) => {
+const checkPdf = async (req, res) => {
     const { competitionName, seasonName, year, className, pdfType } = req.params;
     const pdfFileName = pdfType === 'probs' ? 'probs.pdf' : 'sol.pdf';
     const baseDir = path.join(__dirname, "..", "ftp");
@@ -19,4 +19,4 @@ const checkPdfAvailability = async (req, res) => {
     }
 };
 
-module.exports = checkPdfAvailability;
+module.exports = checkPdf;

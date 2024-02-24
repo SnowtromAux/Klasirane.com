@@ -118,7 +118,7 @@ export default class GeneralComp extends Component {
 
                     <div id="gencomp-main-right">
                         {/* <Ad /> */}
-                        <New />
+                        {/* <New /> */}
                         
                     </div>
                 </div>
