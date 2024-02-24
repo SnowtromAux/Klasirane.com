@@ -27,7 +27,7 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<HomeComponent />} />
-          <Route exact path="/competition/:id" element = {<CompetitionComponent />}></Route>
+          <Route exact path="/competitions/:id" element = {<CompetitionComponent />}></Route>
         </Routes>
         <Footer />
       </Router>

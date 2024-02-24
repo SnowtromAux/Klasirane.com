@@ -10,7 +10,7 @@ function Cell({ competitionName, seasonName, year, className }) {
 
   return (
     <div className="cell-wrapper">
-        <div className="problem" onClick={() => handleDownload('probs')}>Задачи{seasonName}</div>
+        <div className="problem" onClick={() => handleDownload('probs')}>Задачи</div>
         <div className="solution" onClick={() => handleDownload('sol')}>Отговори</div>
         <div className="video">Видеореш.</div>
     </div>
