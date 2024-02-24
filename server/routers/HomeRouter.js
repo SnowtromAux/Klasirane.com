@@ -28,8 +28,7 @@ router.get('/sicademy/button/:id', async (req, res) => {
 });
 
 router.get('/sicademy/logo/:id', async (req, res) => {
-    const rootDirectory = path.join(__dirname, '..');
-    getImage(res , `${rootDirectory}/images/${req.params.id}-logo.png` , `/home/main-data/${req.params.id}/logo.png`);
+    getImage(res , `/home/main-data/${req.params.id}/logo.png`);
 });
 
 //Ad Data
@@ -52,8 +51,7 @@ router.get('/klasirane/mailData/:id', async (req, res) => {
 });
 
 router.get('/klasirane/logo/:id', async (req, res) => {
-    const rootDirectory = path.join(__dirname, '..');
-    getImage(res ,`${rootDirectory}/images/${req.params.id}-logo.png` , `/home/main-data/${req.params.id}/logo.png`);
+    getImage(res , `/home/main-data/${req.params.id}/logo.png`);
 });
 
 
@@ -67,8 +65,7 @@ router.get('/new/description/:id', async (req, res) => {
 });
 
 router.get('/new/logo/:id', async (req, res) => {
-    const rootDirectory = path.join(__dirname, '..');
-    getImage(res ,`${rootDirectory}/images/${req.params.id}-logo.png` , `/home/main-data/${req.params.id}/logo.png`);
+    getImage(res , `/home/main-data/${req.params.id}/logo.png`);
 });
 
 router.get('/new/alt/:id', async (req, res) => {
@@ -82,8 +79,7 @@ router.get('/banner/text/:id', async (req, res) => {
 });
 
 router.get('/banner/logo/:id', async (req, res) => {
-    const rootDirectory = path.join(__dirname, '..');
-    getImage(res ,`${rootDirectory}/images/${req.params.id}-banner.png` , `/home/main-data/${req.params.id}/banner.png`);
+    getImage(res , `/home/main-data/${req.params.id}/banner.png`);
 });
 
 router.get('/banner/link/:id', async (req, res) => {
