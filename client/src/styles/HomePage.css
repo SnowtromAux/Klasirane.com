@@ -34,6 +34,7 @@
 
 
 .home-next-comp-label {
+    cursor: pointer;
     color: #000;
     text-align: center;
     border-radius: 400px;
@@ -87,6 +88,7 @@
 }
 
 .problems {
+    cursor: pointer;
     padding: 10px;
     margin-top: 10px;
     text-align: center;
@@ -97,78 +99,6 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-}
-
-
-#sign-up-wrapper {
-    display: flex;
-    align-items: center;
-    height: 363px;
-    border-radius: 50px;
-    background: #FFF;
-    box-shadow: 4px 4px 16.2px 3px rgba(0, 0, 0, 0.15);
-    padding: 0px 50px;
-}
-
-#sicademy-logo {
-    width: 310px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#sicademy-logo>img {
-    width: 220px;
-}
-
-#sicademy-info {
-    display: flex;
-    flex-direction: column;
-    margin-left: 10px;
-}
-
-#sicademy-info>label {
-    color: #000;
-    font-family: Comfortaa;
-    font-size: 38px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 60px;
-    letter-spacing: 0.38px;
-    margin-left: 20px;
-}
-
-#sicademy-info>a {
-    text-decoration: none;
-    width: 252px;
-    height: 60px;
-    border-radius: 68px;
-}
-
-#sicademy-link {
-    margin-top: 10px;
-    width: 252px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 68px;
-    background: #369;
-    box-shadow: 2px 2px 12px 1px rgba(0, 0, 0, 0.20);
-    color: #FFF;
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 60px;
-    letter-spacing: 0.3px;
-    transition: 0.2s ease-out;
-    cursor: pointer;
-    border: none;
-    box-sizing: border-box;
-}
-
-#sicademy-link:hover {
-    border: 1px solid black;
 }
 
 @media (max-width: 1161px) {
@@ -184,61 +114,5 @@
 
     #home-main-right {
         margin-left: 0px;
-    }
-}
-
-@media (max-width: 761px) {
-    #sign-up-wrapper {
-        height: 283px;
-        padding: 0px 20px;
-    }
-
-    #sicademy-logo {
-        width: 232.2px;
-    }
-
-    #sicademy-logo>img {
-        width: 165px;
-    }
-
-    #sicademy-info>label {
-        font-size: 30px;
-        line-height: 45px;
-    }
-
-    #sicademy-link {
-        margin-top: 10px;
-        width: 196.5px;
-        height: 46.8px;
-        font-size: 23.4px;
-        line-height: 46.8px;
-    }
-}
-
-@media (max-width: 520px) {
-    #sign-up-wrapper {
-        height: 283px;
-        padding: 0px 20px;
-    }
-
-    #sicademy-logo {
-        width: 232.2px;
-    }
-
-    #sicademy-logo>img {
-        width: 130px;
-    }
-
-    #sicademy-info>label {
-        font-size: 25px;
-        line-height: 38px;
-    }
-
-    #sicademy-link {
-        margin-top: 10px;
-        width: 180px;
-        height: 46.8px;
-        font-size: 20px;
-        line-height: 46.8px;
     }
 }

@@ -5,11 +5,12 @@ import '../styles/HomePage.css';
 import Logo from './Logo';
 import Competitions from './Competitions';
 import CompetitionsMobile from './CompetitionsMobile';
+
 import Ad from './Ad';
-import HomeNew from './HomeNew';
-
-
-import logo from '../assets/sicademy-logo.png'
+import Klasirane from './Klasirane';
+import Sicademy from './Sicademy';
+import New from './New';
+import Banner from './Banner';
 
 export default class HomeComponent extends Component {
     constructor(props) {
@@ -18,6 +19,8 @@ export default class HomeComponent extends Component {
         this.state = {
             next_comp: [],
             last_problems: [],
+            links: [],
+            main_data: [],
             isWideScreen: window.innerWidth >= 1161
         };
     }
@@ -44,6 +47,33 @@ export default class HomeComponent extends Component {
             .catch(error => {
                 console.error('Error fetching last problems:', error);
             });
+
+            
+        fetch('http://localhost:3001/home/dir/get-names')
+            .then(response => response.text())
+            .then(names => {
+                this.setData(JSON.parse(names));
+            })
+            .catch(error => {
+                console.error('Error fetching last problems:', error);
+            });
+
+        
+    }
+
+    setData(folder_names){
+        for(const name of folder_names){
+            const obj = {};
+
+            obj.id = name.split("-")[0].toLowerCase();
+            obj.type = name.split("-")[1].toLowerCase();
+            obj.url = name;
+
+
+            const copy_main_data = this.state.main_data;
+            copy_main_data[obj.id - 1] = obj;
+            this.setState({main_data: copy_main_data});
+        }
     }
 
     componentWillUnmount() {
@@ -63,7 +93,7 @@ export default class HomeComponent extends Component {
                         <h1>Предстоящи състезания</h1>
                         <div>
                             {this.state.next_comp.map((comp, index) => (
-                                <label key={index} className='home-next-comp-label'>{comp}</label>
+                                <label key={index} className='home-next-comp-label' onClick={() => {window.location.href = `/${comp.split(" | ")[1]}`}}>{comp.split(" | ")[0]}</label>
                             ))}
                         </div>
                     </div>
@@ -86,25 +116,34 @@ export default class HomeComponent extends Component {
                             <label>Последно добавени задачи</label>
                             <div>
                                 {this.state.last_problems.map((problem, index) => (
-                                    <label key={index} className='problems'>{problem}</label>
+                                    <label key={index} className='problems' onClick={() => {window.location.href = `/${problem.split(" | ")[1]}`}}>{problem.split( " | ")[0]}</label>
                                 ))}
                             </div>
                         </div>
-                        <div id="sign-up-wrapper">
-                            <div id="sicademy-logo">
-                                <img src={logo} alt="Sicademy Logo"></img>
-                            </div>
-                            <div id="sicademy-info">
-                                <label>СИкадеми - иновативна подготовка по математика и информатика</label>
-                                <a href="https://www.sicademy.bg" target="_blank" rel="noopener noreferrer">
-                                    <button id="sicademy-link">Запиши се</button>
-                                </a>
-                            </div>
-                        </div>
-                        <Ad />
-                        <HomeNew />
-                    </div>
+                        {/* <div> */}
+                            {this.state.main_data.map((data , index) => {
+                                switch(data.type){
+                                    case "sicademy":
+                                        return <Sicademy key = {index} path = {data.url}/>
+                                    
+                                    case "ad":
+                                        return <Ad key = {index} path = {data.url}/>
 
+                                    case "klasirane":
+                                        return <Klasirane key = {index} path = {data.url}/>
+                                    
+                                    case "new":
+                                        return <New key = {index} path = {data.url}/>
+                                    
+                                    case "banner":
+                                        return <Banner key = {index} path = {data.url}/>
+
+                                    default:
+                                        return <div></div>;
+                                }
+                            })}
+                        {/* </div>                   */}
+                    </div>
                 </div>
             </div>
         );

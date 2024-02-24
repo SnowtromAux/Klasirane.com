@@ -16,11 +16,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 120px;
 }
 
 .homenew-top>div>img {
-    width: 120px;
+    width: min-content;
 }
 
 .homenew-top>label {
@@ -59,7 +58,7 @@
     box-shadow: 2px 4px 9.3px 3px rgba(0, 0, 0, 0.15);
 }
 
-.homenew-mail>img {
+.homenew-mail >a >img {
     margin: 18.62px 10.15px;
     width: 56px;
 }

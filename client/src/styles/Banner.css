@@ -1,0 +1,8 @@
+.banner-wrapper{
+    width: 100%;
+}
+
+.banner-wrapper >a >img{
+    width: 100%;
+    border-radius: 50px;
+}
