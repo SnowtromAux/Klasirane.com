@@ -16,3 +16,4 @@ const getNames = async (res , dir_path) => {
 }
 
 module.exports = getNames;
+

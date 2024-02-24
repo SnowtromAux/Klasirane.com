@@ -1,13 +1,15 @@
 import "../styles/CompTable.css";
 import Cell from "./Cell"
 
-function CompTable() {
+function CompTable({years, classes, selectedSeason}) {
 
-  const totalColumns = 20; 
-  const totalRows = 10; 
-  
-  const rowYears = [2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005]; 
-  const columnNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]; 
+  const totalColumns = years.length+1; 
+  const totalRows = classes.length+1; 
+
+  const rowYears = years; 
+  const columnNumbers = classes; 
+
+
 
   const cells = Array.from({ length: totalColumns * totalRows }, (_, index) => {
     const row = Math.floor(index / totalColumns);
@@ -30,7 +32,7 @@ function CompTable() {
 
   return (
     <div className='gridTable-container'>
-      <div className="gridTable">
+      <div className="gridTable" style={{ gridTemplateColumns: `repeat(${totalColumns}, 1fr)`,  gridTemplateRows: `repeat(${totalRows}, 1fr)`}}>
         {cells.map((cell) => {
           const cellContent = getCellContent(cell);
           let cellClass = 'cell';
@@ -40,7 +42,7 @@ function CompTable() {
 
           return (
             <div key={cell.id} className={cellClass}>
-              {cellClass === 'cell' ? <Cell content={cellContent} /> : <label>{cellContent}</label>}
+              {cellClass === 'cell' ? <Cell competitionName={"OMT"} seasonName={selectedSeason} year={years[cell.column-1]} className={classes[cell.row-1]} /> : <label>{cellContent}</label>}
             </div>
           );
         })}

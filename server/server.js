@@ -6,9 +6,13 @@ const port = 3001;
 
 app.use(cors());
 
+const comp_router = require('./routers/CompRouter.js');
+app.use("/competitions" , comp_router);
+
 const home_router = require('./routers/HomeRouter.js');
 app.use("/home" , home_router);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+

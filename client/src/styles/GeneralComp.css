@@ -25,12 +25,33 @@
 } 
 
 #gencomp-radio-field{
+    margin-left: 10px;
+    position: relative;
+    top: 10px;
     display: flex;
-    height: 50px;
+    align-items: center;
+    height: 30px;
+    width: 300px;
     gap: 20px;
 }
 
+#gencomp-radio-field-content{
+    display: flex;
+}
 
+#gencomp-radio-field-text{
+    color: #C8C8C8;
+    font-family: Comfortaa;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 10px;
+}
+
+/* #gencomp-radio-field >input{
+   margin-left: 10px;
+} */
 
 @media (max-width: 1161px) {
 
