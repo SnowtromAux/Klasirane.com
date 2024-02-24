@@ -1,39 +1,19 @@
-const ftp = require('basic-ftp');
-const fs = require('fs').promises;
+const fs = require('fs');
+const path = require('path');
 
-const getImage = async (res , localPath , remotePath) => {
-    const client = new ftp.Client();
-    client.ftp.verbose = true;
+const getImage = async (res , img_path) => {
+    const filePath = path.join(__dirname , ".." , "ftp" , img_path);
 
-    try {
-        await client.access({
-            host: '192.168.0.127',
-            user: 'stenli',
-            password: '1234',
-            secure: true,
-            secureOptions: { rejectUnauthorized: false },
-        });
-        
-        await client.downloadTo(localPath , remotePath);
+    fs.readFile(filePath, (err, data) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Error reading image file');
+        }
 
-        await new Promise((resolve, reject) => {
-            res.sendFile(localPath, (err) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve();
-                }
-            });
-        });
-      
-        await fs.unlink(localPath);
+        res.contentType('image/jpeg');
 
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Internal Server Error');
-    } finally {
-        await client.close();
-    }
+        res.send(data);
+    });
 }
 
 module.exports = getImage;

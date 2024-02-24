@@ -1,38 +1,19 @@
-const ftp = require('basic-ftp');
-const { Writable } = require('stream');
+const fs = require('fs');
+const path = require('path');
 
-const getTextData = async (res , path) => {
-    const client = new ftp.Client();
-    client.ftp.verbose = true;
+const getTextData = async (res , text_path) => {
 
-    try {
-        await client.access({
-            host: '192.168.0.127',
-            user: 'stenli',
-            password: '1234',
-            secure: true,
-            secureOptions: { rejectUnauthorized: false },
-        });
+    const filePath = path.join(__dirname , ".." , "ftp" , text_path);
 
-        const remoteFilePath = `${path}`;
-        let text_to_send = '';
-        const writableStream = new Writable({
-            write(chunk, encoding, callback) {
-              text_to_send += chunk.toString();
-              callback();
-            }
-        });
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Error');
+        }
 
-        await client.downloadTo(writableStream , remoteFilePath)
-        .then(()=>{
-            res.status(200).send(text_to_send);
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('');
-    } finally {
-        await client.close();
-    }
+        // Send the file content as the response
+        res.send(data);
+    });
 }
 
 module.exports = getTextData;
