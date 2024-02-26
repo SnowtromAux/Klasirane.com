@@ -5,9 +5,13 @@ import '../styles/GeneralComp.css';
 import Logo from './Logo';
 import Competitions from './Competitions';
 import CompetitionsMobile from './CompetitionsMobile';
-import New from './New';
 import CompTable from './CompTable';
 
+import Ad from './Ad';
+import Klasirane from './Klasirane';
+import Sicademy from './Sicademy';
+import CompNew from './CompNew';
+import Banner from './Banner';
 export default class GeneralComp extends Component {
     constructor(props) {
         super(props);
@@ -18,13 +22,38 @@ export default class GeneralComp extends Component {
             selectedSeason: null,
             years: [],
             classes: [],
+            main_data: [],
         };
     }
 
     componentDidMount() {
         window.addEventListener('resize', this.handleResize);
         this.fetchSeasons(); 
+        fetch('http://localhost:3001/competitions/OMT/main/get-names/')
+            .then(response => response.text())
+            .then(names => {
+                console.log(names);
+                this.setData(JSON.parse(names));
+            })
+            .catch(error => {
+                console.error('Error fetching last problems:', error);
+        });
         // console.log(this.state.seasons);
+    }
+
+    setData(folder_names){
+        for(const name of folder_names){
+            const obj = {};
+
+            obj.id = name.split("-")[0].toLowerCase();
+            obj.type = name.split("-")[1].toLowerCase();
+            obj.url = name;
+
+
+            const copy_main_data = this.state.main_data;
+            copy_main_data[obj.id - 1] = obj;
+            this.setState({main_data: copy_main_data});
+        }
     }
 
     componentWillUnmount() {
@@ -127,9 +156,27 @@ export default class GeneralComp extends Component {
                     )}
 
                     <div id="gencomp-main-right">
-                        {/* <Ad /> */}
-                        {/* <New /> */}
-                        
+                        {this.state.main_data.map((data , index) => {
+                            switch(data.type){
+                                case "sicademy":
+                                    return <Sicademy key = {index} path = {data.url}/>
+                                
+                                case "ad":
+                                    return <Ad key = {index} path = {data.url}/>
+
+                                case "klasirane":
+                                    return <Klasirane key = {index} path = {data.url}/>
+                                
+                                case "new":
+                                    return <CompNew key = {index} path = {data.url}/>
+                                
+                                case "banner":
+                                    return <Banner key = {index} path = {data.url}/>
+
+                                default:
+                                    return <div></div>;
+                            }
+                        })}
                     </div>
                 </div>
                 <div id="gencomp-radio-field">

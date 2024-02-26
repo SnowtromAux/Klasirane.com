@@ -8,6 +8,32 @@ const checkTxt = require('../controllers/checkTxtController');
 const getNames = require('../controllers/getListOfNamesController');
 const getTextData = require('../controllers/getTextDataController');
 
+
+
+//Main comp page
+router.get('/:competitionName/main/get-names/', async (req, res) => {
+    getNames(res , `/competitions/${req.params.competitionName}/Main/`);
+});
+
+// //New Data
+// router.get('/:competitionName/new/title/:id/get/txt', async (req, res) => {
+//     console.log("HERE");
+//     getTextData(res , `/competitions/${req.params.competitionName}/Main/${req.params.id}/title.txt`);
+// });
+
+// router.get('/:competitionName/new/description/:id/get/txt', async (req, res) => {
+//     getTextData(res , `/competitions/${req.params.competitionName}/Main/${req.params.id}/description.txt`);
+// });
+
+// router.get('/:competitionName/new/logo/:id/get/txt', async (req, res) => {
+//     getImage(res , `/competitions/${req.params.competitionName}/Main/${req.params.id}/logo.png`);
+// });
+
+// router.get('/:competitionName/new/alt/:id/get/txt', async (req, res) => {
+//     getTextData(res , `/competitions/${req.params.competitionName}/Main/${req.params.id}/alt.txt`);
+// });
+
+
 //Forming table
 //Seasons
 router.get('/:competitionName/seasons', async (req, res) => {
