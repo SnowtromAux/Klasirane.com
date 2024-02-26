@@ -10,7 +10,6 @@ const getTextData = async (res , text_path) => {
             console.error(err);
             return res.status(500).send('Error');
         }
-
         // Send the file content as the response
         res.send(data);
     });

@@ -45,10 +45,9 @@ function Cell({ competitionName, seasonName, year, className }) {
   };
 
   const openVideo = async () => {
-    const url = `http://localhost:3001/competitions/text/${competitionName}/${seasonName}/${year}/${className}`;
-    console.log(url);
+    const vidUrl = `http://localhost:3001/competitions/get/${competitionName}/${seasonName}/${year}/${className}/videolink`;
     try {
-      const response = await fetch(url);
+      const response = await fetch(vidUrl);
       const videoUrl = await response.text();
       if (videoUrl) window.open(videoUrl, '_blank');
       else console.log('No video URL found');
