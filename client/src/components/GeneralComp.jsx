@@ -36,8 +36,8 @@ export default class GeneralComp extends Component {
     };
 
     fetchSeasons = () => {
-        // Replace 'http://localhost:3001' with your actual server address
-        fetch('http://localhost:3001/competitions/OMT/seasons')
+        // Replace 'http://13.51.197.59:3001' with your actual server address
+        fetch('http://13.51.197.59:3001/competitions/OMT/seasons')
             .then(response => response.json())
             .then(data => {
                 const filteredSeasons = data.filter(season => season !== "Main");
@@ -74,7 +74,7 @@ export default class GeneralComp extends Component {
     fetchYearsForSeason = (season) => {
         const competitionName = "OMT";
         return new Promise((resolve, reject) => {
-            fetch(`http://localhost:3001/competitions/${competitionName}/${season}/years`)
+            fetch(`http://13.51.197.59:3001/competitions/${competitionName}/${season}/years`)
                 .then((response) => response.json())
                 .then((data) => {
                     this.setState({ years: data }, () => resolve(data)); 
@@ -91,7 +91,7 @@ export default class GeneralComp extends Component {
         const competitionName = "OMT"; 
         try {
             this.setState({ isLoadingClasses: true }); // Assuming you add this to your state
-            const response = await fetch(`http://localhost:3001/competitions/${competitionName}/${season}/${year}/classes`);
+            const response = await fetch(`http://13.51.197.59:3001/competitions/${competitionName}/${season}/${year}/classes`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`); // Throw an error for non-2xx responses
             }

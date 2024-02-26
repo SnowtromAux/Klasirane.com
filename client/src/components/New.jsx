@@ -13,7 +13,7 @@ const New = (props) => {
   useEffect(() => {
       const fetchTitleData = async () => {
         try {
-          const response = await fetch(`http://localhost:3001/home/new/title/${path}/`);
+          const response = await fetch(`http://13.51.197.59:3001/home/new/title/${path}/`);
           const new_title = await response.text();
           setTitle(new_title);
         } catch (error) {
@@ -23,7 +23,7 @@ const New = (props) => {
   
       const fetchDescriptionData = async () => {
         try {
-          const response = await fetch(`http://localhost:3001/home/new/description/${path}/`);
+          const response = await fetch(`http://13.51.197.59:3001/home/new/description/${path}/`);
           const desc = await response.text();
           setDescription(desc);
         } catch (error) {
@@ -33,7 +33,7 @@ const New = (props) => {
 
       const fetchImgData = async () => {
         try {
-          const response = await fetch(`http://localhost:3001/home/new/logo/${path}/`);
+          const response = await fetch(`http://13.51.197.59:3001/home/new/logo/${path}/`);
           const blob = await response.blob();
           setImg(URL.createObjectURL(blob));
         } catch (error) {
@@ -43,7 +43,7 @@ const New = (props) => {
 
       const fetchAltData = async () => {
         try {
-          const response = await fetch(`http://localhost:3001/home/new/alt/${path}/`);
+          const response = await fetch(`http://13.51.197.59:3001/home/new/alt/${path}/`);
           const alternative = await response.text();
           setAlt(alternative)
         } catch (error) {

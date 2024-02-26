@@ -10,7 +10,7 @@ const Banner = (props) => {
   useEffect(() => {
     const fetchBannerImg = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/home/banner/logo/${path}/`);
+        const response = await fetch(`http://13.51.197.59:3001/home/banner/logo/${path}/`);
         const blob = await response.blob();
         setImg(URL.createObjectURL(blob));
       } catch (error) {
@@ -20,7 +20,7 @@ const Banner = (props) => {
 
     const fetchBannerAlt = async () => {
         try {
-          const response = await fetch(`http://localhost:3001/home/banner/text/${path}/`);
+          const response = await fetch(`http://13.51.197.59:3001/home/banner/text/${path}/`);
           const alternative = await response.text();
           setAlt(alternative);
         } catch (error) {
@@ -30,7 +30,7 @@ const Banner = (props) => {
 
     const fetchBannerLink = async () => {
         try {
-          const response = await fetch(`http://localhost:3001/home/banner/link/${path}/`);
+          const response = await fetch(`http://13.51.197.59:3001/home/banner/link/${path}/`);
           const l = await response.text();
           setLink(l);
         } catch (error) {

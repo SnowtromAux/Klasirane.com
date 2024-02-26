@@ -7,7 +7,7 @@ function Cell({ competitionName, seasonName, year, className }) {
 
   useEffect(() => {
     const checkAvailability = async (pdfType) => {
-      const url = `http://localhost:3001/competitions/check/${competitionName}/${seasonName}/${year}/${className}/${pdfType}`;
+      const url = `http://13.51.197.59:3001/competitions/check/${competitionName}/${seasonName}/${year}/${className}/${pdfType}`;
       try {
         const response = await fetch(url);
         const data = await response.json();
@@ -17,7 +17,7 @@ function Cell({ competitionName, seasonName, year, className }) {
       }
     };
     const checkVideoAvailability = async () => {
-      const url = `http://localhost:3001/competitions/getvid/${competitionName}/${seasonName}/${year}/${className}/go`;
+      const url = `http://13.51.197.59:3001/competitions/getvid/${competitionName}/${seasonName}/${year}/${className}/go`;
       try {
         const response = await fetch(url);
         if (response.ok) {
@@ -39,13 +39,13 @@ function Cell({ competitionName, seasonName, year, className }) {
   
   const handleDownload = (pdfType) => {
     if (!pdfAvailable[pdfType]) return;
-    const url = `http://localhost:3001/competitions/${competitionName}/${seasonName}/${year}/${className}/${pdfType}`;
+    const url = `http://13.51.197.59:3001/competitions/${competitionName}/${seasonName}/${year}/${className}/${pdfType}`;
     
     window.open(url, '_blank');
   };
 
   const openVideo = async () => {
-    const vidUrl = `http://localhost:3001/competitions/get/${competitionName}/${seasonName}/${year}/${className}/videolink`;
+    const vidUrl = `http://13.51.197.59:3001/competitions/get/${competitionName}/${seasonName}/${year}/${className}/videolink`;
     try {
       const response = await fetch(vidUrl);
       const videoUrl = await response.text();

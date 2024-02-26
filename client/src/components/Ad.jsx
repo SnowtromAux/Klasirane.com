@@ -7,7 +7,7 @@ const Ad = (props) => {
   useEffect(() => {
     const fetchScriptData = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/home/ad/text/${path}/`);
+        const response = await fetch(`http://13.51.197.59:3001/home/ad/text/${path}/`);
         const script = await response.text();
 
         if(!script)return;

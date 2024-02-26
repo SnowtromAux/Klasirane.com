@@ -14,7 +14,7 @@ const Sicademy = (props) => {
     useEffect(() => {
         const fetchButtonData = async () => {
           try {
-            const response = await fetch(`http://localhost:3001/home/sicademy/button/${path}/`);
+            const response = await fetch(`http://13.51.197.59:3001/home/sicademy/button/${path}/`);
             const btn_txt = await response.text();
             setButtonTxt(btn_txt);
           } catch (error) {
@@ -24,7 +24,7 @@ const Sicademy = (props) => {
     
         const fetchDescriptionData = async () => {
           try {
-            const response = await fetch(`http://localhost:3001/home/sicademy/description/${path}/`);
+            const response = await fetch(`http://13.51.197.59:3001/home/sicademy/description/${path}/`);
             const desc = await response.text();
             setDescription(desc);
           } catch (error) {
@@ -34,7 +34,7 @@ const Sicademy = (props) => {
     
         const fetchLogoData = async () => {
           try {
-            const response = await fetch(`http://localhost:3001/home/sicademy/logo/${path}/`);
+            const response = await fetch(`http://13.51.197.59:3001/home/sicademy/logo/${path}/`);
             const blob = await response.blob();
             setImg(URL.createObjectURL(blob));
           } catch (error) {

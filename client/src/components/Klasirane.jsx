@@ -16,7 +16,7 @@ const Klasirane = (props) => {
   useEffect(() => {
       const fetchTitleData = async () => {
         try {
-          const response = await fetch(`http://localhost:3001/home/klasirane/title/${path}/`);
+          const response = await fetch(`http://13.51.197.59:3001/home/klasirane/title/${path}/`);
           const klasirane_title = await response.text();
           setTitle(klasirane_title);
         } catch (error) {
@@ -26,7 +26,7 @@ const Klasirane = (props) => {
   
       const fetchDescriptionData = async () => {
         try {
-          const response = await fetch(`http://localhost:3001/home/klasirane/description/${path}/`);
+          const response = await fetch(`http://13.51.197.59:3001/home/klasirane/description/${path}/`);
           const desc = await response.text();
           setDescription(desc);
         } catch (error) {
@@ -36,7 +36,7 @@ const Klasirane = (props) => {
 
       const fetchImgData = async () => {
         try {
-          const response = await fetch(`http://localhost:3001/home/klasirane/logo/${path}/`);
+          const response = await fetch(`http://13.51.197.59:3001/home/klasirane/logo/${path}/`);
           const blob = await response.blob();
           setImg(URL.createObjectURL(blob));
         } catch (error) {
@@ -46,7 +46,7 @@ const Klasirane = (props) => {
 
       const fetchMailTextData = async () => {
         try {
-          const response = await fetch(`http://localhost:3001/home/klasirane/mailData/${path}/`);
+          const response = await fetch(`http://13.51.197.59:3001/home/klasirane/mailData/${path}/`);
           const mail_text = await response.text();
           setMailText(mail_text);
         } catch (error) {
