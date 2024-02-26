@@ -33,7 +33,7 @@ router.get('/check/:competitionName/:seasonName/:year/:className/:pdfType', asyn
 });
 
 
-router.get('/text/:competitionName/:seasonName/:year/:className', async (req, res) => {
+router.get('/get/:competitionName/:seasonName/:year/:className/videolink', async (req, res) => {
     getTextData(res , `/competitions/${req.params.competitionName}/${req.params.seasonName}/${req.params.year}/${req.params.className}/video.txt`);
 });
 

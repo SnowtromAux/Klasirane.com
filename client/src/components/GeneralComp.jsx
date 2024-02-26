@@ -40,25 +40,35 @@ export default class GeneralComp extends Component {
         fetch('http://localhost:3001/competitions/OMT/seasons')
             .then(response => response.json())
             .then(data => {
-                this.setState({ seasons: data });
+                const filteredSeasons = data.filter(season => season !== "Main");
+                this.setState({ 
+                seasons: filteredSeasons,
+                }, () => {
+                    if (filteredSeasons.length > 0) {
+                        this.selectSeason(filteredSeasons[0]);
+                    }
+                });
                 console.log(data);
-            })
+             })
             .catch(error => console.error('Error fetching seasons:', error));
     };
 
-    handleSeasonChange = (event) => {
-        const selectedSeason = event.target.value;
+    selectSeason = (selectedSeason) => {
         this.setState({ selectedSeason: selectedSeason });
-    
+        
         this.fetchYearsForSeason(selectedSeason).then((years) => {
-            
             if (years.length > 0) {
-                const firstYear = years[0]; 
+                const firstYear = years[0];
                 this.fetchClassesForYear(selectedSeason, firstYear);
             }
         }).catch(error => {
             console.error('Error in sequence:', error);
         });
+    };
+
+    handleSeasonChange = (event) => {
+        const selectedSeason = event.target.value;
+        this.selectSeason(selectedSeason);
     };
 
     fetchYearsForSeason = (season) => {
@@ -123,7 +133,7 @@ export default class GeneralComp extends Component {
                     </div>
                 </div>
                 <div id="gencomp-radio-field">
-                    {seasons.map((season, index) => (
+                    {seasons.filter(season => season !== "All").map((season, index) => (
                         <div id='gencomp-radio-field-content' key={index}>
                             <input
                                 type="radio"
