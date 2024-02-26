@@ -17,17 +17,7 @@ function Cell({ competitionName, seasonName, year, className }) {
       }
     };
     const checkVideoAvailability = async () => {
-
-      console.clear();
-      console.log(competitionName , seasonName , year , className)
-
-      const encodedCompetitionName = encodeURIComponent(competitionName);
-      const encodedSeasonName = encodeURIComponent(seasonName);
-      const encodedYear = encodeURIComponent(year);
-      const encodedClassName = encodeURIComponent(className);
-      // const url = `http://localhost:3001/competitions/checkVideo/${encodedCompetitionName}/${encodedSeasonName}/${encodedYear}/${encodedClassName[0]}`;
       const url = `http://localhost:3001/competitions/getvid/${competitionName}/${seasonName}/${year}/${className}/go`;
-
       try {
         const response = await fetch(url);
         if (response.ok) {
