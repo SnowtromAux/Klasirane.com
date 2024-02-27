@@ -60,9 +60,11 @@ function App() {
         let text_data = text.split(
           '--------------------------------------------------------'
         );
+        text_data.pop();
+        text_data.shift();
         let obj = [];
         for (const text of text_data) {
-          const comp_data = text.split('\r\n');
+          const comp_data = text.split('\n');
           comp_data.pop();
           comp_data.shift();
           const competition_data = comp_data[0].split(': ')[1].split(' | ');
