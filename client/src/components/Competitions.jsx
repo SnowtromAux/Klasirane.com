@@ -58,6 +58,8 @@ function Competitions() {
         );
         let obj = [];
         for (const text of text_data) {
+          if(text == null || text == undefined)continue;
+          console.log(text)
           const comp_data = text.split('\n');
           comp_data.pop();
           comp_data.shift();
