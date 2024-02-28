@@ -27,6 +27,12 @@ export default class GeneralComp extends Component {
         console.log(this.props.competitionName);
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.competitionName !== prevProps.competitionName) {
+            this.fetchSeasons();
+        }
+    }
+
     componentWillUnmount() {
         window.removeEventListener('resize', this.handleResize);
     }

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../styles/Competitions.css';
 import remove from "../assets/remove.png";
 
 function Competitions() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [filters, setFilters] = useState([]);
   const [competitions, setCompetitions] = useState([]);
   const [selFilters, setSelFilters] = useState({});
@@ -149,7 +150,7 @@ function Competitions() {
   }, [selFilters , competitions]);
 
   return (
-    <div className="competitions">
+    <div className="competitions" style={{ height: location.pathname.includes('competitions') ? '800px' : 'auto', width: location.pathname.includes('competitions') ? '410px' : '400px' }}>
       <label>Всички Състезания</label>
       <div className="filter-box">
         <div className='filter-box-top'>
