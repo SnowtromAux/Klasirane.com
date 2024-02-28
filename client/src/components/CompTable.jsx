@@ -1,7 +1,7 @@
 import "../styles/CompTable.css";
 import Cell from "./Cell"
 
-function CompTable({years, classes, selectedSeason}) {
+function CompTable({compName, years, classes, selectedSeason}) {
 
   const totalColumns = years.length+1; 
   const totalRows = classes.length+1; 
@@ -42,7 +42,7 @@ function CompTable({years, classes, selectedSeason}) {
 
           return (
             <div key={cell.id} className={cellClass}>
-              {cellClass === 'cell' ? <Cell competitionName={"OMT"} seasonName={selectedSeason} year={years[cell.column-1]} className={classes[cell.row-1]} /> : <label>{cellContent}</label>}
+              {cellClass === 'cell' ? <Cell competitionName={compName} seasonName={selectedSeason} year={years[cell.column-1]} className={classes[cell.row-1]} /> : <label>{cellContent}</label>}
             </div>
           );
         })}

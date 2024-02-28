@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import '../styles/GeneralComp.css';
 
 import Logo from './Logo';
@@ -7,6 +6,7 @@ import Competitions from './Competitions';
 import CompetitionsMobile from './CompetitionsMobile';
 import New from './New';
 import CompTable from './CompTable';
+
 
 export default class GeneralComp extends Component {
     constructor(props) {
@@ -24,6 +24,7 @@ export default class GeneralComp extends Component {
     componentDidMount() {
         window.addEventListener('resize', this.handleResize);
         this.fetchSeasons(); 
+        console.log(this.props.competitionName);
     }
 
     componentWillUnmount() {
@@ -35,8 +36,9 @@ export default class GeneralComp extends Component {
     };
 
     fetchSeasons = () => {
+        const competitionName = `${this.props.competitionName}`;
         // Replace 'http://13.51.197.59:3001' with your actual server address
-        fetch('http://13.51.197.59:3001/competitions/OMT/seasons')
+        fetch(`http://13.51.197.59:3001/competitions/${competitionName}/seasons`)
             .then(response => response.json())
             .then(data => {
                 const filteredSeasons = data.filter(season => season !== "Main");
@@ -70,7 +72,7 @@ export default class GeneralComp extends Component {
     };
 
     fetchYearsForSeason = (season) => {
-        const competitionName = "OMT";
+        const competitionName = `${this.props.competitionName}`;
         return new Promise((resolve, reject) => {
             fetch(`http://13.51.197.59:3001/competitions/${competitionName}/${season}/years`)
                 .then((response) => response.json())
@@ -86,7 +88,7 @@ export default class GeneralComp extends Component {
     
 
     fetchClassesForYear = async (season, year) => {
-        const competitionName = "OMT"; 
+        const competitionName = `${this.props.competitionName}`; 
         try {
             this.setState({ isLoadingClasses: true }); // Assuming you add this to your state
             const response = await fetch(`http://13.51.197.59:3001/competitions/${competitionName}/${season}/${year}/classes`);
@@ -145,7 +147,7 @@ export default class GeneralComp extends Component {
                         </div>
                     ))}
                 </div>
-                <CompTable years={years} classes={classes} selectedSeason={selectedSeason}/>
+                <CompTable compName={`${this.props.competitionName}`} years={years} classes={classes} selectedSeason={selectedSeason}/>
             </div>
         );
     }
