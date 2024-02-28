@@ -24,7 +24,6 @@ export default class GeneralComp extends Component {
     componentDidMount() {
         window.addEventListener('resize', this.handleResize);
         this.fetchSeasons(); 
-        // console.log(this.state.seasons);
     }
 
     componentWillUnmount() {
@@ -48,7 +47,6 @@ export default class GeneralComp extends Component {
                         this.selectSeason(filteredSeasons[0]);
                     }
                 });
-                console.log(data);
              })
             .catch(error => console.error('Error fetching seasons:', error));
     };

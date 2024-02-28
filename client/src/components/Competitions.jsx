@@ -56,7 +56,6 @@ function Competitions() {
         let text_data = text.split(
           '--------------------------------------------------------'
         );
-        console.log(text_data);
         text_data.pop();
         text_data.shift();
         let obj = [];
