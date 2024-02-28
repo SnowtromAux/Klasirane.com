@@ -8,7 +8,6 @@
     text-align: center;
     border-radius: 30px;
     background: #D9D9D9;
-    gap: 13px;
 }
 
 .problem {
@@ -18,6 +17,21 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.problem-text {
+    position: relative;
+    top: 25px;
+}
+
+.problem:hover {
+    background-color: #cecece;
+    border-radius: 30px 30px 0px 0px;
 }
 
 .solution {
@@ -27,6 +41,16 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.solution:hover {
+    background-color: #cecece;
 }
 
 .video {
@@ -36,4 +60,12 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+}
+
+.video:hover {
+    background-color: #cecece;
+    border-radius: 0px 0px 30px 30px;
 }
