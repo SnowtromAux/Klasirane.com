@@ -148,6 +148,10 @@ export default class GeneralComp extends Component {
                                 value={season}
                                 checked={selectedSeason === season}
                                 onChange={this.handleSeasonChange}
+                                style={{
+                                    width: '22px',
+                                    height: '22px'
+                                }}
                             />
                             <div id='gencomp-radio-field-text' key={index}>{season}</div>
                         </div>
