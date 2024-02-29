@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Competitions.css';
 import remove from "../assets/remove.png";
+import x from "../assets/x.png"
 
 function Competitions() {
   const navigate = useNavigate();
@@ -136,6 +137,21 @@ function Competitions() {
       return updatedFilterState;
     });
   };
+
+  const removeFilter = (filterName, sel_data) => {
+    setSelFilters((prevFilters) => {
+      const updatedFilters = { ...prevFilters };
+      updatedFilters[filterName] = updatedFilters[filterName].filter(filter => filter !== sel_data);
+
+      const checkboxes = document.getElementsByClassName(`filter-group-${filterName}`);
+      Array.from(checkboxes).forEach((checkbox) => {
+        checkbox.checked = false;
+      });
+
+      return updatedFilters;
+    });
+  };
+  
   
   useEffect(() => {
     const filteredComps = competitions.filter((comp) =>
@@ -160,32 +176,37 @@ function Competitions() {
         </div>
         <div className="filters-wrapper">
           {filters.map((filter, index) => (
-            <div className="filter" key={index} onClick={() => {triggerFilter(filter.name)}} style = {{borderBottomRightRadius: filterState[filter.name] ? "0px" : "20px" , borderBottomLeftRadius: filterState[filter.name] ? "0px" : "20px" , zIndex: 500 - index}}>
-              <label className="filter-name">{filter.name}</label>
-              {selFilters[filter.name].map((sel_data, index) => (
-                <label className="selected-filters" key={index}>
-                  {sel_data}
-                </label>
-              ))}
-              <div className="filter-dropdown" style = {{visibility: filterState[filter.name] ? "visible" : "hidden"}}>
-                {filter.options.map((option, index) => (
-                  <div key={index} className="filter-dropdown-row">
-                    <input
-                      className={`filter-group-${filter.name}`}
-                      type="checkbox"
-                      id={`${filter.name}_radio_${index}`}
-                      onChange={() =>
-                        handleCheckboxChange(filter.name, index, filter.multiple)
-                      }
-                    ></input>
-                    <label htmlFor={`${filter.name}_radio_${index}`}>
-                      {option}
+            <div className='filter-wrapper' key={index}>
+              <div className="filter" onClick={() => {triggerFilter(filter.name)}} style = {{borderBottomRightRadius: filterState[filter.name] ? "0px" : "20px" , borderBottomLeftRadius: filterState[filter.name] ? "0px" : "20px" , zIndex: 500 - index}}>
+                <label className="filter-name">{filter.name}</label>
+                <div className="filter-dropdown" style = {{visibility: filterState[filter.name] ? "visible" : "hidden"}}>
+                  {filter.options.map((option, index) => (
+                    <div key={index} className="filter-dropdown-row">
+                      <input
+                        className={`filter-group-${filter.name}`}
+                        type="checkbox"
+                        id={`${filter.name}_radio_${index}`}
+                        onChange={() =>
+                          handleCheckboxChange(filter.name, index, filter.multiple)
+                        }
+                      ></input>
+                      <label htmlFor={`${filter.name}_radio_${index}`}>
+                        {option}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+                {selFilters[filter.name].map((sel_data, index) => (
+                  <div className='selected-filters' key={index}>
+                    <label className="selected-filter">
+                      {sel_data}
                     </label>
+                    <img src = {x} alt = "filter remove" onClick={() => {removeFilter(filter.name , sel_data)}}></img>
                   </div>
                 ))}
-              </div>
             </div>
-          ))}
+            ))}
         </div>
       </div>
       <div className="filter-results">
