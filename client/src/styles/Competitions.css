@@ -1,9 +1,10 @@
 .competitions{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
     background: #FFF;
     box-shadow: 4px 4px 16.2px 3px rgba(0, 0, 0, 0.15);
     border-radius: 30px;
@@ -12,7 +13,7 @@
 .competitions >label{
     position: relative;
     width: 400px;
-    height: 80px;
+    padding: 18px 0px;
     display: flex;
     justify-content: center;
     align-items: center;

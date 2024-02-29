@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../styles/Competitions.css';
 import remove from "../assets/remove.png";
 import x from "../assets/x.png"
 
 function Competitions() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [filters, setFilters] = useState([]);
   const [competitions, setCompetitions] = useState([]);
   const [selFilters, setSelFilters] = useState({});
@@ -57,10 +58,11 @@ function Competitions() {
         let text_data = text.split(
           '--------------------------------------------------------'
         );
-
+        text_data.pop();
+        text_data.shift();
         let obj = [];
         for (const text of text_data) {
-          const comp_data = text.split('\r\n');
+          const comp_data = text.split('\n');
           comp_data.pop();
           comp_data.shift();
           const competition_data = comp_data[0].split(': ')[1].split(' | ');
@@ -164,7 +166,7 @@ function Competitions() {
   }, [selFilters , competitions]);
 
   return (
-    <div className="competitions">
+    <div className="competitions" style={{ height: location.pathname.includes('competitions') ? '700px' : 'auto', width: location.pathname.includes('competitions') ? '410px' : '400px' }}>
       <label>Всички Състезания</label>
       <div className="filter-box">
         <div className='filter-box-top'>

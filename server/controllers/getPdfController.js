@@ -8,13 +8,14 @@ const getPdf = async (res, competitionName, seasonName, year, className, pdfType
 
     try {
         if (fs.existsSync(pdfFilePath)) {
+            const downloadFileName = `${competitionName}-${seasonName}-${year}-${className}-${pdfFileName}`;
+
             res.setHeader('Content-Type', 'application/pdf');
-            res.setHeader('Content-Disposition', `attachment; filename=${pdfFileName}`);
-            // Create a read stream and pipe it to the response
+            res.setHeader('Content-Disposition', `attachment; filename=${encodeURI(downloadFileName)}`);
+
             const readStream = fs.createReadStream(pdfFilePath);
             readStream.pipe(res);
         } else {
-            // Handle case where the file does not exist
             res.status(404).send('File not found');
         }
     } catch (error) {

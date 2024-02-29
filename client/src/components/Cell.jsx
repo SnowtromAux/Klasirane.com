@@ -59,7 +59,9 @@ function Cell({ competitionName, seasonName, year, className }) {
   return (
     <div className="cell-wrapper">
        <div className="problem" onClick={() => handleDownload('probs')}>
-          {pdfAvailable.probs ? 'Задачи' : '-'}
+          <div className='problem-text'>
+            {pdfAvailable.probs ? 'Задачи' : '-'}
+          </div>
         </div>
         <div className="solution" onClick={() => handleDownload('sol')}>
           {pdfAvailable.sol ? 'Отговори' : '-'}

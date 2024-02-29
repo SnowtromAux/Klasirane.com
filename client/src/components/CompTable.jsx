@@ -1,13 +1,22 @@
 import "../styles/CompTable.css";
 import Cell from "./Cell"
 
-function CompTable({years, classes, selectedSeason}) {
+function CompTable({compName, years, classes, selectedSeason}) {
 
-  const totalColumns = years.length+1; 
+  const reversedYears = [...years].reverse(); 
+
+  const sortedClasses = classes.sort((a, b) => {
+    const numA = parseInt(a, 10); 
+    const numB = parseInt(b, 10); 
+    return numA - numB; 
+  });
+
+  const totalColumns = reversedYears.length+1; 
   const totalRows = classes.length+1; 
 
-  const rowYears = years; 
-  const columnNumbers = classes; 
+  const rowYears = reversedYears; 
+  
+  const columnNumbers = sortedClasses; 
 
 
 
@@ -32,7 +41,7 @@ function CompTable({years, classes, selectedSeason}) {
 
   return (
     <div className='gridTable-container'>
-      <div className="gridTable" style={{ gridTemplateColumns: `repeat(${totalColumns}, 1fr)`,  gridTemplateRows: `repeat(${totalRows}, 1fr)`}}>
+      <div className="gridTable" style={{ gridTemplateColumns: `repeat(${totalColumns}, 175px)`,  gridTemplateRows: `repeat(${totalRows}, 150px)`}}>
         {cells.map((cell) => {
           const cellContent = getCellContent(cell);
           let cellClass = 'cell';
@@ -42,7 +51,7 @@ function CompTable({years, classes, selectedSeason}) {
 
           return (
             <div key={cell.id} className={cellClass}>
-              {cellClass === 'cell' ? <Cell competitionName={"OMT"} seasonName={selectedSeason} year={years[cell.column-1]} className={classes[cell.row-1]} /> : <label>{cellContent}</label>}
+              {cellClass === 'cell' ? <Cell competitionName={compName} seasonName={selectedSeason} year={reversedYears[cell.column-1]} className={sortedClasses[cell.row-1]} /> : <label>{cellContent}</label>}
             </div>
           );
         })}
