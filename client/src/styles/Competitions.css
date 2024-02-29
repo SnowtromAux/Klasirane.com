@@ -63,19 +63,18 @@
 
 .filter-result-desk-remove>img {
     cursor: pointer;
-    width: 21px;
-    height: 21px;
+    width: 18px;
+    height: 18px;
 }
 
 .filter-result-desk-remove>label {
     cursor: pointer;
     color: #D44;
     font-family: Comfortaa;
-    font-size: 20px;
+    font-size: 16.622px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    width: min-content;
 }
 
 .filter-result-desk-remove>label:hover{
@@ -89,7 +88,13 @@
     flex-wrap: wrap;
 }
 
-.filter{
+.filter-wrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.filter , .selected-filters{
     position: relative;
     padding: 7.5px 15px;
     margin: 0px 5px 5px 0px;
@@ -100,13 +105,16 @@
     border-radius: 20px;
     /* border-top-left-radius: 20px;
     border-top-right-radius: 20px; */
-    background: #A9A9A9;
-    color: #FFF;
     font-size: 19px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     cursor: pointer;
+}
+
+.filter{
+    background: #A9A9A9;
+    color: #FFF;
 }
 
 .filter-name{
@@ -115,9 +123,8 @@
 }
 
 .selected-filters{
-    padding: 3px 10px;
-    border-radius: 14px;
-    background-color: #CFCFCF;
+    background-color: white;
+    color: #A9A9A9;
 }
 
 
