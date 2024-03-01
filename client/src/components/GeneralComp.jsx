@@ -4,7 +4,6 @@ import '../styles/GeneralComp.css';
 import Logo from './Logo';
 import Competitions from './Competitions';
 import CompetitionsMobile from './CompetitionsMobile';
-import New from './New';
 import CompTable from './CompTable';
 
 
@@ -24,7 +23,6 @@ export default class GeneralComp extends Component {
     componentDidMount() {
         window.addEventListener('resize', this.handleResize);
         this.fetchSeasons(); 
-        console.log(this.props.competitionName);
     }
 
     componentDidUpdate(prevProps) {
@@ -52,7 +50,13 @@ export default class GeneralComp extends Component {
                 seasons: filteredSeasons,
                 }, () => {
                     if (filteredSeasons.length > 0) {
-                        this.selectSeason(filteredSeasons[0]);
+                        const urlSeason = this.props.season;
+                        if(urlSeason != undefined){
+                            this.selectSeason(urlSeason);
+                        }
+                        else{
+                            this.selectSeason(filteredSeasons[0]);
+                        } 
                     }
                 });
              })
@@ -61,6 +65,9 @@ export default class GeneralComp extends Component {
 
     selectSeason = (selectedSeason) => {
         this.setState({ selectedSeason: selectedSeason });
+
+        const path = `/competitions/${this.props.competitionName}/${selectedSeason}`;
+        this.props.navigate(path);
         
         this.fetchYearsForSeason(selectedSeason).then((years) => {
             if (years.length > 0) {
@@ -113,7 +120,7 @@ export default class GeneralComp extends Component {
     
 
     render() {
-        const { isWideScreen, seasons, selectedSeason, years, classes } = this.state;
+        const { seasons, selectedSeason, years, classes } = this.state;
         return (
             <div id="gencomp-wrapper">
                 <header>

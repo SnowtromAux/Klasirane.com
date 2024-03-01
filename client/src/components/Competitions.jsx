@@ -165,11 +165,7 @@ function Competitions() {
   }, [selFilters , competitions]);
 
   return (
-    <div className="competitions" style={{ height: location.pathname.includes('competitions') ? '700px' : 'auto', 
-                                           width: location.pathname.includes('competitions') ? '410px' : '400px',
-                                           overflowY: location.pathname.includes('competitions') ? 'auto' : 'hidden',
-                                           overflowX: location.pathname.includes('competitions') ? 'hidden' : 'hidden' 
-                                          }}>
+    <div className="competitions">
       <label>Всички Състезания</label>
       <div className="filter-box">
         <div className='filter-box-top'>
@@ -214,7 +210,13 @@ function Competitions() {
             ))}
         </div>
       </div>
-      <div className="filter-results">
+      <div className="filter-results"style={{ 
+                                        height: location.pathname.includes('competitions') ? '600px' : 'auto', 
+                                        width: location.pathname.includes('competitions') ? '385px' : '366px',
+                                        paddingLeft: location.pathname.includes('competitions') ? '15px' : '0px',  
+                                        overflowY: location.pathname.includes('competitions') ? 'auto' : 'hidden',
+                                        overflowX: location.pathname.includes('competitions') ? 'hidden' : 'hidden' 
+                                      }}>
         {showComps.map((competition, index) => (
           <label key={competition.key} onClick={() => changeDirectory(competition.key)}>{competition.name}</label>
         ))}

@@ -3,7 +3,7 @@ import "../styles/Cell.css";
 
 function Cell({ competitionName, seasonName, year, className }) {
   const [pdfAvailable, setPdfAvailable] = useState({ probs: false, sol: false });
-  const [videoAvailable, setVideoAvailable] = useState(true);
+  const [videoAvailable, setVideoAvailable] = useState(false);
 
   useEffect(() => {
     const checkAvailability = async (pdfType) => {
