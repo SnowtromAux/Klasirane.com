@@ -154,7 +154,6 @@ function Competitions() {
     });
   };
   
-  
   useEffect(() => {
     const filteredComps = competitions.filter((comp) =>
       Object.entries(selFilters).every(([filter, values]) =>
