@@ -165,7 +165,11 @@ function Competitions() {
   }, [selFilters , competitions]);
 
   return (
-    <div className="competitions" style={{ height: location.pathname.includes('competitions') ? '700px' : 'auto', width: location.pathname.includes('competitions') ? '410px' : '400px' }}>
+    <div className="competitions" style={{ height: location.pathname.includes('competitions') ? '700px' : 'auto', 
+                                           width: location.pathname.includes('competitions') ? '410px' : '400px',
+                                           overflowY: location.pathname.includes('competitions') ? 'auto' : 'hidden',
+                                           overflowX: location.pathname.includes('competitions') ? 'hidden' : 'hidden' 
+                                          }}>
       <label>Всички Състезания</label>
       <div className="filter-box">
         <div className='filter-box-top'>
