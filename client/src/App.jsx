@@ -4,10 +4,18 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomeComponent from "./components/HomePage";
 import GeneralCompWrapper from "./components/GeneralCompWrapper";
 import Footer from "./components/Footer"
-// import CreateComponent from "./components/CreatePage";
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
 
-// import React, { useEffect , useState } from 'react';
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
   return (
@@ -22,14 +30,14 @@ function App() {
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <meta name="keywords" content="your, desired, keywords, here" />
-        {/* Add more meta tags if needed */}
       </Helmet>
       <Router>
-        <Routes>
-          <Route exact path="/" element={<HomeComponent />} />
-          <Route exact path="/competitions/:competitionName" element = {<GeneralCompWrapper />}></Route>
-        </Routes>
-        <Footer />
+          <ScrollToTop />
+          <Routes>
+            <Route exact path="/" element={<HomeComponent />} />
+            <Route exact path="/competitions/:competitionName" element = {<GeneralCompWrapper />}></Route>
+          </Routes>
+          <Footer />
       </Router>
     </div>
   );

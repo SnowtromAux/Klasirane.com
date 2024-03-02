@@ -1,5 +1,5 @@
 .new-wrapper{
-    padding: 100px;
+    padding: 31px;
     display: flex;
     flex-direction: column;
     border-radius: 50px;
@@ -10,17 +10,18 @@
 .new-top{
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
-.new-top >div{
+.new-data-div-img{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 120px;
+    width: 33%;
 }
 
 .new-top >div >img{
-    height: min-content;
+    width: 100%;
 }
 
 .new-top >label{
@@ -44,4 +45,9 @@
     font-style: normal;
     font-weight: 400;
     line-height: 32px;
+}
+
+.new-middle >label{
+    text-align: justify;
+    line-height: 1.4;
 }

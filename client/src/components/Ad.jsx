@@ -2,12 +2,13 @@ import "../styles/Ad.css";
 import { useEffect } from 'react';
 
 const Ad = (props) => {
-  const { path } = props;
+  const { path , page } = props;
+  const compName = props.compName || "";
 
   useEffect(() => {
     const fetchScriptData = async () => {
       try {
-        const response = await fetch(`http://13.51.197.59:3001/home/ad/text/${path}/`);
+        const response = await fetch(`http://13.51.197.59:3001/${page}/ad/text/${path}/${compName}`);
         const script = await response.text();
 
         if(!script)return;

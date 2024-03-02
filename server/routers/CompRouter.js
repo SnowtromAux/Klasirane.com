@@ -7,6 +7,8 @@ const checkPdf = require('../controllers/checkPdfController');
 const checkTxt = require('../controllers/checkTxtController');
 const getNames = require('../controllers/getListOfNamesController');
 const getTextData = require('../controllers/getTextDataController');
+const getImage = require('../controllers/getImageController');
+
 
 //Forming table
 //Seasons
@@ -41,6 +43,102 @@ router.get('/getvid/:competitionName/:seasonName/:year/:className/go', async (re
     checkTxt(req, res);
 });
 
+
+//Main Data
+router.get('/dir/get-names/:compName', async (req, res) => {
+    getNames(res , `/competitions/${req.params.compName}/Main`);
+});
+
+
+//Sicademy Data
+router.get('/sicademy/description/:id/:compName', async (req, res) => {
+    getTextData(res , `/competitions/${req.params.compName}/Main/${req.params.id}/description.txt`);
+});
+
+router.get('/sicademy/button/:id/:compName', async (req, res) => {
+    getTextData(res , `/competitions/${req.params.compName}/Main/${req.params.id}/button.txt`);
+});
+
+router.get('/sicademy/logo/:id/:compName', async (req, res) => {
+    getImage(res , `/competitions/${req.params.compName}/Main/${req.params.id}/logo.png`);
+});
+
+//Ad Data
+router.get('/ad/text/:id/:compName', async (req, res) => {
+    getTextData(res , `/competitions/${req.params.compName}/Main/${req.params.id}/script.txt`);
+});
+
+
+//Klasirane Data
+router.get('/klasirane/title/:id/:compName', async (req, res) => {
+    getTextData(res , `/competitions/${req.params.compName}/Main/${req.params.id}/title.txt`);
+});
+
+router.get('/klasirane/description/:id/:compName', async (req, res) => {
+    getTextData(res , `/competitions/${req.params.compName}/Main/${req.params.id}/description.txt`);
+});
+
+router.get('/klasirane/mailData/:id/:compName', async (req, res) => {
+    getTextData(res , `/competitions/${req.params.compName}/Main/${req.params.id}/mail-text.txt`);
+});
+
+router.get('/klasirane/logo/:id/:compName', async (req, res) => {
+    getImage(res , `/competitions/${req.params.compName}/Main/${req.params.id}/logo.png`);
+});
+
+
+//New Data
+router.get('/new/title/:id/:compName', async (req, res) => {
+    getTextData(res , `/competitions/${req.params.compName}/Main/${req.params.id}/title.txt`);
+});
+
+router.get('/new/description/:id/:compName', async (req, res) => {
+    getTextData(res , `/competitions/${req.params.compName}/Main/${req.params.id}/description.txt`);
+});
+
+router.get('/new/logo/:id/:compName', async (req, res) => {
+    getImage(res , `/competitions/${req.params.compName}/Main/${req.params.id}/logo.png`);
+});
+
+router.get('/new/alt/:id/:compName', async (req, res) => {
+    getTextData(res , `/competitions/${req.params.compName}/Main/${req.params.id}/alt.txt`);
+});
+
+
+//Comp Info Data
+router.get('/comp-data/title/:id/:compName', async (req, res) => {
+    getTextData(res , `/competitions/${req.params.compName}/Main/${req.params.id}/title.txt`);
+});
+
+router.get('/comp-data/description/:id/:compName', async (req, res) => {
+    getTextData(res , `/competitions/${req.params.compName}/Main/${req.params.id}/description.txt`);
+});
+
+router.get('/comp-data/logo/:id/:compName', async (req, res) => {
+    getImage(res , `/competitions/${req.params.compName}/Main/${req.params.id}/logo.png`);
+});
+
+router.get('/comp-data/alt/:id/:compName', async (req, res) => {
+    getTextData(res , `/competitions/${req.params.compName}/Main/${req.params.id}/alt.txt`);
+});
+
+router.get('/comp-data/last-added/:id/:compName', async (req, res) => {
+    getTextData(res , `/competitions/${req.params.compName}/Main/${req.params.id}/last_added.txt`);
+});
+
+
+//Banner Data
+router.get('/banner/text/:id/:compName', async (req, res) => {
+    getTextData(res , `/competitions/${req.params.compName}/Main/${req.params.id}/alt.txt`);
+});
+
+router.get('/banner/logo/:id/:compName', async (req, res) => {
+    getImage(res , `/competitions/${req.params.compName}/Main/${req.params.id}/banner.png`);
+});
+
+router.get('/banner/link/:id/:compName', async (req, res) => {
+    getTextData(res , `/competitions/${req.params.compName}/Main/${req.params.id}/link.txt`);
+});
 
 
 module.exports = router;

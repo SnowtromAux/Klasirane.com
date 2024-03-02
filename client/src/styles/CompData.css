@@ -1,0 +1,44 @@
+.comp-data-wrapper{
+    background-color:  #E6E6E6;
+    box-shadow: none;
+}
+
+.comp-data-top{
+    padding: 5px;
+}
+
+.comp-data-top >label{
+    font-size: 36px;
+}
+
+.comp-data-top-right{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.comp-data-title{
+    color: #000;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 55px;
+}
+
+.comp-data-last-added{
+    margin-top: 10px;
+    padding: 10px 24px;
+    border-radius: 100px;
+    opacity: 0.8;
+    background: rgba(45, 181, 51, 0.50);
+    color: #FFF;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.comp-data-top >div >img{
+    width: 100%;
+    border-radius: 50px;
+}

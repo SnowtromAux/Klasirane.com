@@ -183,11 +183,14 @@ input[type="checkbox"] {
 }
   
 input[type="checkbox"] + label {
+    /* line-height: 1; */
     position: relative;
-    padding-left: 20px;
+    padding-left: 23px;
+    font-size: 17px;
     cursor: pointer;
     display: inline-block;
     border: none;
+    overflow-wrap: anywhere;
 }
 
 input[type="checkbox"] + label:before {

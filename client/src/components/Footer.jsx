@@ -2,7 +2,7 @@ import "../styles/Footer.css";
 import img from '../assets/facebook-icon-white.png';
 // import mail from '../assets/mail.png';
 
-function App() {
+function Footer() {
   return (
     <div className="footer-wrapper">
       <div className="footer-top">
@@ -27,4 +27,4 @@ function App() {
   );
 }
 
-export default App;
+export default Footer;

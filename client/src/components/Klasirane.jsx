@@ -5,7 +5,8 @@ import mail from '../assets/mail.png';
 const Klasirane = (props) => {
   const isNarrowScreen = window.innerWidth < 700;
 
-  const { path } = props;
+  const { path , page } = props;
+  const compName = props.compName || "";
 
   const [title , setTitle] = useState("");
   const [description , setDescription] = useState("");
@@ -16,7 +17,7 @@ const Klasirane = (props) => {
   useEffect(() => {
       const fetchTitleData = async () => {
         try {
-          const response = await fetch(`http://13.51.197.59:3001/home/klasirane/title/${path}/`);
+          const response = await fetch(`http://13.51.197.59:3001/${page}/klasirane/title/${path}/${compName}`);
           const klasirane_title = await response.text();
           setTitle(klasirane_title);
         } catch (error) {
@@ -26,7 +27,7 @@ const Klasirane = (props) => {
   
       const fetchDescriptionData = async () => {
         try {
-          const response = await fetch(`http://13.51.197.59:3001/home/klasirane/description/${path}/`);
+          const response = await fetch(`http://13.51.197.59:3001/${page}/klasirane/description/${path}/${compName}`);
           const desc = await response.text();
           setDescription(desc);
         } catch (error) {
@@ -36,7 +37,7 @@ const Klasirane = (props) => {
 
       const fetchImgData = async () => {
         try {
-          const response = await fetch(`http://13.51.197.59:3001/home/klasirane/logo/${path}/`);
+          const response = await fetch(`http://13.51.197.59:3001/${page}/klasirane/logo/${path}/${compName}`);
           const blob = await response.blob();
           setImg(URL.createObjectURL(blob));
         } catch (error) {
@@ -46,7 +47,7 @@ const Klasirane = (props) => {
 
       const fetchMailTextData = async () => {
         try {
-          const response = await fetch(`http://13.51.197.59:3001/home/klasirane/mailData/${path}/`);
+          const response = await fetch(`http://13.51.197.59:3001/${page}/klasirane/mailData/${path}/${compName}`);
           const mail_text = await response.text();
           setMailText(mail_text);
         } catch (error) {

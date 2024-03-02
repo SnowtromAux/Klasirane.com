@@ -2,7 +2,9 @@ import "../styles/Banner.css";
 import { useEffect, useState } from 'react';
 
 const Banner = (props) => {
-  const { path } = props;
+  const { path , page } = props;
+  const compName = props.compName || "";
+
   const [img , setImg] = useState("");
   const [link , setLink] = useState("");
   const [alt , setAlt] = useState("");
@@ -10,7 +12,7 @@ const Banner = (props) => {
   useEffect(() => {
     const fetchBannerImg = async () => {
       try {
-        const response = await fetch(`http://13.51.197.59:3001/home/banner/logo/${path}/`);
+        const response = await fetch(`http://13.51.197.59:3001/${page}/banner/logo/${path}/${compName}`);
         const blob = await response.blob();
         setImg(URL.createObjectURL(blob));
       } catch (error) {
@@ -20,7 +22,7 @@ const Banner = (props) => {
 
     const fetchBannerAlt = async () => {
         try {
-          const response = await fetch(`http://13.51.197.59:3001/home/banner/text/${path}/`);
+          const response = await fetch(`http://13.51.197.59:3001/${page}/banner/text/${path}/${compName}`);
           const alternative = await response.text();
           setAlt(alternative);
         } catch (error) {
@@ -30,7 +32,7 @@ const Banner = (props) => {
 
     const fetchBannerLink = async () => {
         try {
-          const response = await fetch(`http://13.51.197.59:3001/home/banner/link/${path}/`);
+          const response = await fetch(`http://13.51.197.59:3001/${page}/banner/link/${path}/${compName}`);
           const l = await response.text();
           setLink(l);
         } catch (error) {

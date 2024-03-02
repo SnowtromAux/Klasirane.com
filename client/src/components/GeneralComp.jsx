@@ -4,8 +4,14 @@ import '../styles/GeneralComp.css';
 import Logo from './Logo';
 import Competitions from './Competitions';
 import CompetitionsMobile from './CompetitionsMobile';
-import New from './New';
+import CompData from './CompData';
 import CompTable from './CompTable';
+
+import Ad from './Ad';
+import Klasirane from './Klasirane';
+import Sicademy from './Sicademy';
+import New from './New';
+import Banner from './Banner';
 
 
 export default class GeneralComp extends Component {
@@ -18,13 +24,39 @@ export default class GeneralComp extends Component {
             selectedSeason: null,
             years: [],
             classes: [],
+            main_data: []
         };
     }
 
     componentDidMount() {
         window.addEventListener('resize', this.handleResize);
         this.fetchSeasons(); 
-        console.log(this.props.competitionName);
+
+        fetch(`http://13.51.197.59:3001/competitions/dir/get-names/${this.props.competitionName}`)
+            .then(response => response.text())
+            .then(names => {
+                this.setData(JSON.parse(names));
+            })
+            .catch(error => {
+                console.error('Error fetching last problems:', error);
+            });
+    }
+
+    setData(folder_names){
+        for(const name of folder_names){
+            const obj = {};
+
+            obj.id = name.split("-")[0].toLowerCase();
+            obj.type = name.split("-")[1].toLowerCase();
+            obj.url = name;
+
+
+            const copy_main_data = this.state.main_data;
+            copy_main_data[obj.id - 1] = obj;
+            this.setState({main_data: copy_main_data});
+
+            console.log(copy_main_data)
+        }
     }
 
     componentDidUpdate(prevProps) {
@@ -43,7 +75,6 @@ export default class GeneralComp extends Component {
 
     fetchSeasons = () => {
         const competitionName = `${this.props.competitionName}`;
-        // Replace 'http://13.51.197.59:3001' with your actual server address
         fetch(`http://13.51.197.59:3001/competitions/${competitionName}/seasons`)
             .then(response => response.json())
             .then(data => {
@@ -96,16 +127,16 @@ export default class GeneralComp extends Component {
     fetchClassesForYear = async (season, year) => {
         const competitionName = `${this.props.competitionName}`; 
         try {
-            this.setState({ isLoadingClasses: true }); // Assuming you add this to your state
+            this.setState({ isLoadingClasses: true });
             const response = await fetch(`http://13.51.197.59:3001/competitions/${competitionName}/${season}/${year}/classes`);
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`); // Throw an error for non-2xx responses
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
             this.setState({ classes: data, isLoadingClasses: false });
         } catch (error) {
             console.error('Error fetching classes:', error);
-            this.setState({ classes: [], isLoadingClasses: false }); // Reset to empty if there's an error
+            this.setState({ classes: [], isLoadingClasses: false });
             
         }
     };
@@ -133,8 +164,31 @@ export default class GeneralComp extends Component {
                     )}
 
                     <div id="gencomp-main-right">
-                        {/* <Ad /> */}
-                        {/* <New /> */}
+                        {this.state.main_data.map((data , index) => {
+                            { 
+                                switch(data.type){
+                                    case "compinfo":
+                                        return <CompData key = {index} path = {data.url} page = {"competitions"} compName = {this.props.competitionName}/> 
+                                    
+                                    case "sicademy":
+                                        return <Sicademy key = {index} path = {data.url} page = {"competitions"} compName = {this.props.competitionName}/>
+                                    
+                                    case "ad":
+                                        return <Ad key = {index} path = {data.url} page = {"competitions"} compName = {this.props.competitionName}/>
+
+                                    case "klasirane":
+                                        return <Klasirane key = {index} path = {data.url} page = {"competitions"} compName = {this.props.competitionName}/>
+                                    
+                                    case "new":
+                                        return <New key = {index} path = {data.url} page = {"competitions"} compName = {this.props.competitionName}/>
+                                    
+                                    case "banner":
+                                        return <Banner key = {index} path = {data.url} page = {"competitions"} compName = {this.props.competitionName}/>
+
+                                    default:
+                                        return <div key = {index}></div>;
+                            }}
+                        })}
                         
                     </div>
                 </div>

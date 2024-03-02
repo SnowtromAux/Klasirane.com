@@ -124,19 +124,19 @@ export default class HomeComponent extends Component {
                             {this.state.main_data.map((data , index) => {
                                 switch(data.type){
                                     case "sicademy":
-                                        return <Sicademy key = {index} path = {data.url}/>
+                                        return <Sicademy key = {index} path = {data.url} page = {"home"}/>
                                     
                                     case "ad":
-                                        return <Ad key = {index} path = {data.url}/>
+                                        return <Ad key = {index} path = {data.url} page = {"home"}/>
 
                                     case "klasirane":
-                                        return <Klasirane key = {index} path = {data.url}/>
+                                        return <Klasirane key = {index} path = {data.url} page = {"home"}/>
                                     
                                     case "new":
-                                        return <New key = {index} path = {data.url}/>
+                                        return <New key = {index} path = {data.url} page = {"home"}/>
                                     
                                     case "banner":
-                                        return <Banner key = {index} path = {data.url}/>
+                                        return <Banner key = {index} path = {data.url} page = {"home"}/>
 
                                     default:
                                         return <div></div>;
