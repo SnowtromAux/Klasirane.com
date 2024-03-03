@@ -138,11 +138,12 @@
     width: 366px;
     height: 46px;
     flex-shrink: 0;
+    box-sizing: border-box;
+    padding-left: 12px;
     border-radius: 23px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    text-align: center;
+    text-align: left;
     background: #E6E6E6;
     color: #000;
     font-family: Comfortaa;
