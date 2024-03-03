@@ -123,7 +123,7 @@ router.get('/comp-data/alt/:id/:compName', async (req, res) => {
 });
 
 router.get('/comp-data/last-added/:id/:compName', async (req, res) => {
-    getTextData(res , `/competitions/${req.params.compName}/Main/${req.params.id}/last_added.txt`);
+    getTextData(res , `/competitions/${req.params.compName}/Main/${req.params.id}/last.txt`);
 });
 
 
