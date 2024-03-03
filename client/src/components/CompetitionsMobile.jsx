@@ -90,6 +90,17 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+      if (isArrowRotated) {
+          document.body.style.overflow = 'hidden';
+      } else {
+          document.body.style.overflow = 'auto';
+      }
+      return () => {
+          document.body.style.overflow = 'auto';
+      };
+  }, [isArrowRotated]); 
+
   const handleRemoveFilters = () => {
   
     setSelectedFiltersByCategory({});
@@ -141,6 +152,7 @@ function App() {
     };
 
   const changeDirectory = (path) => {
+    setIsArrowRotated(!isArrowRotated);
     navigate(`/competitions/${path}`);
   }
 

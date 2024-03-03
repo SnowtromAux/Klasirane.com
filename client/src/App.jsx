@@ -36,6 +36,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<HomeComponent />} />
             <Route exact path="/competitions/:competitionName" element = {<GeneralCompWrapper />}></Route>
+            <Route path="/competitions/:competitionName/:season" element={<GeneralCompWrapper />} />
           </Routes>
           <Footer />
       </Router>

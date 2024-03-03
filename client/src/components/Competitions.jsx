@@ -154,7 +154,6 @@ function Competitions() {
     });
   };
   
-  
   useEffect(() => {
     const filteredComps = competitions.filter((comp) =>
       Object.entries(selFilters).every(([filter, values]) =>
@@ -211,7 +210,13 @@ function Competitions() {
             ))}
         </div>
       </div>
-      <div className="filter-results">
+      <div className="filter-results"style={{ 
+                                        height: location.pathname.includes('competitions') ? '600px' : 'auto', 
+                                        width: location.pathname.includes('competitions') ? '385px' : '366px',
+                                        paddingLeft: location.pathname.includes('competitions') ? '15px' : '0px',  
+                                        overflowY: location.pathname.includes('competitions') ? 'auto' : 'hidden',
+                                        overflowX: location.pathname.includes('competitions') ? 'hidden' : 'hidden' 
+                                      }}>
         {showComps.map((competition, index) => (
           <label key={competition.key} onClick={() => changeDirectory(competition.key)}>{competition.name}</label>
         ))}

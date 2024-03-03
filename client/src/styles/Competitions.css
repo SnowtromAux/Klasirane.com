@@ -3,8 +3,6 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
     background: #FFF;
     box-shadow: 4px 4px 16.2px 3px rgba(0, 0, 0, 0.15);
     border-radius: 30px;

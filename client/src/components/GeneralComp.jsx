@@ -35,6 +35,7 @@ export default class GeneralComp extends Component {
         fetch(`http://13.51.197.59:3001/competitions/dir/get-names/${this.props.competitionName}`)
             .then(response => response.text())
             .then(names => {
+                console.log(names)
                 this.setData(JSON.parse(names));
             })
             .catch(error => {
@@ -83,7 +84,13 @@ export default class GeneralComp extends Component {
                 seasons: filteredSeasons,
                 }, () => {
                     if (filteredSeasons.length > 0) {
-                        this.selectSeason(filteredSeasons[0]);
+                        const urlSeason = this.props.season;
+                        if(urlSeason != undefined){
+                            this.selectSeason(urlSeason);
+                        }
+                        else{
+                            this.selectSeason(filteredSeasons[0]);
+                        } 
                     }
                 });
              })
@@ -92,6 +99,9 @@ export default class GeneralComp extends Component {
 
     selectSeason = (selectedSeason) => {
         this.setState({ selectedSeason: selectedSeason });
+
+        const path = `/competitions/${this.props.competitionName}/${selectedSeason}`;
+        this.props.navigate(path);
         
         this.fetchYearsForSeason(selectedSeason).then((years) => {
             if (years.length > 0) {
@@ -144,7 +154,7 @@ export default class GeneralComp extends Component {
     
 
     render() {
-        const { isWideScreen, seasons, selectedSeason, years, classes } = this.state;
+        const { seasons, selectedSeason, years, classes } = this.state;
         return (
             <div id="gencomp-wrapper">
                 <header>
@@ -202,6 +212,10 @@ export default class GeneralComp extends Component {
                                 value={season}
                                 checked={selectedSeason === season}
                                 onChange={this.handleSeasonChange}
+                                style={{
+                                    width: '22px',
+                                    height: '22px'
+                                }}
                             />
                             <div id='gencomp-radio-field-text' key={index}>{season}</div>
                         </div>

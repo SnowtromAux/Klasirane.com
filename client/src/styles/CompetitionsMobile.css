@@ -100,7 +100,7 @@
 .filter-results-mobile {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 20px 0px 0px 20px;
     position: fixed;
     top: 0;
     left: 0;
@@ -109,6 +109,8 @@
     backdrop-filter: blur(12px);
     background: rgba(0, 0, 0, 0.5);
     z-index: 1000;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .filter-result-mobile-top {
@@ -180,7 +182,7 @@
 }
 
 .filter-result-mobile-comp {
-    margin-top: 30px;
+    margin: 30px 0px;
     display: flex;
     flex-direction: column;
     gap: 6px;
