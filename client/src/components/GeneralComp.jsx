@@ -177,7 +177,7 @@ export default class GeneralComp extends Component {
                         {this.state.main_data.map((data , index) => {
                             { 
                                 switch(data.type){
-                                    case "compinfo":
+                                    case "newcomp":
                                         return <CompData key = {index} path = {data.url} page = {"competitions"} compName = {this.props.competitionName}/> 
                                     
                                     case "sicademy":
