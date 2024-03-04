@@ -165,7 +165,7 @@ function Competitions() {
   }, [selFilters , competitions]);
 
   return (
-    <div className="competitions" style={{width: location.pathname.includes('competitions') ? '410px' : '400px' }}>
+    <div className="competitions">
       <label>Всички Състезания</label>
       <div className="filter-box">
         <div className='filter-box-top'>

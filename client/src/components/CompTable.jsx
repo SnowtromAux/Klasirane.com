@@ -41,7 +41,7 @@ function CompTable({compName, years, classes, selectedSeason}) {
 
   return (
     <div className='gridTable-container'>
-      <div className="gridTable" style={{ gridTemplateColumns: `repeat(${totalColumns}, 175px)`,  gridTemplateRows: `repeat(${totalRows}, 150px)`}}>
+      <div className="gridTable" style={{ gridTemplateColumns: `repeat(${totalColumns}, min-content)`,  gridTemplateRows: `repeat(${totalRows}, 150px)`}}>
         {cells.map((cell) => {
           const cellContent = getCellContent(cell);
           let cellClass = 'cell';

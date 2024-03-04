@@ -31,7 +31,11 @@ export default class GeneralComp extends Component {
     componentDidMount() {
         window.addEventListener('resize', this.handleResize);
         this.fetchSeasons(); 
+        this.fetchData();
+    }
 
+    fetchData(){
+        this.setState({main_data: []});
         fetch(`http://13.51.197.59:3001/competitions/dir/get-names/${this.props.competitionName}`)
             .then(response => response.text())
             .then(names => {
@@ -63,6 +67,7 @@ export default class GeneralComp extends Component {
     componentDidUpdate(prevProps) {
         if (this.props.competitionName !== prevProps.competitionName) {
             this.fetchSeasons();
+            this.fetchData();
         }
     }
 
@@ -116,6 +121,7 @@ export default class GeneralComp extends Component {
     handleSeasonChange = (event) => {
         const selectedSeason = event.target.value;
         this.selectSeason(selectedSeason);
+        window.location.reload();
     };
 
     fetchYearsForSeason = (season) => {
@@ -203,23 +209,26 @@ export default class GeneralComp extends Component {
                     </div>
                 </div>
                 <div id="gencomp-radio-field">
-                    {seasons.filter(season => season !== "All").map((season, index) => (
-                        <div id='gencomp-radio-field-content' key={index}>
-                            <input
-                                type="radio"
-                                id={`season-${index}`}
-                                name="season"
-                                value={season}
-                                checked={selectedSeason === season}
-                                onChange={this.handleSeasonChange}
-                                style={{
-                                    width: '22px',
-                                    height: '22px'
-                                }}
-                            />
-                            <div id='gencomp-radio-field-text' key={index}>{season}</div>
-                        </div>
-                    ))}
+                    {seasons.filter(season => season !== "All").map((season, index) => {
+                        const seasonName = season.split('-')[1];
+                        return (
+                            <div id='gencomp-radio-field-content' key={index}>
+                                <input
+                                    type="radio"
+                                    id={`season-${index}`}
+                                    name="season"
+                                    value={season}
+                                    checked={selectedSeason === season}
+                                    onChange={this.handleSeasonChange}
+                                    style={{
+                                        width: '23px',
+                                        height: '23px'
+                                    }}
+                                />
+                                <div id='gencomp-radio-field-text' key={index}>{seasonName}</div>
+                            </div>
+                        );
+                    })}
                 </div>
                 <CompTable compName={`${this.props.competitionName}`} years={years} classes={classes} selectedSeason={selectedSeason}/>
             </div>

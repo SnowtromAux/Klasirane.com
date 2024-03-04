@@ -64,7 +64,7 @@ function Cell({ competitionName, seasonName, year, className }) {
           </div>
         </div>
         <div className="solution" onClick={() => handleDownload('sol')}>
-          {pdfAvailable.sol ? 'Отговори' : '-'}
+          {pdfAvailable.sol ? 'Реш/Отг' : '-'}
         </div>
         <div className="video" onClick={videoAvailable ? openVideo : undefined}>
             {videoAvailable ? 'Видеореш.' : '-'}

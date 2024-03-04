@@ -32,7 +32,7 @@ function App() {
         <meta name="keywords" content="your, desired, keywords, here" />
       </Helmet>
       <Router>
-          <ScrollToTop />
+          {/* <ScrollToTop /> */}
           <Routes>
             <Route exact path="/" element={<HomeComponent />} />
             <Route exact path="/competitions/:competitionName" element = {<GeneralCompWrapper />}></Route>
