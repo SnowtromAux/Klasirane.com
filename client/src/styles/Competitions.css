@@ -6,6 +6,8 @@
     background: #FFF;
     box-shadow: 4px 4px 16.2px 3px rgba(0, 0, 0, 0.15);
     border-radius: 30px;
+    height: min-content;
+    max-height: 100%;
 }
 
 .competitions >label{
@@ -128,10 +130,15 @@
 
 
 .filter-results{
+    position: relative;
     margin-top: -15px;
     width: 368px;
     display: flex;
     flex-direction: column;
+}
+
+.filter-results::-webkit-scrollbar-button {
+    height: 100%;
 }
 
 .filter-results >label{

@@ -16,7 +16,6 @@ const New = (props) => {
         try {
           const response = await fetch(`http://13.51.197.59:3001/${page}/comp-data/title/${path}/${compName}`);
           const new_title = await response.text();
-          console.log(new_title)
           setTitle(new_title);
         } catch (error) {
           console.error('Error fetching title:', error);
@@ -27,7 +26,6 @@ const New = (props) => {
         try {
           const response = await fetch(`http://13.51.197.59:3001/${page}/comp-data/description/${path}/${compName}`);
           const desc = await response.text();
-          console.log(desc)
           setDescription(desc);
         } catch (error) {
           console.error('Error fetching description:', error);

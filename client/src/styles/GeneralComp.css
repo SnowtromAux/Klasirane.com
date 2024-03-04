@@ -19,6 +19,7 @@
 
 #gencomp-main-right {
     display: flex;
+    height: min-content;
     flex-direction: column;
     margin-left: 15px;
     gap: 15px;

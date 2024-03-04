@@ -30,7 +30,7 @@ export default class GeneralComp extends Component {
 
     componentDidMount() {
         window.addEventListener('resize', this.handleResize);
-        this.fetchSeasons(); 
+        this.fetchSeasons();
         this.fetchData();
     }
 
@@ -39,7 +39,6 @@ export default class GeneralComp extends Component {
         fetch(`http://13.51.197.59:3001/competitions/dir/get-names/${this.props.competitionName}`)
             .then(response => response.text())
             .then(names => {
-                console.log(names)
                 this.setData(JSON.parse(names));
             })
             .catch(error => {
@@ -59,15 +58,27 @@ export default class GeneralComp extends Component {
             const copy_main_data = this.state.main_data;
             copy_main_data[obj.id - 1] = obj;
             this.setState({main_data: copy_main_data});
-
-            console.log(copy_main_data)
         }
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps , prevState) {
+        console.log("updated")
         if (this.props.competitionName !== prevProps.competitionName) {
             this.fetchSeasons();
             this.fetchData();
+        }
+        this.adjustLeftBlockHeight();
+    }
+
+    adjustLeftBlockHeight() {
+        const leftBlock = document.getElementById('gencomp-main-left');
+        const rightBlock = document.getElementById('gencomp-main-right');
+
+        if (leftBlock && rightBlock) {
+            const rightBlockHeight = rightBlock.offsetHeight;
+            leftBlock.style.maxHeight = `${rightBlockHeight}px`;
+
+            console.log(rightBlockHeight)
         }
     }
 

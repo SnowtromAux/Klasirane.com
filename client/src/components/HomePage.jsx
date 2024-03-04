@@ -76,6 +76,23 @@ export default class HomeComponent extends Component {
         }
     }
 
+    componentDidUpdate() {
+        console.log("updated")
+        this.adjustLeftBlockHeight();
+    }
+
+    adjustLeftBlockHeight() {
+        const leftBlock = document.getElementById('home-main-left');
+        const rightBlock = document.getElementById('home-main-right');
+
+        if (leftBlock && rightBlock) {
+            const rightBlockHeight = rightBlock.offsetHeight;
+            leftBlock.style.maxHeight = `${rightBlockHeight}px`;
+
+            console.log(rightBlockHeight)
+        }
+    }
+
     componentWillUnmount() {
         window.removeEventListener('resize', this.handleResize);
     }
