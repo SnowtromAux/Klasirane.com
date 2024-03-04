@@ -35,10 +35,15 @@
     justify-content: center;
     align-items: center;
     width: 33%;
+    width: fit-content;
+    height: fit-content;
+    padding: 20px;
+    background-color: #FFF;
+    border-radius: 50px;
 }
 
 .comp-data-div-img >img{
-    border-radius: 50px;
+    /* border-radius: 50px; */
 }
 
 .comp-data-top-right{
