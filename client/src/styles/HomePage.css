@@ -116,3 +116,9 @@
         margin-left: 0px;
     }
 }
+
+@media (max-width: 300px) {
+    #home-next-comp>h1 {
+        font-size: 29px;
+    }
+}

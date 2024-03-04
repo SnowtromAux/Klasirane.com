@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 
 const New = (props) => {
   const { path , page , compName } = props;
-
+  const isNarrowScreen = window.innerWidth < 1365 && window.innerWidth >= 1161 || window.innerWidth < 1020;
+  const checkScreen = window.innerWidth > 1161;
 
   const [title , setTitle] = useState("");
   const [description , setDescription] = useState("");
@@ -70,18 +71,30 @@ const New = (props) => {
     }, [path]);
 
   return (
-    <div className="new-wrapper comp-data-wrapper">
-      <div className="new-top comp-data-top">
-        <div className="new-data-div-img">
-          <img src={img} alt={alt}></img>
-        </div>
+    <div className="comp-data-wrapper">
+      {!isNarrowScreen ? (
+        <div className="comp-data-top">
+          <div className="comp-data-div-img"  style={{width: "33%"}}>
+            <img src={img} alt={alt}></img>
+          </div>
 
-        <div className="comp-data-top-right">
+          <div className="comp-data-top-right">
+            <label className="comp-data-title" dangerouslySetInnerHTML={{ __html: title }}></label>
+            <label className="comp-data-last-added" dangerouslySetInnerHTML={{ __html: last_added }}></label>  
+          </div>
+        </div>
+      ) : (
+        <div className="comp-data-top">
+        <div className="comp-data-top-right" style={{gap: "10px"}}>
           <label className="comp-data-title" dangerouslySetInnerHTML={{ __html: title }}></label>
+          <div className="comp-data-div-img" style={{width: "auto"}}>
+            <img src={img} alt={alt} style={{borderRadius: "50px", width: checkScreen ? "500px" : ""}}></img>
+          </div>
           <label className="comp-data-last-added" dangerouslySetInnerHTML={{ __html: last_added }}></label>  
         </div>
       </div>
-      <div className="new-middle">
+      )}
+      <div className="comp-data-middle">
         <label dangerouslySetInnerHTML={{ __html: description }}></label>
       </div>
     </div>

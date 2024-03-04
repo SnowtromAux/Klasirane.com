@@ -51,3 +51,37 @@
     text-align: justify;
     line-height: 1.4;
 }
+
+@media (max-width: 700px) {
+
+    .new-top>div>img {
+        width: 92px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .new-top {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .new-top>div {
+        height: auto;
+    }
+
+    .new-top>div>img {
+        width: 190px;
+    }
+
+    .new-top>label {
+        margin-left: 0px;
+        font-size: 33px;
+    }
+}
+
+@media (max-width: 343px) {
+    .new-top>label {
+        font-size: 25px;
+    }
+}

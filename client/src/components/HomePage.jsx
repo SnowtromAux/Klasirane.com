@@ -78,7 +78,9 @@ export default class HomeComponent extends Component {
 
     componentDidUpdate() {
         console.log("updated")
-        this.adjustLeftBlockHeight();
+        setTimeout(() => {
+            this.adjustLeftBlockHeight();
+        } , 2000)
     }
 
     adjustLeftBlockHeight() {

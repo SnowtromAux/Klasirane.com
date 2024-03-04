@@ -213,6 +213,7 @@
         margin: 15px 0px;
         width: 330px;
         height: 60px;
+        gap: 10px;
     }
 
     .filter-result-button>label {
@@ -221,5 +222,24 @@
 
     .filter-result-button>img {
         font-size: 25.2px;
+    }
+}
+
+@media (max-width: 380px) {
+    .filter-result-button {
+        width: 80%;
+        height: auto;
+        padding: 10px;
+    }
+    
+    .filter-result-button>label {
+        font-size: 22px;
+    }
+    
+    .filter-result-button>img {
+        font-size: 22px;
+    }
+    .competitions-mobile>label {
+        font-size: 22px
     }
 }

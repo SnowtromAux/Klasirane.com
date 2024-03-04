@@ -68,10 +68,16 @@
     border: 1px solid black;
 }
 
+@media (max-width: 1200px) {
+    #sicademy-logo>img {
+        height: 80%;
+    }
+}
+
 @media (max-width: 761px) {
     #sign-up-wrapper {
-        height: 283px;
-        padding: 0px 20px;
+        height: 300px;
+        padding: 0px 20px 0px 10px;
     }
 
     #sicademy-logo {
@@ -80,6 +86,10 @@
 
     #sicademy-logo>img {
         width: 165px;
+    }
+
+     #sicademy-info {
+       margin-left: 3px;
     }
 
     #sicademy-info>label {
@@ -121,5 +131,39 @@
         height: 46.8px;
         font-size: 20px;
         line-height: 46.8px;
+    }
+}
+
+@media (max-width: 520px) {
+    #sicademy-logo>img {
+        width: 110px;
+        height: 160px;
+    }
+    #sicademy-info>label {
+        font-size: 20px;
+        line-height: 35px;
+        /* width: 175px; */
+    }
+}
+
+@media (max-width: 460px) {
+    #sicademy-info {
+        width: 175px;
+        position: relative;
+        left: -10px;
+    }
+    #sicademy-info>label {
+        width: 175px; 
+    }
+    #sicademy-info >a{
+        width: 175px;
+    }
+}
+
+@media (max-width: 343px) {
+    #sign-up-wrapper {
+        height: auto;
+        padding: 20px 10px 20px 10px;
+        flex-direction: column;
     }
 }

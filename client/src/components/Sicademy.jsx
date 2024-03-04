@@ -27,7 +27,6 @@ const Sicademy = (props) => {
           try {
             const response = await fetch(`http://13.51.197.59:3001/${page}/sicademy/description/${path}/${compName}`);
             const desc = await response.text();
-            console.log(desc)
             setDescription(desc);
           } catch (error) {
             console.error('Error fetching description:', error);

@@ -23,6 +23,7 @@
     flex-direction: column;
     margin-left: 15px;
     gap: 15px;
+    height: fit-content;
 } 
 
 #gencomp-radio-field{
@@ -31,9 +32,9 @@
     top: 20px;
     display: flex;
     align-items: center;
-    height: 30px;
     width: 90%;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 #gencomp-radio-field-content{
@@ -50,10 +51,6 @@
     margin-left: 10px;
 }
 
-/* #gencomp-radio-field >input{
-   margin-left: 10px;
-} */
-
 @media (max-width: 1161px) {
 
     #gencomp-main {
@@ -67,5 +64,11 @@
 
     #gencomp-main-right {
         margin-left: 0px;
+    }
+}
+
+@media (max-width: 369px) {
+    #gencomp-radio-field-text{
+        font-size: 16px;
     }
 }
