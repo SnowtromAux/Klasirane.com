@@ -5,7 +5,8 @@
     align-items: center;
 }
 
-.logo-wrapper>img {
+.logo-wrapper >img {
+    cursor: pointer;
     width: 464px;
 }
 
