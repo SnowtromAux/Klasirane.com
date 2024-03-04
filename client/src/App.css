@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
 
 body {
-  /* font-family: Comfortaa; */
-  overflow-x: hidden;
+    font-family: 'Comfortaa', sans-serif;
 }
 
 /* For WebKit browsers (Chrome, Safari) */
