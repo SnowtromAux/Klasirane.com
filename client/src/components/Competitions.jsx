@@ -211,7 +211,6 @@ function Competitions() {
         </div>
       </div>
       <div className="filter-results"style={{ 
-                                        height: location.pathname.includes('competitions') ? '600px' : 'auto', 
                                         width: location.pathname.includes('competitions') ? '385px' : '366px',
                                         paddingLeft: location.pathname.includes('competitions') ? '15px' : '0px',  
                                         overflowY: location.pathname.includes('competitions') ? 'auto' : 'hidden',

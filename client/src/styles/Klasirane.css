@@ -75,7 +75,7 @@
 
 @media (max-width: 746px) {
     .homenew-wrapper {
-        padding: 100px 20px;
+        padding: 100px 20px 40px 20px;
     }
 
     .homenew-top {
@@ -95,8 +95,55 @@
     }
 
     .homenew-bottom {
+        margin-top: 15px;
         padding: 10px;
+        gap: 15px;
         flex-direction: column;
     }
 
+    .homenew-mail {
+        height: 90px;
+        width: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .homenew-mail >img {
+        width: 80px;
+    }
+
+
+}
+
+@media (max-width: 500px) {
+
+    .homenew-top {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .homenew-top>div {
+        height: auto;
+    }
+
+    .homenew-top>div>img {
+        width: 190px;
+    }
+
+    .homenew-top>label {
+        margin-left: 0px;
+        font-size: 33px;
+    }
+
+    .homenew-bottom {
+        padding: 10px;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 343px) {
+    .homenew-top>label {
+        font-size: 25px;
+    }
 }

@@ -1,14 +1,44 @@
 .comp-data-wrapper{
     background-color:  #E6E6E6;
     box-shadow: none;
+    padding: 31px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 50px;
 }
 
 .comp-data-top{
     padding: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .comp-data-top >label{
+    display: flex;
+    justify-content: center;
+    color: #000;
+    font-family: Comfortaa;
     font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 25px;
+}
+
+.comp-data-top >div >img{
+    width: 100%;
+}
+
+.comp-data-div-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+}
+
+.comp-data-div-img >img{
+    border-radius: 50px;
 }
 
 .comp-data-top-right{
@@ -38,7 +68,75 @@
     line-height: normal;
 }
 
-.comp-data-top >div >img{
-    width: 100%;
-    border-radius: 50px;
+.comp-data-middle{
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    color: #000;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
 }
+
+.comp-data-middle >label{
+    text-align: justify;
+    line-height: 1.4;
+}
+
+@media (max-width: 1161px) {
+    .comp-data-div-img{
+        width: auto;
+    }
+    .comp-data-div-img >img{
+        width: 500px;
+    }
+}
+
+@media (max-width: 920px) {
+    .comp-data-top{
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .comp-data-wrapper{
+        background-color:  #E6E6E6;
+        box-shadow: none;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 50px;
+    }
+    
+    .comp-data-div-img >img{
+        width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .comp-data-div-img >img{
+        width: 300px;
+    }
+    .comp-data-last-added{
+        width: 285px;
+    }
+    .comp-data-top-right {
+        margin-left: 10px;
+    }
+}
+
+@media (max-width: 369px) {
+    .comp-data-title {
+        font-size: 25px;
+        line-height: 30px;
+    }
+    .comp-data-div-img >img {
+        width: 240px;
+    }
+    .comp-data-last-added {
+        width: 75%;
+    }
+}
+
+

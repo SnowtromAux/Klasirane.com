@@ -24,14 +24,32 @@ export default class GeneralComp extends Component {
             selectedSeason: null,
             years: [],
             classes: [],
-            main_data: []
+            main_data: [],
+            main_data_height: 0,
+            height_updated: false
         };
     }
 
     componentDidMount() {
+        this.state.height_updated = false;
+
         window.addEventListener('resize', this.handleResize);
+        window.addEventListener('scroll', this.checkAndFixElement);
         this.fetchSeasons(); 
         this.fetchData();
+        this.getSdf();
+    }
+
+    getSdf(){
+            this.state.height_updated = true;
+            const el = document.getElementById("gencomp-main-right");
+            const height = el.getBoundingClientRect();
+
+            console.log(el)
+            console.log(height)
+
+            
+            this.setState({ main_data_height: height })
     }
 
     fetchData(){
@@ -39,7 +57,6 @@ export default class GeneralComp extends Component {
         fetch(`http://13.51.197.59:3001/competitions/dir/get-names/${this.props.competitionName}`)
             .then(response => response.text())
             .then(names => {
-                console.log(names)
                 this.setData(JSON.parse(names));
             })
             .catch(error => {
@@ -58,9 +75,10 @@ export default class GeneralComp extends Component {
 
             const copy_main_data = this.state.main_data;
             copy_main_data[obj.id - 1] = obj;
-            this.setState({main_data: copy_main_data});
 
-            console.log(copy_main_data)
+            this.setState({ main_data: copy_main_data });
+
+            
         }
     }
 
@@ -73,6 +91,7 @@ export default class GeneralComp extends Component {
 
     componentWillUnmount() {
         window.removeEventListener('resize', this.handleResize);
+        window.removeEventListener('scroll', this.checkAndFixElement);
     }
 
     handleResize = () => {
@@ -160,7 +179,7 @@ export default class GeneralComp extends Component {
     
 
     render() {
-        const { seasons, selectedSeason, years, classes } = this.state;
+        const { seasons, selectedSeason, years, classes , main_data_height} = this.state;
         return (
             <div id="gencomp-wrapper">
                 <header>
@@ -170,7 +189,7 @@ export default class GeneralComp extends Component {
                 <div id="gencomp-main">
 
                     {this.state.isWideScreen ? (
-                        <div id="gencomp-main-left">
+                        <div id="gencomp-main-left" style ={{maxHeight: main_data_height}}>
                             <Competitions />
                         </div>
                     ) : (

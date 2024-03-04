@@ -18,3 +18,23 @@
         width: 372px;
     }
 }
+
+@media (max-width: 370px) {
+    .logo-wrapper {
+        height: 160px;
+    }
+
+    .logo-wrapper>img {
+        width: 280px;
+    }
+}
+
+@media (max-width: 300px) {
+    .logo-wrapper {
+        height: 130px;
+    }
+
+    .logo-wrapper>img {
+        width: 240px;
+    }
+}
