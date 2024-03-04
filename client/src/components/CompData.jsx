@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const New = (props) => {
   const { path , page , compName } = props;
-  const isNarrowScreen = window.innerWidth < 1365 && window.innerWidth >= 1161 || window.innerWidth < 1020;
+  const isNarrowScreen = window.innerWidth < 800;
   const checkScreen = window.innerWidth > 1161;
 
   const [title , setTitle] = useState("");
@@ -74,7 +74,7 @@ const New = (props) => {
     <div className="comp-data-wrapper">
       {!isNarrowScreen ? (
         <div className="comp-data-top">
-          <div className="comp-data-div-img"  style={{width: "33%"}}>
+          <div className="comp-data-div-img">
             <img src={img} alt={alt}></img>
           </div>
 

@@ -35,8 +35,8 @@ export default class GeneralComp extends Component {
 
         window.addEventListener('resize', this.handleResize);
         window.addEventListener('scroll', this.checkAndFixElement);
-        this.fetchSeasons(); 
         this.fetchData();
+        this.fetchSeasons(); 
     }
 
     getSdf(){
@@ -81,8 +81,8 @@ export default class GeneralComp extends Component {
     componentDidUpdate(prevProps , prevState) {
         console.log("updated")
         if (this.props.competitionName !== prevProps.competitionName) {
-            this.fetchSeasons();
             this.fetchData();
+            this.fetchSeasons();
         }
         this.adjustLeftBlockHeight();
     }
