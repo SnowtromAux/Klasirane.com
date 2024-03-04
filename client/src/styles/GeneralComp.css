@@ -37,11 +37,11 @@
     flex-wrap: wrap;
 }
 
-#gencomp-radio-field-content{
+.gencomp-radio-field-content{
     display: flex;
 }
 
-#gencomp-radio-field-text{
+.gencomp-radio-field-text{
     color: #C8C8C8;
     font-family: Comfortaa;
     font-size: 25px;
@@ -51,6 +51,33 @@
     margin-left: 10px;
 }
 
+.gencomp-radio-field-content >label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #E6E6E6;
+    background-color: #E6E6E6;
+  }
+  
+  input[type="radio"]:checked + label {
+    background-color: #E6E6E6;
+  }
+  
+  input[type="radio"]:checked + label::before {
+    content: '';
+    display: block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #369;
+    margin: 2.5px;
+  }
+  
+  /* Hide the default radio button */
+  input[type="radio"] {
+    display: none;
+  }
 @media (max-width: 1161px) {
 
     #gencomp-main {

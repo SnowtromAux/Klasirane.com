@@ -241,7 +241,7 @@ export default class GeneralComp extends Component {
                     {seasons.filter(season => season !== "All").map((season, index) => {
                         const seasonName = season.split('-')[1];
                         return (
-                            <div id='gencomp-radio-field-content' key={index}>
+                            <div className='gencomp-radio-field-content' key={index}>
                                 <input
                                     type="radio"
                                     id={`season-${index}`}
@@ -254,7 +254,8 @@ export default class GeneralComp extends Component {
                                         height: '23px'
                                     }}
                                 />
-                                <div id='gencomp-radio-field-text' key={index}>{seasonName}</div>
+                                <label htmlFor={`season-${index}`}></label>
+                                <div className='gencomp-radio-field-text' key={index}>{seasonName}</div>
                             </div>
                         );
                     })}
