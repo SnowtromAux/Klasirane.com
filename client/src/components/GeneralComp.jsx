@@ -42,7 +42,7 @@ export default class GeneralComp extends Component {
     }
 
     fetchCompetitionData = () => {
-        fetch('http://15.188.118.216:3001/competitions/MBG/alldata')
+        fetch(`http://15.188.118.216:3001/competitions/${this.props.competitionName}/alldata`)
           .then((response) => {
             if (!response.ok) {
               throw new Error('Network response was not ok');
