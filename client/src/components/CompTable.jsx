@@ -2,7 +2,7 @@ import "../styles/CompTable.css";
 import Cell from "./Cell";
 import React, { useState, useEffect } from 'react';
 
-function CompTable({compName, years, classes, selectedSeason}) {
+function CompTable({compName, compTable, years, classes, selectedSeason}) {
 
   const reversedYears = [...years].reverse(); 
 
@@ -19,33 +19,11 @@ function CompTable({compName, years, classes, selectedSeason}) {
   
   const columnNumbers = sortedClasses; 
 
-
-
   const cells = Array.from({ length: totalColumns * totalRows }, (_, index) => {
     const row = Math.floor(index / totalColumns);
     const column = index % totalColumns;
     return { id: index + 1, row, column };
   });
-
-  // useEffect(() => {
-  //   const checkAndFixElement = () => {
-  //     const position = window.scrollY;
-  //     const start_el = document.getElementsByClassName("start")[0];
-  //     const table_el = document.getElementsByClassName("gridTable")[0];
-  //     const y = start_el.getBoundingClientRect().top + position; 
-  //     const height = table_el.getBoundingClientRect().height;
-  //     const rowElements = document.getElementsByClassName("row");
-
-      
-  //   };
-
-  //   window.addEventListener('scroll', checkAndFixElement);
-
-  //   // Clean-up function
-  //   return () => {
-  //     window.removeEventListener('scroll', checkAndFixElement);
-  //   };
-  // }, []); 
 
   const getCellContent = (cell) => {
     if (cell.row === 0 && cell.column === 0) {
@@ -70,9 +48,12 @@ function CompTable({compName, years, classes, selectedSeason}) {
           else if (cell.row === 0) cellClass = 'row';
           else if (cell.column === 0) cellClass = 'column';
 
+          const isDataCell = cell.row > 0 && cell.column > 0;
+          let cellData = isDataCell ? compTable[reversedYears[cell.column - 1]][sortedClasses[cell.row - 1]] : null;
+
           return (
             <div key={cell.id} className={cellClass}>
-              {cellClass === 'cell' ? <Cell competitionName={compName} seasonName={selectedSeason} year={reversedYears[cell.column-1]} className={sortedClasses[cell.row-1]} /> : <label>{cellContent}</label>}
+              {cellClass === 'cell' ? <Cell competitionName={compName} cellData = {cellData} seasonName={selectedSeason} year={reversedYears[cell.column-1]} className={sortedClasses[cell.row-1]} /> : <label>{cellContent}</label>}
             </div>
           );
         })}
