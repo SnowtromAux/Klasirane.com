@@ -26,19 +26,43 @@ export default class GeneralComp extends Component {
             classes: [],
             main_data: [],
             main_data_height: 0,
-            height_updated: false
+            height_updated: false,
+            competitionData: null, 
+            loading: true, // To track the loading state
+            error: null, // To store any potential error
         };
     }
-
+    
     componentDidMount() {
         this.state.height_updated = false;
-
+        this.fetchData();
+        console.log(this.state.main_data);
+        this.fetchCompetitionData();
         window.addEventListener('resize', this.handleResize);
         window.addEventListener('scroll', this.checkAndFixElement);
-        this.fetchSeasons(); 
-        this.fetchData();
-        this.getSdf();
     }
+
+    fetchCompetitionData = () => {
+        fetch('http://localhost:3001/competitions/MBG/alldata')
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then((data) => {
+            this.setState({ competitionData: data, loading: false }, () => {
+                this.setSeasons();
+                const firstSeason = Object.keys(data)[0]; 
+                if (firstSeason) {
+                    this.selectSeason(firstSeason); 
+                }
+            });
+          })
+          .catch((error) => {
+            this.setState({ error: error.toString(), loading: false });
+          });
+      };
 
     getSdf(){
             this.state.height_updated = true;
@@ -54,7 +78,7 @@ export default class GeneralComp extends Component {
 
     fetchData(){
         this.setState({main_data: []});
-        fetch(`http://13.51.197.59:3001/competitions/dir/get-names/${this.props.competitionName}`)
+        fetch(`http://localhost:3001/competitions/dir/get-names/${this.props.competitionName}`)
             .then(response => response.text())
             .then(names => {
                 this.setData(JSON.parse(names));
@@ -82,6 +106,23 @@ export default class GeneralComp extends Component {
         }
     }
 
+    setSeasons = () => {
+        if (this.state.competitionData) {
+          const seasonsArray = Object.keys(this.state.competitionData);
+          this.setState({ seasons: seasonsArray });
+        }
+    };
+
+    setYearsAndClasses = (selectedSeason) => {
+        const years = Object.keys(this.state.competitionData[selectedSeason]);
+        let classes = [];
+        if (years.length > 0) {
+            const firstYear = years[0];
+            classes = Object.keys(this.state.competitionData[selectedSeason][firstYear]);
+        }
+        this.setState({ years, classes });
+    }  
+      
     componentDidUpdate(prevProps) {
         if (this.props.competitionName !== prevProps.competitionName) {
             this.fetchSeasons();
@@ -98,88 +139,31 @@ export default class GeneralComp extends Component {
         this.setState({ isWideScreen: window.innerWidth >= 1161 });
     };
 
-    fetchSeasons = () => {
-        const competitionName = `${this.props.competitionName}`;
-        fetch(`http://13.51.197.59:3001/competitions/${competitionName}/seasons`)
-            .then(response => response.json())
-            .then(data => {
-                const filteredSeasons = data.filter(season => season !== "Main");
-                this.setState({ 
-                seasons: filteredSeasons,
-                }, () => {
-                    if (filteredSeasons.length > 0) {
-                        const urlSeason = this.props.season;
-                        if(urlSeason != undefined){
-                            this.selectSeason(urlSeason);
-                        }
-                        else{
-                            this.selectSeason(filteredSeasons[0]);
-                        } 
-                    }
-                });
-             })
-            .catch(error => console.error('Error fetching seasons:', error));
-    };
-
     selectSeason = (selectedSeason) => {
         this.setState({ selectedSeason: selectedSeason });
+        this.setYearsAndClasses(selectedSeason);
 
         const path = `/competitions/${this.props.competitionName}/${selectedSeason}`;
         this.props.navigate(path);
-        
-        this.fetchYearsForSeason(selectedSeason).then((years) => {
-            if (years.length > 0) {
-                const firstYear = years[0];
-                this.fetchClassesForYear(selectedSeason, firstYear);
-            }
-        }).catch(error => {
-            console.error('Error in sequence:', error);
-        });
     };
 
     handleSeasonChange = (event) => {
         const selectedSeason = event.target.value;
         this.selectSeason(selectedSeason);
-        window.location.reload();
     };
-
-    fetchYearsForSeason = (season) => {
-        const competitionName = `${this.props.competitionName}`;
-        return new Promise((resolve, reject) => {
-            fetch(`http://13.51.197.59:3001/competitions/${competitionName}/${season}/years`)
-                .then((response) => response.json())
-                .then((data) => {
-                    this.setState({ years: data }, () => resolve(data)); 
-                })
-                .catch((error) => {
-                    console.error('Error fetching years:', error);
-                    this.setState({ years: [] }, reject); 
-                });
-        });
-    };
-    
-
-    fetchClassesForYear = async (season, year) => {
-        const competitionName = `${this.props.competitionName}`; 
-        try {
-            this.setState({ isLoadingClasses: true });
-            const response = await fetch(`http://13.51.197.59:3001/competitions/${competitionName}/${season}/${year}/classes`);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-            this.setState({ classes: data, isLoadingClasses: false });
-        } catch (error) {
-            console.error('Error fetching classes:', error);
-            this.setState({ classes: [], isLoadingClasses: false });
-            
-        }
-    };
-    
     
 
     render() {
-        const { seasons, selectedSeason, years, classes , main_data_height} = this.state;
+        const {seasons, selectedSeason, years, classes , main_data_height, competitionData, loading} = this.state;
+        
+        if (loading) {
+            return <div>Loading...</div>;
+        }
+        else if (!competitionData) {
+            return <div>Data is loading...</div>;
+        }
+
+        const selectedSeasonData = competitionData && selectedSeason ? competitionData[selectedSeason] : {};
         return (
             <div id="gencomp-wrapper">
                 <header>
@@ -249,7 +233,7 @@ export default class GeneralComp extends Component {
                         );
                     })}
                 </div>
-                <CompTable compName={`${this.props.competitionName}`} years={years} classes={classes} selectedSeason={selectedSeason}/>
+                <CompTable compName={`${this.props.competitionName}`} compTable={selectedSeasonData} years={years} classes={classes} selectedSeason={selectedSeason}/>
             </div>
         );
     }

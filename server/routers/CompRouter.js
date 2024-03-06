@@ -8,20 +8,11 @@ const checkTxt = require('../controllers/checkTxtController');
 const getNames = require('../controllers/getListOfNamesController');
 const getTextData = require('../controllers/getTextDataController');
 const getImage = require('../controllers/getImageController');
+const getCompetitionData = require('../controllers/getCompetitionDataController');
 
 
-//Forming table
-//Seasons
-router.get('/:competitionName/seasons', async (req, res) => {
-    getNames(res , `/competitions/${req.params.competitionName}/`);
-});
-//Years
-router.get('/:competitionName/:seasonName/years', async (req, res) => {
-    getNames(res , `/competitions/${req.params.competitionName}/${req.params.seasonName}/`);
-});
-//classes
-router.get('/:competitionName/:seasonName/:year/classes', async (req, res) => {
-    getNames(res , `/competitions/${req.params.competitionName}/${req.params.seasonName}/${req.params.year}/`);
+router.get('/:competitionName/alldata', async (req, res) => {
+    getCompetitionData(res , `/competitions/${req.params.competitionName}/`);
 });
 
 //PDF
@@ -29,18 +20,8 @@ router.get('/:competitionName/:seasonName/:year/:className/:pdfType', async (req
     getPdf(res , req.params.competitionName, req.params.seasonName, req.params.year, req.params.className, req.params.pdfType);
 });
 
-// New endpoint for checking PDF availability
-router.get('/check/:competitionName/:seasonName/:year/:className/:pdfType', async (req, res) => {
-    checkPdf(req, res);
-});
-
-
 router.get('/get/:competitionName/:seasonName/:year/:className/videolink', async (req, res) => {
     getTextData(res , `/competitions/${req.params.competitionName}/${req.params.seasonName}/${req.params.year}/${req.params.className}/video.txt`);
-});
-
-router.get('/getvid/:competitionName/:seasonName/:year/:className/go', async (req, res) => {
-    checkTxt(req, res);
 });
 
 
