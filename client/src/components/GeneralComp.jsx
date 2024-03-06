@@ -52,7 +52,13 @@ export default class GeneralComp extends Component {
           .then((data) => {
             this.setState({ competitionData: data, loading: false }, () => {
                 this.setSeasons();
-                const firstSeason = Object.keys(data)[0]; 
+                let firstSeason;
+                if(this.props.season){
+                    firstSeason = this.props.season;
+                }
+                else{
+                    firstSeason = Object.keys(data)[0]; 
+                }
                 if (firstSeason) {
                     this.selectSeason(firstSeason); 
                 }
