@@ -25,7 +25,6 @@ export default class GeneralComp extends Component {
             years: [],
             classes: [],
             main_data: [],
-            main_data_height: 0,
             height_updated: false,
             competitionData: null, 
             loading: true, // To track the loading state
@@ -62,19 +61,7 @@ export default class GeneralComp extends Component {
           .catch((error) => {
             this.setState({ error: error.toString(), loading: false });
           });
-      };
-
-    getSdf(){
-            this.state.height_updated = true;
-            const el = document.getElementById("gencomp-main-right");
-            const height = el.getBoundingClientRect();
-
-            console.log(el)
-            console.log(height)
-
-            
-            this.setState({ main_data_height: height })
-    }
+    };
 
     fetchData(){
         this.setState({main_data: []});
@@ -125,7 +112,7 @@ export default class GeneralComp extends Component {
         console.log("updated")
         if (this.props.competitionName !== prevProps.competitionName) {
             this.fetchData();
-            this.fetchSeasons();
+            this.fetchCompetitionData();
         }
         this.adjustLeftBlockHeight();
     }
@@ -166,7 +153,7 @@ export default class GeneralComp extends Component {
     
 
     render() {
-        const {seasons, selectedSeason, years, classes , main_data_height, competitionData, loading} = this.state;
+        const {seasons, selectedSeason, years, classes , competitionData, loading} = this.state;
         
         if (loading) {
             return <div>Loading...</div>;
@@ -185,7 +172,7 @@ export default class GeneralComp extends Component {
                 <div id="gencomp-main">
 
                     {this.state.isWideScreen ? (
-                        <div id="gencomp-main-left" style ={{maxHeight: main_data_height}}>
+                        <div id="gencomp-main-left">
                             <Competitions />
                         </div>
                     ) : (
