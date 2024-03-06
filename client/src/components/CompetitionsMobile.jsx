@@ -16,7 +16,7 @@ function App() {
   const [filterState , setFilterState] = useState({});
 
   useEffect(() => {
-    fetch('http://localhost:3001/home/filters.txt')
+    fetch('http://15.188.118.216:3001/home/filters.txt')
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -54,7 +54,7 @@ function App() {
         console.error('There was an error fetching the filters:', error);
       });
 
-    fetch('http://localhost:3001/home/competitions.txt')
+    fetch('http://15.188.118.216:3001/home/competitions.txt')
       .then((response) => response.text())
       .then((text) => {
         let text_data = text.split(

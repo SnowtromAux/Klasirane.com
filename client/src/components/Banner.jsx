@@ -12,7 +12,7 @@ const Banner = (props) => {
   useEffect(() => {
     const fetchBannerImg = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/${page}/banner/logo/${path}/${compName}`);
+        const response = await fetch(`http://15.188.118.216:3001/${page}/banner/logo/${path}/${compName}`);
         const blob = await response.blob();
         setImg(URL.createObjectURL(blob));
       } catch (error) {
@@ -22,7 +22,7 @@ const Banner = (props) => {
 
     const fetchBannerAlt = async () => {
         try {
-          const response = await fetch(`http://localhost:3001/${page}/banner/text/${path}/${compName}`);
+          const response = await fetch(`http://15.188.118.216:3001/${page}/banner/text/${path}/${compName}`);
           const alternative = await response.text();
           setAlt(alternative);
         } catch (error) {
@@ -32,7 +32,7 @@ const Banner = (props) => {
 
     const fetchBannerLink = async () => {
         try {
-          const response = await fetch(`http://localhost:3001/${page}/banner/link/${path}/${compName}`);
+          const response = await fetch(`http://15.188.118.216:3001/${page}/banner/link/${path}/${compName}`);
           const l = await response.text();
           setLink(l);
         } catch (error) {

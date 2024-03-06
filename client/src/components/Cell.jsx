@@ -11,13 +11,13 @@ function Cell({ competitionName, cellData, seasonName, year, className }) {
   const videoAvailable = cellData['video.txt'];
   const handleDownload = (pdfType) => {
     if (!pdfAvailable[pdfType]) return;
-    const url = `http://localhost:3001/competitions/${competitionName}/${seasonName}/${year}/${className}/${pdfType}`;
+    const url = `http://15.188.118.216:3001/competitions/${competitionName}/${seasonName}/${year}/${className}/${pdfType}`;
     
     window.open(url, '_blank');
   };
 
   const openVideo = async () => {
-    const vidUrl = `http://localhost:3001/competitions/get/${competitionName}/${seasonName}/${year}/${className}/videolink`;
+    const vidUrl = `http://15.188.118.216:3001/competitions/get/${competitionName}/${seasonName}/${year}/${className}/videolink`;
     try {
       const response = await fetch(vidUrl);
       const videoUrl = await response.text();
