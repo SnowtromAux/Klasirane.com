@@ -115,23 +115,11 @@ export default class GeneralComp extends Component {
     };
       
     componentDidUpdate(prevProps) {
-        console.log("updated")
+        console.log(prevProps);
+
         if (this.props.competitionName !== prevProps.competitionName) {
             this.fetchData();
             this.fetchCompetitionData();
-        }
-        this.adjustLeftBlockHeight();
-    }
-
-    adjustLeftBlockHeight() {
-        const leftBlock = document.getElementById('gencomp-main-left');
-        const rightBlock = document.getElementById('gencomp-main-right');
-
-        if (leftBlock && rightBlock) {
-            const rightBlockHeight = rightBlock.offsetHeight;
-            leftBlock.style.maxHeight = `${rightBlockHeight}px`;
-
-            console.log(rightBlockHeight)
         }
     }
 
