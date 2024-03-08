@@ -166,11 +166,11 @@ export default class GeneralComp extends Component {
                 <div id="gencomp-main">
 
                     {this.state.isWideScreen ? (
-                        <div id="gencomp-main-left">
+                        <div id="gencomp-main-left" style = {{position: "absolute"}}>
                             <Competitions />
                         </div>
                     ) : (
-                        <div id="gencomp-main-left">
+                        <div id="gencomp-main-left" style = {{position: "relative"}}>
                             <CompetitionsMobile />
                         </div>
                     )}
