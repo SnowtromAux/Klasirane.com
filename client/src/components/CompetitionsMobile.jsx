@@ -4,6 +4,7 @@ import "../styles/CompetitionsMobile.css";
 import arrow from "../assets/filter-arrow.png";
 import exit from "../assets/exit.png";
 import remove from "../assets/remove.png";
+import x from "../assets/x.png"
 
 function App() {
     const [isArrowRotated, setIsArrowRotated] = useState(false);
@@ -159,8 +160,37 @@ function App() {
   const triggerFilter = (filter_name) => {
     setFilterState((prevFilterState) => {
       const updatedFilterState = { ...prevFilterState };
-      updatedFilterState[filter_name] = !updatedFilterState[filter_name];
+
+      // Close all filters except the clicked one
+      Object.keys(updatedFilterState).forEach((filter) => {
+        updatedFilterState[filter] = filter === filter_name ? !updatedFilterState[filter] : false;
+      });
+
       return updatedFilterState;
+    });
+  };
+
+  const removeFilter = (filterName, sel_data) => {
+    setSelFilters((prevFilters) => {
+      const updatedFilters = { ...prevFilters };
+      updatedFilters[filterName] = updatedFilters[filterName].filter(filter => filter !== sel_data);
+
+      const checkboxes = document.getElementsByClassName(`filter-group-${filterName}`);
+      Array.from(checkboxes).forEach((checkbox) => {
+        checkbox.checked = false;
+      });
+
+      return updatedFilters;
+    });
+    setSelectedFiltersByCategory((prevSelected) => {
+      const updatedSelected = { ...prevSelected };
+      if (updatedSelected[filterName]) {
+        updatedSelected[filterName] = updatedSelected[filterName].filter((filter) => filter !== sel_data);
+        if (updatedSelected[filterName].length === 0) {
+          delete updatedSelected[filterName]; // Optionally remove the category if no filters are selected
+        }
+      }
+      return updatedSelected;
     });
   };
   useEffect(() => {
@@ -181,33 +211,38 @@ function App() {
                 <label className="filter-text-mobile">Филтри</label>
                 <div className="filters-wrapper-mobile">
 
-                {filters.map((filter, index) => (
-                    <div className="filter" key={index} onClick={() => {triggerFilter(filter.name)}} style = {{borderBottomRightRadius: filterState[filter.name] ? "0px" : "20px" , borderBottomLeftRadius: filterState[filter.name] ? "0px" : "20px" , zIndex: 500 - index}}>
-                    <label className="filter-name">{filter.name}</label>
-                     {selFilters[filter.name].map((sel_data, index) => (
-                        <label className="selected-filters" key={index}>
-                        {sel_data}
-                        </label>
-                     ))}
-                    <div className="filter-dropdown" style = {{visibility: filterState[filter.name] ? "visible" : "hidden"}}>
-                        {filter.options.map((option, index) => (
-                        <div key={index} className="filter-dropdown-row">
-                            <input
-                            className={`filter-group-${filter.name}`}
-                            type="checkbox"
-                            id={`${filter.name}_radio_${index}`}
-                            onChange={() =>
-                                handleCheckboxChange(filter.name, index, filter.multiple)
-                            }
-                            ></input>
-                            <label htmlFor={`${filter.name}_radio_${index}`}>
-                            {option}
-                            </label>
+                  {filters.map((filter, index) => (
+                    <div className='filter-wrapper' key={index}>
+                      <div className="filter" onClick={() => {triggerFilter(filter.name)}} style = {{borderBottomRightRadius: filterState[filter.name] ? "0px" : "20px" , borderBottomLeftRadius: filterState[filter.name] ? "0px" : "20px" , zIndex: 500 - index}}>
+                        <label className="filter-name">{filter.name}</label>
+                        <div className="filter-dropdown" style = {{visibility: filterState[filter.name] ? "visible" : "hidden"}}>
+                          {filter.options.map((option, index) => (
+                            <div key={index} className="filter-dropdown-row">
+                              <input
+                                className={`filter-group-${filter.name}`}
+                                type="checkbox"
+                                id={`${filter.name}_radio_${index}`}
+                                onChange={() =>
+                                  handleCheckboxChange(filter.name, index, filter.multiple)
+                                }
+                              ></input>
+                              <label htmlFor={`${filter.name}_radio_${index}`}>
+                                {option}
+                              </label>
+                            </div>
+                          ))}
                         </div>
+                      </div>
+                        {selFilters[filter.name].map((sel_data, index) => (
+                          <div className='selected-filters' key={index}>
+                            <label className="selected-filter">
+                              {sel_data}
+                            </label>
+                            <img src = {x} alt = "filter remove" onClick={() => {removeFilter(filter.name , sel_data)}}></img>
+                          </div>
                         ))}
                     </div>
-                    </div>
-                ))}
+                  ))}
                     
                 </div>
             </div>
@@ -220,8 +255,7 @@ function App() {
                     <div className='filter-result-mobile-top'>
                         <div className='filter-result-mobile-top-text'>Филтри</div>
                          {Object.entries(selectedFiltersByCategory).map(([category, selectedFilters], index) => (
-                            <div key={index}>
-                                <div className='filter-result-mobile-category'>{category}</div>
+                            <div key={index} style={{display: "flex", gap: "5px", flexWrap: "wrap"}}>
                                 {selectedFilters.map((filter, filterIndex) => (
                                     <label key={filterIndex} className={`filter-result-mobile-top-search`}>{filter}</label>
                                 ))}

@@ -124,7 +124,7 @@ function Competitions() {
 };
 
   const changeDirectory = (path) => {
-    navigate(`/competitions/${path}`);
+    navigate(`/competitions/${path}`, { state: { selectedFilters: selFilters } });
   }
 
   const triggerFilter = (filter_name) => {
