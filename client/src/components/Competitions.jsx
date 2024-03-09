@@ -89,6 +89,14 @@ function Competitions() {
       });
   }, []);
 
+  // Getting the selected filters
+  // useEffect(() => {
+  //   if (location.pathname.includes('/competitions') && location.state?.selectedFilters) {
+  //     // Update selFilters based on the navigation state
+  //     setSelFilters(location.state.selectedFilters);
+  //   }
+  // }, [location]);
+
   const handleCheckboxChange = (filter_name, index, isMultiple) => {
     const id = `${filter_name}_radio_${index}`;
     const checkboxes = document.getElementsByClassName(
