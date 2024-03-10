@@ -4,7 +4,7 @@ const cors = require('cors');
 const app = express();
 const port = 3001;
 
-const allowedOrigins = ['http://15.188.118.216:5000'];
+const allowedOrigins = ['http://15.188.118.216:3000'];
 
 // Use CORS middleware with options
 app.use(cors({
