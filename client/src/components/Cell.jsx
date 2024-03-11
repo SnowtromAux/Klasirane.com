@@ -5,8 +5,13 @@ function Cell({ competitionName, cellData, seasonName, year, className }) {
   
   const pdfAvailable = {
     probs: cellData['probs.pdf'],
-    sol: cellData['sol.pdf']
+    sol: cellData['sol.pdf'],
+    rat: cellData['rat.pdf']
   };
+
+  if(pdfAvailable.rat){
+    console.log(cellData);
+  }
 
   const videoAvailable = cellData['video.txt'];
   const handleDownload = (pdfType) => {
@@ -30,17 +35,25 @@ function Cell({ competitionName, cellData, seasonName, year, className }) {
 
   return (
     <div className="cell-wrapper">
-       <div className="problem" onClick={() => handleDownload('probs')}>
-          <div className='problem-text'>
-            {pdfAvailable.probs ? 'Задачи' : '-'}
+      {pdfAvailable.rat ? (
+          <div className='rat' onClick={() => handleDownload('rat')}>
+            Рейтинг
+          </div>
+      ) : (
+          <div className='cell-content'>
+          <div className="problem" onClick={() => handleDownload('probs')}>
+            <div className='problem-text'>
+              {pdfAvailable.probs ? 'Задачи' : '-'}
+            </div>
+          </div>
+          <div className="solution" onClick={() => handleDownload('sol')}>
+              {pdfAvailable.sol ? 'Реш/Отг' : '-'}
+          </div>
+          <div className="video" onClick={videoAvailable ? openVideo : undefined}>
+              {videoAvailable ? 'Видеореш.' : '-'}
           </div>
         </div>
-        <div className="solution" onClick={() => handleDownload('sol')}>
-          {pdfAvailable.sol ? 'Реш/Отг' : '-'}
-        </div>
-        <div className="video" onClick={videoAvailable ? openVideo : undefined}>
-            {videoAvailable ? 'Видеореш.' : '-'}
-        </div>
+      )}
     </div>
   );
 }

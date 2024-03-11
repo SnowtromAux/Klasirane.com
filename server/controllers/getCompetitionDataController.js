@@ -35,7 +35,7 @@ const readCompetitionStructure = async (dirPath) => {
 
             for (const className of classes) {
                 const filesPath = path.join(classPath, className);
-                structure[season][year][className] = checkFilesExist(filesPath, ['probs.pdf', 'sol.pdf', 'video.txt']);
+                structure[season][year][className] = checkFilesExist(filesPath, ['probs.pdf', 'sol.pdf', 'video.txt', 'rat.pdf']);
             }
         }
     }

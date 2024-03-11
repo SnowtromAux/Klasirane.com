@@ -8,7 +8,6 @@ function CompTable({compName, compTable, years, classes, selectedSeason}) {
 
   useEffect(() => {
     if (compTable) {
-      console.log(compTable);
       setIsLoading(false);
     }
   }, [compTable]);

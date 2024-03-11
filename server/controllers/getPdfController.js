@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const getPdf = async (res, competitionName, seasonName, year, className, pdfType) => {
-    const pdfFileName = pdfType === 'probs' ? 'probs.pdf' : 'sol.pdf';
+    const pdfFileName = pdfType === 'probs' ? 'probs.pdf' : pdfType === 'sol' ? 'sol.pdf' : 'rat.pdf';
     const baseDir = path.join(__dirname , ".." , "ftp");
     const pdfFilePath = path.join(baseDir, 'competitions', competitionName, seasonName, year, className, pdfFileName);
 
