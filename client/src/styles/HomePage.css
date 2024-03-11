@@ -43,7 +43,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    padding: 10px;
+    padding: 13px 18px;
 }
 
 
@@ -89,7 +89,7 @@
 
 .problems {
     cursor: pointer;
-    padding: 10px;
+    padding: 12px 24px;
     margin-top: 10px;
     text-align: center;
     border-radius: 400px;
