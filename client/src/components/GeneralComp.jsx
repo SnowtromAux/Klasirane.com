@@ -115,9 +115,9 @@ export default class GeneralComp extends Component {
     };
       
     componentDidUpdate(prevProps) {
-        console.log(prevProps);
 
         if (this.props.competitionName !== prevProps.competitionName) {
+            this.props.onKeyChange(this.props.competitionName); // Update the key in the wrapper
             this.fetchData();
             this.fetchCompetitionData();
         }

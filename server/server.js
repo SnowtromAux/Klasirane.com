@@ -4,13 +4,6 @@ const cors = require('cors');
 const app = express();
 const port = 3001;
 
-// const corsOptions = {
-//     origin: 'http://klasirane.com',
-//     optionsSuccessStatus: 200
-// };
-  
-// app.use(cors(corsOptions));
-
 app.use(cors());
 
 const comp_router = require('./routers/CompRouter.js');

@@ -4,6 +4,19 @@ import React, { useState, useEffect } from 'react';
 
 function CompTable({compName, compTable, years, classes, selectedSeason}) {
 
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (compTable) {
+      console.log(compTable);
+      setIsLoading(false);
+    }
+  }, [compTable]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   const reversedYears = [...years].reverse(); 
 
   const sortedClasses = classes.sort((a, b) => {
