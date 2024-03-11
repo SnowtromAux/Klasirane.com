@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import "./App.css";
 import { Helmet } from 'react-helmet';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -19,6 +20,7 @@ function ScrollToTop() {
 }
 
 function App() {
+  const [isPageNotFound, setIsPageNotFound] = useState(false);
   return (
     <div>
       <Helmet>
@@ -38,9 +40,9 @@ function App() {
             <Route exact path="/" element={<HomeComponent />} />
             <Route exact path="/competitions/:competitionName" element = {<GeneralCompWrapper />}></Route>
             <Route path="/competitions/:competitionName/:season" element={<GeneralCompWrapper />} />
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="*" element={<NotFoundPage setIsPageNotFound={setIsPageNotFound} />} />
           </Routes>
-          <Footer />
+          {isPageNotFound && <Footer />}
       </Router>
     </div>
   );
