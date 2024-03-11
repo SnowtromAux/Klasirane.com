@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     justify-content: left;
-    padding: 10px 20px;
+    padding: 23px 13px 13px 13px;
 }
 
 #home-next-comp>h1 {
@@ -69,7 +69,7 @@
     border-radius: 30px;
     background: #FFF;
     box-shadow: 4px 4px 16.2px 3px rgba(0, 0, 0, 0.15);
-    padding: 10px 20px;
+    padding: 21px 33px 16px 33px;
 }
 
 #last-added-problems-wrapper>label {
