@@ -33,7 +33,7 @@ function App() {
             <Route path="/competitions/:competitionName/:season" element={<GeneralCompWrapper />} />
             <Route path="*" element={<NotFoundPage setIsPageNotFound={setIsPageNotFound} />} />
           </Routes>
-          {isPageNotFound && <Footer />}
+        <Footer />
       </Router>
     </div>
   );
