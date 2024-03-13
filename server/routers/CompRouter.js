@@ -113,6 +113,7 @@ router.get('/banner/text/:id/:bannerType/:compName', async (req, res) => {
     getTextData(res , `/competitions/${req.params.compName}/Main/${req.params.id}/${req.params.bannerType}/alt.txt`);
 });
 
+
 router.get('/banner/logo/:id/:bannerType/:compName', async (req, res) => {
     getImage(res , `/competitions/${req.params.compName}/Main/${req.params.id}/${req.params.bannerType}/banner.png`);
 });
