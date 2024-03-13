@@ -1,11 +1,17 @@
+import React, { useState } from 'react';
 import "./App.css";
 import { Helmet } from 'react-helmet';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomeComponent from "./components/HomePage";
 import GeneralCompWrapper from "./components/GeneralCompWrapper";
-import Footer from "./components/Footer"
+
+import Footer from "./components/Footer";
+import NotFoundPage from './components/PageNotFound';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function App() {
+  const [isPageNotFound, setIsPageNotFound] = useState(false);
   return (
     <div>
       <Helmet>
@@ -25,8 +31,9 @@ function App() {
             <Route exact path="/" element={<HomeComponent />} />
             <Route exact path="/competitions/:competitionName" element = {<GeneralCompWrapper />}></Route>
             <Route path="/competitions/:competitionName/:season" element={<GeneralCompWrapper />} />
+            <Route path="*" element={<NotFoundPage setIsPageNotFound={setIsPageNotFound} />} />
           </Routes>
-          <Footer />
+          {isPageNotFound && <Footer />}
       </Router>
     </div>
   );

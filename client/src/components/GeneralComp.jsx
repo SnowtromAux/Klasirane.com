@@ -12,6 +12,7 @@ import Klasirane from './Klasirane';
 import Sicademy from './Sicademy';
 import New from './New';
 import Banner from './Banner';
+import PageNotFound from './PageNotFound';
 
 
 export default class GeneralComp extends Component {
@@ -105,7 +106,13 @@ export default class GeneralComp extends Component {
     };
 
     setYearsAndClasses = (selectedSeason) => {
-        const years = Object.keys(this.state.competitionData[selectedSeason]);
+        let years = {};
+        if(this.state.competitionData[selectedSeason]){
+            years = Object.keys(this.state.competitionData[selectedSeason]);
+        }
+        else{
+            this.state.error = true;
+        }
         let classes = [];
         if (years.length > 0) {
             const firstYear = years[0];
@@ -147,9 +154,12 @@ export default class GeneralComp extends Component {
     
 
     render() {
-        const {seasons, selectedSeason, years, classes , competitionData, loading} = this.state;
-        
-        if (loading) {
+        const {seasons, selectedSeason, years, classes , competitionData, loading, error} = this.state;
+
+        if (error) {
+            return <PageNotFound />; 
+        }
+        else if (loading) {
             return <div>Loading...</div>;
         }
         else if (!competitionData) {
