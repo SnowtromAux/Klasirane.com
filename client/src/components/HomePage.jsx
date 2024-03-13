@@ -112,7 +112,7 @@ export default class HomeComponent extends Component {
                         <h1>Предстоящи състезания</h1>
                         <div>
                             {this.state.next_comp.map((comp, index) => (
-                                <label key={index} className='home-next-comp-label' onClick={() => {window.location.href = `/${comp.split(" | ")[1]}`}}>{comp.split(" | ")[0]}</label>
+                                <label key={index} className='home-next-comp-label' onClick={() => {window.location.href = `/competitions/${comp.split(" | ")[1]}`}}>{comp.split(" | ")[0]}</label>
                             ))}
                         </div>
                     </div>

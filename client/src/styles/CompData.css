@@ -95,6 +95,12 @@
     }
 } */
 
+@media (max-width: 1161px) {
+    .comp-data-middle >label{
+        text-align: left;
+    }
+}
+
 @media (max-width: 800px) {
     .comp-data-top-right{
         margin-left: 0;
