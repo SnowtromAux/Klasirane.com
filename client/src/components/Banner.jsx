@@ -5,52 +5,100 @@ const Banner = (props) => {
   const { path , page } = props;
   const compName = props.compName || "";
 
-  const [img , setImg] = useState("");
-  const [link , setLink] = useState("");
-  const [alt , setAlt] = useState("");
+  const [img1 , setImg1] = useState("");
+  const [link1 , setLink1] = useState("");
+  const [alt1 , setAlt1] = useState("");
+
+  
+  const [img2 , setImg2] = useState("");
+  const [link2 , setLink2] = useState("");
+  const [alt2 , setAlt2] = useState("");
 
   useEffect(() => {
-    const fetchBannerImg = async () => {
+    const fetchBannerImg1 = async () => {
       try {
-        const response = await fetch(`http://15.188.118.216:3001/${page}/banner/logo/${path}/${compName}`);
+        const response = await fetch(`http://15.188.118.216:3001/${page}/banner/logo/${path}/banner1/${compName}`);
         const blob = await response.blob();
-        setImg(URL.createObjectURL(blob));
+        setImg1(URL.createObjectURL(blob));
       } catch (error) {
         console.error('Error fetching ad script:', error);
       }
     };
 
-    const fetchBannerAlt = async () => {
+    const fetchBannerImg2 = async () => {
+      try {
+        const response = await fetch(`http://15.188.118.216:3001/${page}/banner/logo/${path}/banner2/${compName}`);
+        const blob = await response.blob();
+        setImg2(URL.createObjectURL(blob));
+      } catch (error) {
+        console.error('Error fetching ad script:', error);
+      }
+    };
+
+    const fetchBannerAlt1 = async () => {
+      console.log(path)
         try {
-          const response = await fetch(`http://15.188.118.216:3001/${page}/banner/text/${path}/${compName}`);
+          const response = await fetch(`http://15.188.118.216:3001/${page}/banner/text/${path}/banner1/${compName}`);
           const alternative = await response.text();
-          setAlt(alternative);
+          setAlt1(alternative);
         } catch (error) {
           console.error('Error fetching ad script:', error);
         }
     };
 
-    const fetchBannerLink = async () => {
+    const fetchBannerAlt2 = async () => {
+      try {
+        const response = await fetch(`http://15.188.118.216:3001/${page}/banner/text/${path}/banner2/${compName}`);
+        const alternative = await response.text();
+        setAlt2(alternative);
+      } catch (error) {
+        console.error('Error fetching ad script:', error);
+      }
+  };
+
+    const fetchBannerLink1 = async () => {
         try {
-          const response = await fetch(`http://15.188.118.216:3001/${page}/banner/link/${path}/${compName}`);
+          const response = await fetch(`http://15.188.118.216:3001/${page}/banner/link/${path}/banner1/${compName}`);
           const l = await response.text();
-          setLink(l);
+          setLink1(l);
         } catch (error) {
           console.error('Error fetching ad script:', error);
         }
       };
+      
+    const fetchBannerLink2 = async () => {
+      try {
+        const response = await fetch(`http://15.188.118.216:3001/${page}/banner/link/${path}/banner2/${compName}`);
+        const l = await response.text();
+        setLink2(l);
+      } catch (error) {
+        console.error('Error fetching ad script:', error);
+      }
+    };
 
 
-    fetchBannerImg();
-    fetchBannerAlt();
-    fetchBannerLink();
+    fetchBannerImg1();
+    fetchBannerImg2();
+
+    fetchBannerAlt1();
+    fetchBannerAlt2();
+
+    fetchBannerLink1();
+    fetchBannerLink2();
 }, [path]);
 
   return (
-    <div className="banner-wrapper">
-        <a href = {link} target = "_blank" rel="noreferrer">
-            <img src = {img} alt = {alt}></img>
-        </a>
+    <div className="big-banner-wrapper">
+      <div className="banner-wrapper">
+          <a href = {link1} target = "_blank" rel="noreferrer">
+              <img src = {img1} alt = {alt1}></img>
+          </a>
+      </div>
+      <div className="banner-wrapper">
+          <a href = {link2} target = "_blank" rel="noreferrer">
+              <img src = {img2} alt = {alt2}></img>
+          </a>
+      </div>
     </div>
   );
 }

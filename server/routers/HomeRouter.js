@@ -74,16 +74,16 @@ router.get('/new/alt/:id', async (req, res) => {
 
 
 //Banner Data
-router.get('/banner/text/:id', async (req, res) => {
-    getTextData(res , `/home/main-data/${req.params.id}/alt.txt`);
+router.get('/banner/text/:id/:bannerType', async (req, res) => {
+    getTextData(res , `/home/main-data/${req.params.id}/${req.params.bannerType}/alt.txt`);
 });
 
-router.get('/banner/logo/:id', async (req, res) => {
-    getImage(res , `/home/main-data/${req.params.id}/banner.png`);
+router.get('/banner/logo/:id/:bannerType', async (req, res) => {
+    getImage(res , `/home/main-data/${req.params.id}/${req.params.bannerType}/banner.png`);
 });
 
-router.get('/banner/link/:id', async (req, res) => {
-    getTextData(res , `/home/main-data/${req.params.id}/link.txt`);
+router.get('/banner/link/:id/:bannerType', async (req, res) => {
+    getTextData(res , `/home/main-data/${req.params.id}/${req.params.bannerType}/link.txt`);
 });
 
 module.exports = router;
