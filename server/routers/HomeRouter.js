@@ -79,6 +79,7 @@ router.get('/banner/text/:id/:bannerType', async (req, res) => {
 });
 
 router.get('/banner/logo/:id/:bannerType', async (req, res) => {
+    console.log("HOOOOMEEE I AM HERE BABY");
     getImage(res , `/home/main-data/${req.params.id}/${req.params.bannerType}/banner.png`);
 });
 

@@ -10,7 +10,7 @@ const PrivacyPolicy = () => {
       <h1 class="ipsType_pageTitle">Декларация за поверителност</h1>
         <h2>Кой сме ние?</h2>
         Сайтът <a href="https://klasirane.com" target="_blank" rel="external nofollow noopener">https://Klasirane.com</a>
-        е собственост и се обслужва от <a href="mailto:kris.dimitrov@gmail.com">Кристиан Димитров</a>
+        е собственост и се обслужва от <a href="mailto:contact@klasirane.com">Станислав Димитров</a>
         .
 <h2>Какво е GDPR?</h2>
         Общият регламент за защита на данните (GDPR) е приет още през 2016г., но влиза в сила на 25 май 2018г.<br/>

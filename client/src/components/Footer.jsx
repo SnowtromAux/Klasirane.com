@@ -19,7 +19,7 @@ function Footer() {
         </a>
       </div>
       <div className="footer-middle">
-        <div><a href="mailto:snowtromgs@gmail.com" style={{ color: 'black' }}>Контакт</a></div>
+        <div><a href="mailto:contact@klasirane.com" style={{ color: 'black' }}>Контакт</a></div>
         <div><Link to="/privacy-policy" style={{ color: 'black' }}>Политика за поверителност</Link></div>
         <div><Link to="/cookies" style={{ color: 'black' }}>Бисквитки</Link></div>
       </div>

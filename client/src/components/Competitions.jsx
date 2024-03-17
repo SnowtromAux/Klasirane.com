@@ -31,7 +31,10 @@ function Competitions() {
           const obj = {};
           const row_data = row.split(' | ');
           const filter_name = row_data[0];
-          const filter_options = row_data[1].split(' , ');
+          let filter_options = row_data[1].split(' , ');
+          if(filter_name == "Година"){
+            filter_options = filter_options.reverse();
+          }
           const multiple =
             row_data[2] === 'Multiple' || row_data[2] === 'Multiple\r';
 
