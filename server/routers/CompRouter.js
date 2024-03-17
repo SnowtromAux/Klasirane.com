@@ -115,7 +115,6 @@ router.get('/banner/text/:id/:bannerType/:compName', async (req, res) => {
 
 
 router.get('/banner/logo/:id/:bannerType/:compName', async (req, res) => {
-    console.log("I AM HERE BABY");
     getImage(res , `/competitions/${req.params.compName}/Main/${req.params.id}/${req.params.bannerType}/banner.png`);
 });
 
