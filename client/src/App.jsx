@@ -9,6 +9,8 @@ import Footer from "./components/Footer";
 import NotFoundPage from './components/PageNotFound';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import Cookies from './components/Cookies';
 
 function App() {
   const [isPageNotFound, setIsPageNotFound] = useState(false);
@@ -31,6 +33,8 @@ function App() {
             <Route exact path="/" element={<HomeComponent />} />
             <Route exact path="/competitions/:competitionName" element = {<GeneralCompWrapper />}></Route>
             <Route path="/competitions/:competitionName/:season" element={<GeneralCompWrapper />} />
+            <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route exact path="/cookies" element={<Cookies />} />
             <Route path="*" element={<NotFoundPage setIsPageNotFound={setIsPageNotFound} />} />
           </Routes>
         <Footer />

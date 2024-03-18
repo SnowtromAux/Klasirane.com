@@ -1,5 +1,6 @@
 import "../styles/Footer.css";
 import img from '../assets/facebook-icon-white.png';
+import { Link } from 'react-router-dom';
 // import mail from '../assets/mail.png';
 
 function Footer() {
@@ -18,9 +19,9 @@ function Footer() {
         </a>
       </div>
       <div className="footer-middle">
-        <div>Контакт</div>
-        <div>Политика за поверителност</div>
-        <div>Бисквитки</div>
+        <div><a href="mailto:contact@klasirane.com" style={{ color: 'black' }}>Контакт</a></div>
+        <div><Link to="/privacy-policy" style={{ color: 'black' }}>Политика за поверителност</Link></div>
+        <div><Link to="/cookies" style={{ color: 'black' }}>Бисквитки</Link></div>
       </div>
     </div>
 
