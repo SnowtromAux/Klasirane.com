@@ -109,17 +109,17 @@ router.get('/comp-data/last-added/:id/:compName', async (req, res) => {
 
 
 //Banner Data
-router.get('/banner/text/:id/:bannerType/:compName', async (req, res) => {
+router.get('/banner/text/:id/:bannerType/:compName/alt', async (req, res) => {
     getTextData(res , `/competitions/${req.params.compName}/Main/${req.params.id}/${req.params.bannerType}/alt.txt`);
 });
 
 
-router.get('/banner/logo/:id/:bannerType/:compName', async (req, res) => {
+router.get('/banner/logo/:id/:bannerType/:compName/logo', async (req, res) => {
     getImage(res , `/competitions/${req.params.compName}/Main/${req.params.id}/${req.params.bannerType}/banner.png`);
 });
 
 
-router.get('/banner/link/:id/:bannerType/:compName', async (req, res) => {
+router.get('/banner/link/:id/:bannerType/:compName/link', async (req, res) => {
     getTextData(res , `/competitions/${req.params.compName}/Main/${req.params.id}/${req.params.bannerType}/link.txt`);
 });
 
