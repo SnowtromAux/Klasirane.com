@@ -74,15 +74,15 @@ router.get('/new/alt/:id', async (req, res) => {
 
 
 //Banner Data
-router.get('/banner/text/:id/:bannerType', async (req, res) => {
+router.get('/banner/text/:id/:bannerType/alt', async (req, res) => {
     getTextData(res , `/home/main-data/${req.params.id}/${req.params.bannerType}/alt.txt`);
 });
 
-router.get('/banner/logo/:id/:bannerType', async (req, res) => {
+router.get('/banner/logo/:id/:bannerType/logo', async (req, res) => {
     getImage(res , `/home/main-data/${req.params.id}/${req.params.bannerType}/banner.png`);
 });
 
-router.get('/banner/link/:id/:bannerType', async (req, res) => {
+router.get('/banner/link/:id/:bannerType/link', async (req, res) => {
     getTextData(res , `/home/main-data/${req.params.id}/${req.params.bannerType}/link.txt`);
 });
 
