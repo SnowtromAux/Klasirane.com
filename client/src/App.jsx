@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CookieConsent from 'react-cookie-consent';
 import "./App.css";
 import { Helmet } from 'react-helmet';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -38,6 +39,20 @@ function App() {
             <Route path="*" element={<NotFoundPage setIsPageNotFound={setIsPageNotFound} />} />
           </Routes>
         <Footer />
+        <CookieConsent
+          location="bottom"
+          buttonText="Разбирам"
+          cookieName="userConsent"
+          style={{ background: "#369" }}
+          buttonStyle={{ color: "white", fontSize: "14px" }}
+          expires={150}
+          onAccept={() => {
+            // Include logic here for what happens after acceptance.
+            console.log("Consent given.");
+          }}
+        >
+          Този уебсайт използва бисквитки, за да подобри потребителското изживяване. Продължавайки да разглеждате сайта, вие се съгласявате с използването на бисквитки от наша страна.
+        </CookieConsent>
       </Router>
     </div>
   );
