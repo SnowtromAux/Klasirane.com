@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 
 const Banner = (props) => {
   const { path , page } = props;
-  const compName = props.compName + "/" || "";
 
   const [img1 , setImg1] = useState("");
   const [link1 , setLink1] = useState("");
@@ -15,6 +14,8 @@ const Banner = (props) => {
   const [alt2 , setAlt2] = useState("");
 
   useEffect(() => {
+    const compName = props.compName + "/" || "";
+
     const fetchBannerImg1 = async () => {
       try {
         const response = await fetch(`http://15.188.118.216:3001/${page}/banner/logo/${path}/banner1/${compName}logo`);
