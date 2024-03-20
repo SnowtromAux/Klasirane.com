@@ -73,6 +73,17 @@
     line-height: 32px;
 }
 
+.homenew-middle >label{
+    text-align: justify;
+    line-height: 1.4;
+}
+
+@media (max-width: 1161px) {
+    .homenew-middle >label{
+        text-align: left;
+    }
+}
+
 @media (max-width: 746px) {
     .homenew-wrapper {
         padding: 100px 20px 40px 20px;
