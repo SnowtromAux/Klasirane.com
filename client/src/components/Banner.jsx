@@ -14,7 +14,9 @@ const Banner = (props) => {
   const [alt2 , setAlt2] = useState("");
 
   useEffect(() => {
-    const compName = props.compName + "/" || "";
+  const compName = props.compName ? (props.compName + "/") : "";
+
+    console.log(compName)
 
     const fetchBannerImg1 = async () => {
       try {
