@@ -11,11 +11,27 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import Cookies from './components/Cookies';
+import { Helmet } from 'react-helmet';
 
 function App() {
   const [isPageNotFound, setIsPageNotFound] = useState(false);
   return (
     <div>
+      <Helmet>
+        <title>Klasirane</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="UTF-8" />
+        <meta property="og:url" content="http://klasirane.com/" />
+        <meta property="og:title" content ="Klasirane.com : Задачи, Математика, Състезания, Решения" />
+        <meta property="og:description" content ="МАТЕМАТИКА - Задачи, Решения и Отговори от математически Състезания и Турнири || Mathematics Problems and Solutions | Klasirane.com" />
+        <link href="http://klasirane.com/" rel="canonical" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        <meta name="author" content="Станислав Димитров" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="keywords" content="Класиране , Задачи , отговори , решения , олимпиада , състезание , турнир , математика , рейтинг , станислав , димитров , чобанов" />
+
+      </Helmet>
       <Router>
           {/* <ScrollToTop /> */}
           <Routes>

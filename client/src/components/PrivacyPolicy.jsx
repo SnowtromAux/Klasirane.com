@@ -11,14 +11,8 @@ const PrivacyPolicy = () => {
   return (
     <div className="privacy-policy">
         <Helmet>        
-                <title>Klasirane</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <meta charset="UTF-8" />
-                <meta name="description" content="Политика за поверителност на класиране" />
-                <meta name="author" content="Станислав Димитров" />
-                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-                <meta name="keywords" content="Класиране , Задачи , отговори , решения , олимпиада , състезание , турнир , математика , рейтинг , станислав , димитров , чобанов" />
+                <meta name="keywords" content="privacy , and , policy" />
+                <meta name="description" content={`Privacy and Policy на класиране.`} />
         </Helmet>
       <div className="privacy-policy-box">
 

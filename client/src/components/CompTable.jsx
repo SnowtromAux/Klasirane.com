@@ -42,6 +42,8 @@ function CompTable({compName, compTable, years, classes, selectedSeason}) {
   
   const columnNumbers = sortedClasses; 
 
+  const keywords = compName.split(" ").map(word => word.toLowerCase()).join(", ");
+  
   const cells = Array.from({ length: totalColumns * totalRows }, (_, index) => {
     const row = Math.floor(index / totalColumns);
     const column = index % totalColumns;
@@ -64,8 +66,8 @@ function CompTable({compName, compTable, years, classes, selectedSeason}) {
   return (
     <div className='gridTable-container'>
       <Helmet>
-        <meta name="keywords" content={`${compName}`} />
-        <meta name="description" content={`Разгледайте задачите, решенията и отговорите на последното математическо състезание ${compName}. Подгответе се за нови предизвикателства и развийте своите математически умения с помощта на нашия състезателен портал`} />
+        <meta name="keywords" content={`${keywords}`} />
+        <meta name="description" content={`Задачи, Решения и Отговори от състезание по математика ${compName} | Klasirane.com`} />
       </Helmet>
       <div className="gridTable" style={{ gridTemplateColumns: `repeat(${totalColumns}, min-content)`,  gridTemplateRows: `repeat(${totalRows}, 150px)`}}>
         {cells.map((cell) => {
