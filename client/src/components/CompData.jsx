@@ -18,7 +18,7 @@ const New = (props) => {
   useEffect(() => {
       const fetchTitleData = async () => {
         try {
-          const response = await fetch(`http://15.188.118.216:3001/${page}/comp-data/title/${path}/${compName}`);
+          const response = await fetch(`https://klasirane.com/${page}/comp-data/title/${path}/${compName}`);
           const new_title = await response.text();
           setTitle(new_title);
           setKeywords(new_title.split(" ").map(word => word.toLowerCase()).join(", "));
@@ -29,7 +29,7 @@ const New = (props) => {
   
       const fetchDescriptionData = async () => {
         try {
-          const response = await fetch(`http://15.188.118.216:3001/${page}/comp-data/description/${path}/${compName}`);
+          const response = await fetch(`https://klasirane.com/${page}/comp-data/description/${path}/${compName}`);
           const desc = await response.text();
           setDescription(desc);
         } catch (error) {
@@ -39,7 +39,7 @@ const New = (props) => {
 
       const fetchImgData = async () => {
         try {
-          const response = await fetch(`http://15.188.118.216:3001/${page}/comp-data/logo/${path}/${compName}`);
+          const response = await fetch(`https://klasirane.com/${page}/comp-data/logo/${path}/${compName}`);
           const blob = await response.blob();
           setImg(URL.createObjectURL(blob));
         } catch (error) {
@@ -49,7 +49,7 @@ const New = (props) => {
 
       const fetchAltData = async () => {
         try {
-          const response = await fetch(`http://15.188.118.216:3001/${page}/comp-data/alt/${path}/${compName}`);
+          const response = await fetch(`https://klasirane.com/${page}/comp-data/alt/${path}/${compName}`);
           const alternative = await response.text();
           setAlt(alternative)
         } catch (error) {
@@ -59,7 +59,7 @@ const New = (props) => {
 
       const fetchLastAddedData = async () => {
         try {
-          const response = await fetch(`http://15.188.118.216:3001/${page}/comp-data/last-added/${path}/${compName}`);
+          const response = await fetch(`https://klasirane.com/${page}/comp-data/last-added/${path}/${compName}`);
           const l_a = await response.text();
           setLastAdded(l_a);
         } catch (error) {
