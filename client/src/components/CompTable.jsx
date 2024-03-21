@@ -1,6 +1,8 @@
 import "../styles/CompTable.css";
 import Cell from "./Cell";
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
+
 
 function CompTable({compName, compTable, years, classes, selectedSeason}) {
 
@@ -61,6 +63,10 @@ function CompTable({compName, compTable, years, classes, selectedSeason}) {
 
   return (
     <div className='gridTable-container'>
+      <Helmet>
+        <meta name="keywords" content={`${compName}`} />
+        <meta name="description" content={`Разгледайте задачите, решенията и отговорите на последното математическо състезание ${compName}. Подгответе се за нови предизвикателства и развийте своите математически умения с помощта на нашия състезателен портал`} />
+      </Helmet>
       <div className="gridTable" style={{ gridTemplateColumns: `repeat(${totalColumns}, min-content)`,  gridTemplateRows: `repeat(${totalRows}, 150px)`}}>
         {cells.map((cell) => {
           const cellContent = getCellContent(cell);

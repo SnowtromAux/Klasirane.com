@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 
 import '../styles/HomePage.css';
 
@@ -106,6 +107,16 @@ export default class HomeComponent extends Component {
     render() {
         return (
             <div id="home-wrapper">
+                <Helmet>
+                    <title>Klasirane</title>
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                    <meta charset="UTF-8" />
+                    <meta name="description" content="Математическите състезания придобиват все по-голяма популярност в училищното ни образование. Математиката е дисциплина, която позволява много развитие и именно това е мотивация за много ученици да се насочват към гимназии и училища с интезивно изучаване на математика" />
+                    <meta name="author" content="Станислав Димитров" />
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+                    <meta name="keywords" content="Класиране , Задачи , отговори , решения , олимпиада , състезание , турнир , математика , рейтинг , станислав , димитров , чобанов" />
+                </Helmet>
                 <header>
                     <Logo />
                     <div id="home-next-comp">

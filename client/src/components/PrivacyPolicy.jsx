@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+
 import '../styles/PrivacyPolicy.css'; // Import your CSS file for styling
 
 const PrivacyPolicy = () => {
@@ -8,6 +10,16 @@ const PrivacyPolicy = () => {
         }, []); 
   return (
     <div className="privacy-policy">
+        <Helmet>        
+                <title>Klasirane</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <meta charset="UTF-8" />
+                <meta name="description" content="Политика за поверителност на класиране" />
+                <meta name="author" content="Станислав Димитров" />
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+                <meta name="keywords" content="Класиране , Задачи , отговори , решения , олимпиада , състезание , турнир , математика , рейтинг , станислав , димитров , чобанов" />
+        </Helmet>
       <div className="privacy-policy-box">
 
       <h1 class="ipsType_pageTitle">Декларация за поверителност</h1>
