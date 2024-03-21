@@ -22,12 +22,12 @@ function App() {
         <title>Klasirane</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charset="UTF-8" />
-        <meta property="og:url" content="http://klasirane.com/" />
+        <meta property="og:url" content="https://klasirane.com/" />
         <meta property="og:title" content ="Klasirane.com : Задачи, Математика, Състезания, Решения" />
         <meta property="og:description" content ="МАТЕМАТИКА - Задачи, Решения и Отговори от математически Състезания и Турнири || Mathematics Problems and Solutions | Klasirane.com | класиране" />
         <meta property="description" content ="МАТЕМАТИКА - Задачи, Решения и Отговори от математически Състезания и Турнири || Mathematics Problems and Solutions | Klasirane.com | класиране" />
       
-        <link href="http://klasirane.com/" rel="canonical" />
+        <link href="https://klasirane.com/" rel="canonical" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
         <meta name="author" content="Станислав Димитров" />
