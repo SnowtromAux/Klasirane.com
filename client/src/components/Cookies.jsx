@@ -1,8 +1,12 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Cookies.css'; // Import your CSS file for styling
 
 const Cookies = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []); 
   return (
     <div className="cookies">
       <div className="cookies-box">

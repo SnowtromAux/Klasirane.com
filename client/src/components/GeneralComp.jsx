@@ -38,7 +38,6 @@ export default class GeneralComp extends Component {
     componentDidMount() {
         this.state.height_updated = false;
         this.fetchData();
-        console.log(this.state.main_data);
         this.fetchCompetitionData();
         window.addEventListener('resize', this.handleResize);
         window.addEventListener('scroll', this.checkAndFixElement);

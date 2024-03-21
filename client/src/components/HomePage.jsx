@@ -78,7 +78,6 @@ export default class HomeComponent extends Component {
     }
 
     componentDidUpdate() {
-        console.log("updated")
         setTimeout(() => {
             this.adjustLeftBlockHeight();
         } , 2000)
@@ -92,7 +91,6 @@ export default class HomeComponent extends Component {
             const rightBlockHeight = rightBlock.offsetHeight;
             leftBlock.style.maxHeight = `${rightBlockHeight}px`;
 
-            console.log(rightBlockHeight)
         }
     }
 

@@ -9,10 +9,6 @@ function Cell({ competitionName, cellData, seasonName, year, className }) {
     rat: cellData['rat.pdf']
   };
 
-  if(pdfAvailable.rat){
-    console.log(cellData);
-  }
-
   const videoAvailable = cellData['video.txt'];
   const handleDownload = (pdfType) => {
     if (!pdfAvailable[pdfType]) return;
@@ -27,7 +23,7 @@ function Cell({ competitionName, cellData, seasonName, year, className }) {
       const response = await fetch(vidUrl);
       const videoUrl = await response.text();
       if (videoUrl) window.open(videoUrl, '_blank');
-      else console.log('No video URL found');
+      // else console.log('No video URL found');
     } catch (error) {
       console.error('Error fetching video URL:', error);
     }

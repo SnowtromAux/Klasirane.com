@@ -18,7 +18,7 @@ function CompTable({compName, compTable, years, classes, selectedSeason}) {
     return <div>Loading...</div>;
   }
   let reversedYears = {};
-  if(compName == "RAT"){
+  if(compName === "RAT"){
     reversedYears = years.sort((a, b) => {
       const numA = parseInt(a, 10); 
       const numB = parseInt(b, 10); 

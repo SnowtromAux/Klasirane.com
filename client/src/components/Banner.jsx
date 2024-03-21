@@ -15,9 +15,6 @@ const Banner = (props) => {
 
   useEffect(() => {
   const compName = props.compName ? (props.compName + "/") : "";
-
-    console.log(compName)
-
     const fetchBannerImg1 = async () => {
       try {
         const response = await fetch(`http://15.188.118.216:3001/${page}/banner/logo/${path}/banner1/${compName}logo`);
@@ -39,7 +36,6 @@ const Banner = (props) => {
     };
 
     const fetchBannerAlt1 = async () => {
-      console.log(path)
         try {
           const response = await fetch(`http://15.188.118.216:3001/${page}/banner/text/${path}/banner1/${compName}alt`);
           const alternative = await response.text();

@@ -7,14 +7,15 @@ import GeneralCompWrapper from "./components/GeneralCompWrapper";
 
 import Footer from "./components/Footer";
 import NotFoundPage from './components/PageNotFound';
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import PrivacyPolicy from './components/PrivacyPolicy';
+import { useEffect } from 'react';
 import Cookies from './components/Cookies';
 import { Helmet } from 'react-helmet';
 
 function App() {
-  const [isPageNotFound, setIsPageNotFound] = useState(false);
+  useEffect(() => {
+    console.clear();
+  } , [])
   return (
     <div>
       <Helmet>
@@ -40,7 +41,7 @@ function App() {
             <Route path="/competitions/:competitionName/:season" element={<GeneralCompWrapper />} />
             <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route exact path="/cookies" element={<Cookies />} />
-            <Route path="*" element={<NotFoundPage setIsPageNotFound={setIsPageNotFound} />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         <Footer />
         <CookieConsent
