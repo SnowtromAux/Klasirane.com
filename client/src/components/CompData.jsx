@@ -1,5 +1,6 @@
 import "../styles/CompData.css";
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 
 const New = (props) => {
   const { path , page , compName } = props;
@@ -11,6 +12,8 @@ const New = (props) => {
   const [img  , setImg] = useState("");
   const [alt  , setAlt] = useState("");
   const [last_added , setLastAdded] = useState("");
+
+  const [keywords , setKeywords] = useState("");
   
   useEffect(() => {
       const fetchTitleData = async () => {
@@ -18,6 +21,7 @@ const New = (props) => {
           const response = await fetch(`http://15.188.118.216:3001/${page}/comp-data/title/${path}/${compName}`);
           const new_title = await response.text();
           setTitle(new_title);
+          setKeywords(new_title.split(" ").map(word => word.toLowerCase()).join(", "));
         } catch (error) {
           console.error('Error fetching title:', error);
         }
@@ -72,6 +76,9 @@ const New = (props) => {
 
   return (
     <div className="comp-data-wrapper">
+      <Helmet>
+        <meta name="keywords" content={`${keywords}`} />
+      </Helmet>
       {!isNarrowScreen ? (
         <div className="comp-data-top">
           <div className="comp-data-div-img">

@@ -30,7 +30,7 @@ function App() {
 
         <meta name="author" content="Станислав Димитров" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="keywords" content="Класиране , Задачи , отговори , решения , олимпиада , състезание , турнир , математика , рейтинг , станислав , димитров , чобанов" />
+        <meta name="keywords" content="класиране , задачи , отговори , решения , олимпиада , състезание , турнир , математика , рейтинг , станислав , димитров , чобанов" />
 
       </Helmet>
       <Router>
