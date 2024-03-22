@@ -18,7 +18,7 @@ const PrivacyPolicy = () => {
 
       <h1 class="ipsType_pageTitle">Декларация за поверителност</h1>
         <h2>Кой сме ние?</h2>
-        Сайтът <a href="https://klasirane.com/api" target="_blank" rel="external nofollow noopener">https://klasirane.com/api</a>
+        Сайтът <a href="https://klasirane.com" target="_blank" rel="external nofollow noopener">https://klasirane.com </a>
         е собственост и се обслужва от <a href="mailto:contact@klasirane.com">Станислав Димитров</a>
         .
 <h2>Какво е GDPR?</h2>

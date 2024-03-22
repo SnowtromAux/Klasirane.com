@@ -137,7 +137,7 @@ export default class HomeComponent extends Component {
                             <label>Последно добавени задачи</label>
                             <div>
                                 {this.state.last_problems.map((problem, index) => (
-                                    <label key={index} className='problems' onClick={() => {window.location.href = `/${problem.split(" | ")[1]}`}}>{problem.split( " | ")[0]}</label>
+                                    <label key={index} className='problems' onClick={() => {window.location.href = `/competitions/${problem.split(" | ")[1]}`}}>{problem.split( " | ")[0]}</label>
                                 ))}
                             </div>
                         </div>
