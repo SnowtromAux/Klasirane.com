@@ -25,7 +25,7 @@ function App() {
         <meta property="og:url" content="https://klasirane.com/api/" />
         <meta property="og:title" content ="Klasirane.com : Задачи, Математика, Състезания, Решения" />
         <meta property="og:description" content ="МАТЕМАТИКА - Задачи, Решения и Отговори от математически Състезания и Турнири || Mathematics Problems and Solutions | Klasirane.com | класиране" />
-        <meta property="description" content ="МАТЕМАТИКА - Задачи, Решения и Отговори от математически Състезания и Турнири || Mathematics Problems and Solutions | Klasirane.com | класиране" />
+        <meta name="description" content ="МАТЕМАТИКА - Задачи, Решения и Отговори от математически Състезания и Турнири || Mathematics Problems and Solutions | Klasirane.com | класиране" />
       
         <link href="https://klasirane.com/api/" rel="canonical" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
