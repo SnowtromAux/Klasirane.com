@@ -17,7 +17,7 @@ const Klasirane = (props) => {
   useEffect(() => {
       const fetchTitleData = async () => {
         try {
-          const response = await fetch(`http://15.188.118.216:3001/${page}/klasirane/title/${path}/${compName}`);
+          const response = await fetch(`https://klasirane.com/api/${page}/klasirane/title/${path}/${compName}`);
           const klasirane_title = await response.text();
           setTitle(klasirane_title);
         } catch (error) {
@@ -27,7 +27,7 @@ const Klasirane = (props) => {
   
       const fetchDescriptionData = async () => {
         try {
-          const response = await fetch(`http://15.188.118.216:3001/${page}/klasirane/description/${path}/${compName}`);
+          const response = await fetch(`https://klasirane.com/api/${page}/klasirane/description/${path}/${compName}`);
           const desc = await response.text();
           setDescription(desc);
         } catch (error) {
@@ -37,7 +37,7 @@ const Klasirane = (props) => {
 
       const fetchImgData = async () => {
         try {
-          const response = await fetch(`http://15.188.118.216:3001/${page}/klasirane/logo/${path}/${compName}`);
+          const response = await fetch(`https://klasirane.com/api/${page}/klasirane/logo/${path}/${compName}`);
           const blob = await response.blob();
           setImg(URL.createObjectURL(blob));
         } catch (error) {
@@ -47,7 +47,7 @@ const Klasirane = (props) => {
 
       const fetchMailTextData = async () => {
         try {
-          const response = await fetch(`http://15.188.118.216:3001/${page}/klasirane/mailData/${path}/${compName}`);
+          const response = await fetch(`https://klasirane.com/api/${page}/klasirane/mailData/${path}/${compName}`);
           const mail_text = await response.text();
           setMailText(mail_text);
         } catch (error) {

@@ -8,7 +8,7 @@ const Ad = (props) => {
   useEffect(() => {
     const fetchScriptData = async () => {
       try {
-        const response = await fetch(`http://15.188.118.216:3001/${page}/ad/text/${path}/${compName}`);
+        const response = await fetch(`https://klasirane.com/${page}/ad/text/${path}/${compName}`);
         const script = await response.text();
 
         if(!script)return;

@@ -29,7 +29,7 @@ export default class HomeComponent extends Component {
     componentDidMount() {
         window.addEventListener('resize', this.handleResize);
 
-        fetch('http://15.188.118.216:3001/home/next-comp.txt')
+        fetch('https://klasirane.com/api/home/next-comp.txt')
             .then(response => response.text())
             .then(text => {
                 const nextCompFromFile = text.split('\n').filter(Boolean);
@@ -39,7 +39,7 @@ export default class HomeComponent extends Component {
                 console.error('There was an error fetching the next competitions:', error);
             });
 
-        fetch('http://15.188.118.216:3001/home/last-problems.txt')
+        fetch('https://klasirane.com/api/home/last-problems.txt')
             .then(response => response.text())
             .then(text => {
                 const lastProblemsFromFile = text.split('\n').filter(Boolean);
@@ -50,7 +50,7 @@ export default class HomeComponent extends Component {
             });
 
             
-        fetch('http://15.188.118.216:3001/home/dir/get-names')
+        fetch('https://klasirane.com/api/home/dir/get-names')
             .then(response => response.text())
             .then(names => {
                 this.setData(JSON.parse(names));

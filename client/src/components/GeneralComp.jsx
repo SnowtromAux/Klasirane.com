@@ -43,7 +43,7 @@ export default class GeneralComp extends Component {
     }
 
     fetchCompetitionData = () => {
-        fetch(`http://15.188.118.216:3001/competitions/${this.props.competitionName}/alldata`)
+        fetch(`https://klasirane.com/api/competitions/${this.props.competitionName}/alldata`)
           .then((response) => {
             if (!response.ok) {
               throw new Error('Network response was not ok');
@@ -72,7 +72,7 @@ export default class GeneralComp extends Component {
 
     fetchData(){
         this.setState({main_data: []});
-        fetch(`http://15.188.118.216:3001/competitions/dir/get-names/${this.props.competitionName}`)
+        fetch(`https://klasirane.com/api/competitions/dir/get-names/${this.props.competitionName}`)
             .then(response => response.text())
             .then(names => {
                 this.setData(JSON.parse(names));
