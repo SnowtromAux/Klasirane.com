@@ -88,6 +88,10 @@
     /* 145.455% */
 }
 
+.footer-middle>div:hover{
+    text-decoration: underline;
+}
+
 @media (max-width: 520px) {
     .footer-middle{
         flex-direction: column;
