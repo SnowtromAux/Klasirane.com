@@ -92,7 +92,7 @@
     text-decoration: underline;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 612px) {
     .footer-middle{
         flex-direction: column;
     }
