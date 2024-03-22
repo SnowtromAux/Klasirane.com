@@ -4,7 +4,9 @@ const cors = require('cors');
 const app = express();
 const port = 3001;
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://klasirane.com'
+  }));
 
 const comp_router = require('./routers/CompRouter.js');
 app.use("/competitions" , comp_router);

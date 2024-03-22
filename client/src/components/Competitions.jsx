@@ -14,7 +14,7 @@ function Competitions() {
   const [filterState , setFilterState] = useState({});
 
   useEffect(() => {
-    fetch('https://klasirane.com/home/filters.txt')
+    fetch('https://klasirane.com/api/home/filters.txt')
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -55,7 +55,7 @@ function Competitions() {
         console.error('There was an error fetching the filters:', error);
       });
 
-    fetch('https://klasirane.com/home/competitions.txt')
+    fetch('https://klasirane.com/api/home/competitions.txt')
       .then((response) => response.text())
       .then((text) => {
         let text_data = text.split(

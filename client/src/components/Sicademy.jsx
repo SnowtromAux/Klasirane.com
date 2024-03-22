@@ -15,7 +15,7 @@ const Sicademy = (props) => {
     useEffect(() => {
         const fetchButtonData = async () => {
           try {
-            const response = await fetch(`https://klasirane.com/${page}/sicademy/button/${path}/${compName}`);
+            const response = await fetch(`https://klasirane.com/api/${page}/sicademy/button/${path}/${compName}`);
             const btn_txt = await response.text();
             setButtonTxt(btn_txt);
           } catch (error) {
@@ -25,7 +25,7 @@ const Sicademy = (props) => {
     
         const fetchDescriptionData = async () => {
           try {
-            const response = await fetch(`https://klasirane.com/${page}/sicademy/description/${path}/${compName}`);
+            const response = await fetch(`https://klasirane.com/api/${page}/sicademy/description/${path}/${compName}`);
             const desc = await response.text();
             setDescription(desc);
           } catch (error) {
@@ -35,7 +35,7 @@ const Sicademy = (props) => {
     
         const fetchLogoData = async () => {
           try {
-            const response = await fetch(`https://klasirane.com/${page}/sicademy/logo/${path}/${compName}`);
+            const response = await fetch(`https://klasirane.com/api/${page}/sicademy/logo/${path}/${compName}`);
             const blob = await response.blob();
             setImg(URL.createObjectURL(blob));
           } catch (error) {

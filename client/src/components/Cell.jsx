@@ -12,13 +12,13 @@ function Cell({ competitionName, cellData, seasonName, year, className }) {
   const videoAvailable = cellData['video.txt'];
   const handleDownload = (pdfType) => {
     if (!pdfAvailable[pdfType]) return;
-    const url = `https://klasirane.com/competitions/${competitionName}/${seasonName}/${year}/${className}/${pdfType}`;
+    const url = `https://klasirane.com/api/competitions/${competitionName}/${seasonName}/${year}/${className}/${pdfType}`;
     
     window.open(url, '_blank');
   };
 
   const openVideo = async () => {
-    const vidUrl = `https://klasirane.com/competitions/get/${competitionName}/${seasonName}/${year}/${className}/videolink`;
+    const vidUrl = `https://klasirane.com/api/competitions/get/${competitionName}/${seasonName}/${year}/${className}/videolink`;
     try {
       const response = await fetch(vidUrl);
       const videoUrl = await response.text();
