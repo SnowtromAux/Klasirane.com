@@ -17,7 +17,7 @@ const Banner = (props) => {
   const compName = props.compName ? (props.compName + "/") : "";
     const fetchBannerImg1 = async () => {
       try {
-        const response = await fetch(`https://klasirane.com/${page}/banner/logo/${path}/banner1/${compName}logo`);
+        const response = await fetch(`https://klasirane.com/api/${page}/banner/logo/${path}/banner1/${compName}logo`);
         const blob = await response.blob();
         setImg1(URL.createObjectURL(blob));
       } catch (error) {
@@ -27,7 +27,7 @@ const Banner = (props) => {
 
     const fetchBannerImg2 = async () => {
       try {
-        const response = await fetch(`https://klasirane.com/${page}/banner/logo/${path}/banner2/${compName}logo`);
+        const response = await fetch(`https://klasirane.com/api/${page}/banner/logo/${path}/banner2/${compName}logo`);
         const blob = await response.blob();
         setImg2(URL.createObjectURL(blob));
       } catch (error) {
@@ -37,7 +37,7 @@ const Banner = (props) => {
 
     const fetchBannerAlt1 = async () => {
         try {
-          const response = await fetch(`https://klasirane.com/${page}/banner/text/${path}/banner1/${compName}alt`);
+          const response = await fetch(`https://klasirane.com/api/${page}/banner/text/${path}/banner1/${compName}alt`);
           const alternative = await response.text();
           setAlt1(alternative);
         } catch (error) {
@@ -47,7 +47,7 @@ const Banner = (props) => {
 
     const fetchBannerAlt2 = async () => {
       try {
-        const response = await fetch(`https://klasirane.com/${page}/banner/text/${path}/banner2/${compName}alt`);
+        const response = await fetch(`https://klasirane.com/api/${page}/banner/text/${path}/banner2/${compName}alt`);
         const alternative = await response.text();
         setAlt2(alternative);
       } catch (error) {
@@ -57,7 +57,7 @@ const Banner = (props) => {
 
     const fetchBannerLink1 = async () => {
         try {
-          const response = await fetch(`https://klasirane.com/${page}/banner/link/${path}/banner1/${compName}link`);
+          const response = await fetch(`https://klasirane.com/api/${page}/banner/link/${path}/banner1/${compName}link`);
           const l = await response.text();
           setLink1(l);
         } catch (error) {
@@ -67,7 +67,7 @@ const Banner = (props) => {
       
     const fetchBannerLink2 = async () => {
       try {
-        const response = await fetch(`https://klasirane.com/${page}/banner/link/${path}/banner2/${compName}link`);
+        const response = await fetch(`https://klasirane.com/api/${page}/banner/link/${path}/banner2/${compName}link`);
         const l = await response.text();
         setLink2(l);
       } catch (error) {
