@@ -10,6 +10,10 @@
     background: #D9D9D9;
 }
 
+.cell-content{
+    width: 100%;
+}
+
 .problem {
     color: #369;
     font-family: Comfortaa;
@@ -27,6 +31,7 @@
 .problem-text {
     position: relative;
     top: 25px;
+    height: min-content;
 }
 
 .problem:hover {

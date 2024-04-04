@@ -247,7 +247,7 @@ function App() {
                 </div>
             </div>
             <div className="filter-result-button" onClick={handleArrowClick}>
-                <label>Покажи съзтезания</label>
+                <label>Покажи състезания</label>
                 <img src={arrow} alt="Arrow" style={{ transform: isArrowRotated ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s ease' }}></img>
             </div>
             {isArrowRotated && (

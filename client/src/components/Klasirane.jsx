@@ -76,7 +76,7 @@ const Klasirane = (props) => {
       {!isNarrowScreen ? (
         <div className="homenew-bottom">
           <div className="homenew-mail">
-            <a href = "mailto:snowtromgs@gmail.com">
+            <a href = "mailto:contact@klasirane.com">
               <img src={mail} alt="mail icon"></img>
             </a>
           </div>
