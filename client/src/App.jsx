@@ -29,6 +29,8 @@ function App() {
       
         <link href="https://klasirane.com/api/" rel="canonical" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/icon.png" type="image/png"/>
+        <link rel="apple-touch-icon" href="/icon.png" />
 
         <meta name="author" content="Станислав Димитров" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
